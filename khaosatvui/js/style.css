@@ -7,6 +7,7 @@ body {
   padding:0;
   height: 100vh;
 }
+/*
 body:before{
 	content:"";
 	position:absolute;
@@ -15,7 +16,7 @@ body:before{
 	width:100%;
 	height:100%;
 	background:rgba(255,255,255,0.9)
-}
+}*/
 h1 {
   color: #111;
   font-size: 36px;
@@ -24,7 +25,7 @@ h1 {
 }
 
 .wrapper {
-  background: #eaeaea;
+  background:rgba(255,255,255,0.7)
   height: 100vh;
   padding-top: 12px;
   position: relative;
