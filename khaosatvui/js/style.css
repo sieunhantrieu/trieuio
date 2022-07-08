@@ -22,7 +22,9 @@ h1 {
   font-size: 36px;
   font-weight: normal;
   text-align: center;
-  margin-top:40px;
+  position:absolute;
+  top:40px;
+  left:30%;
 }
 
 .wrapper {
