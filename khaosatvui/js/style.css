@@ -20,11 +20,14 @@ body:before{
 h1 {
   color: #111;
   font-size: 36px;
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
   position:absolute;
   top:40px;
-  left:30%;
+  left:50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .wrapper {
