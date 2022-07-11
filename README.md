@@ -1,2 +1,2 @@
-# sieunhan.github.io
-Thử nghiệm đầu tiên 2022
+# sieunhan.xyz
+Copyright © 2022 Siêu Nhân Triều
