@@ -78,6 +78,9 @@ html {
   font-size: 62.5%;
   overflow-x: hidden;
 }
+body{
+	    font-family: 'Inter Regular',sans-serif;
+}
 .btn--primary {
   font-size: 1.6rem;
   background: linear-gradient(91.91deg, #FFA300 11.29%, #FFD362 97.59%);
@@ -223,6 +226,7 @@ html {
 }
 .sub-menu > li > a {
   font-weight: 400;
+	    font-family: 'Inter Regular',san-serif;
   display: block;
   padding: 10px 10px;
   line-height: 20px;
@@ -741,6 +745,7 @@ html {
   line-height: 26px;
   font-weight: 400;
   padding: 5px 0;
+	margin-bottom: 3em;
 }
 .ss7-title h3 {
   font-size: 3.4rem;
@@ -1153,6 +1158,8 @@ html {
     left: 0px;
   }
 }
+
+
 /*trang chi tiet*/
 .breadcrumbs {
   background: url("../images/bg-breadcrumb-1.png") center center no-repeat;
@@ -1160,6 +1167,7 @@ html {
   position: relative;
   display: block;
   width: 100%;
+	border-bottom-right-radius: 60px;
   height: 18em;
 }
 .breadcrumbs:before {
@@ -1170,9 +1178,10 @@ html {
   height: 100%;
   content: '';
   background: rgb(13 38 59 / 35%);
+  border-bottom-right-radius: 60px;
 }
 .breadcrumbs .title {
-  font-size: 2rem;
+  font-size: 2.5em;
   position: absolute;
   bottom: 2em;
   left: auto;
@@ -1183,6 +1192,7 @@ html {
   /* margin: 20px; */
   text-transform: uppercase;
 }
+
 .breadcrumb {
   background: transparent;
   position: absolute;
@@ -1190,8 +1200,15 @@ html {
   left: auto;
   z-index: 3;
 }
-.breadcrumb-item a {
-  color: #fff;
+.breadcrumb .breadcrumb-item+.breadcrumb-item::before,
+.breadcrumb .breadcrumb-item a:hover{color:#fff;}
+.breadcrumb .breadcrumb-item.active{
+	color:#fff;font-size:1.15em;
+	line-height: 1.5em; 
+}
+.breadcrumb .breadcrumb-item a {
+  color: #ddd; 
+  font-size: 1.2em; line-height: 1.5em;
 }
 .page-contact {
   border-radius: 6px;
@@ -1207,19 +1224,95 @@ html {
   border-radius: 0.25rem;
 }
 .pagination .page-link {
-  border-radius: 0 !important;
-  min-width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 1;
-  margin: 0 2px;
-  /* color: #333; */
-  border: 1px solid #eee;
-  color: #191c51;
-  font-size: 14px;
-  background: #f6f6f6;
+    border-radius: 0 !important;
+    min-width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 2.5em;
+    margin: 0 5px;
+    border: 1px solid #eee;
+    color: #191c51;
+    font-size: 14px;
+    background: #f6f6f6;
 }
 .pagination .page-link.active {
   background: #2952A1;
   color: #fff;
+}
+
+/*gioithieu*/
+.nav.nav-tabs.nav-stacked {
+    display: inline-block;
+    font-family: 'Inter Bold',sans-serif;
+    width: 100%;
+}
+    .nav.nav-tabs.nav-stacked li:last-child{
+        border-bottom:none!important
+    }
+
+    .nav.nav-tabs.nav-stacked li {
+        border-bottom: 1px solid #f0f0f0;
+        
+    }
+
+.tab-content {
+    display: inline-block;
+	border-left: 1px solid #f0f0f0;
+    float: right;
+}
+
+.nav-tabs .nav-item a {
+        font-weight: 700;
+    font-size: 1.4em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+    text-transform: uppercase;
+    padding: 15px 0px;
+    line-height: 1.6;
+    color: #8E8EA4;
+}
+
+.nav-tabs .nav-item:before {
+    content: "";
+    background: #111;
+    width: 2px;
+    height: 100%;
+    text-align: right;
+}
+
+.nav-tabs .nav-link {
+    border: unset;
+    border-radius: unset;
+}
+
+    .nav-tabs .nav-item.open .nav-link,
+    .nav-tabs .nav-item.open .nav-link:focus,
+    .nav-tabs .nav-item.open .nav-link:hover,
+    .nav-tabs .nav-link.active,
+    .nav-tabs .nav-link.active:focus,
+    .nav-tabs .nav-link.active:hover {
+        color: #2b368c;
+        background-color: #fff;
+        margin: 0 0px;
+    }
+
+.nav-tabs {
+    border: unset;
+}
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        border: unset;
+    }
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border: unset;
+    border-radius: unset;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active,
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    /*border-right: 2px solid #017cc8;*/
+    color: var(--primary-color);
 }
