@@ -176,7 +176,7 @@ body {
   border-bottom-right-radius: 16px;
 }
 /* __________________________________________________________________ */
-/* MENU */
+/* MENU 4 level*/
 .main-menu {
   position: relative;
 }
@@ -221,6 +221,7 @@ body {
   border-bottom: 1px solid #f9f9f9;
   width: 100%;
   padding-left: 10px;
+  position: relative;
 }
 .sub-menu > li:last-child {
   border-bottom: 0px;
@@ -236,6 +237,26 @@ body {
   position: relative;
   font-size: 1.5rem;
   transition: all 0.3s ease 0s;
+}
+.fa-angle-right.float-right {
+  float: right;
+  margin-right: 10px;
+}
+.main-menu nav > ul > li > a:hover, .main-menu nav > ul > li :hover > a, .main-menu nav > ul > li > ul > li :hover > a {
+  color: #fff;
+}
+.main-menu nav > ul > li > ul > li > .sub-menu, .main-menu nav > ul > li > ul > li > ul > li > .sub-menu, .main-menu nav > ul > li > ul > li > ul > li > ul > li > .sub-menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  transition: all 0.3s ease 0s;
+}
+.main-menu nav > ul > li:hover ul, .main-menu nav > ul > li > ul > li:hover ul, .main-menu nav > ul > li > ul > li > ul > li:hover ul, .main-menu nav > ul > li > ul > li > ul > li > ul > li:hover ul {
+  opacity: 1;
+  display: block;
+  visibility: visible;
 }
 .mega-menu-sub > li > a {
   font-weight: 400;
@@ -261,7 +282,6 @@ body {
   transition: all 0.3s ease 0s;
 }
 .sub-menu > li > a:hover, .mega-menu-sub > li > a:hover {
-  color: #fff;
   transform: translateX(10px);
 }
 .sub-menu > li > a:hover::after, .mega-menu-sub > li > a:hover::after {
@@ -285,10 +305,7 @@ body {
   top: 100%;
   text-align: left;
 }
-.main-menu nav > ul > li:hover .sub-menu {
-  opacity: 1;
-  visibility: visible;
-}
+/* end MENU 4 level*/
 .mobile-header-wrapper {
   padding-top: 25px;
   padding-bottom: 25px;
@@ -393,12 +410,13 @@ body {
   border-left: 1px solid #005fd6;
 }
 .offcanvas-menu-expand::after {
-  content: "\f067";
+  content: "\f105";
   position: absolute;
-  font-family: "Font Awesome 5 Pro";
+  font-family:"Font Awesome 6 Pro";
   right: 12px;
   top: 12px;
   transition: all 0.3s ease;
+	font-weight: 50;
   color: #fff;
 }
 .offcanvas-menu .active > .offcanvas-menu-expand:last-child, .sub-menu > .active .offcanvas-menu-expand:last-child {
@@ -406,7 +424,9 @@ body {
 }
 .offcanvas-menu .active > .offcanvas-menu-expand::after, .sub-menu > .active .offcanvas-menu-expand::after {
   color: #fff;
-  content: "";
+  content: "\f078";
+	font-family:"Font Awesome 6 Pro";
+	font-weight: 50;
 }
 /* __________________________________________________________________ */
 .searchbar {
@@ -1303,7 +1323,8 @@ body {
 .contact-info {
   background: linear-gradient(80.93deg, #1445A5 35.19%, #3861C2 94.43%);
   border-radius: 0px 0px 50px 0px;
-  color: #fff;height: 100%;
+  color: #fff;
+  height: 100%;
   padding: 4em;
 }
 .contact-info .title {
@@ -1345,28 +1366,30 @@ body {
   font-size: .9rem;
   font-style: italic;
 }
-.google-map{
-	height: 300px;
+.google-map {
+  height: 300px;
 }
 /*list nội quy*/
 details summary {
   list-style: inside none;
 }
-.content-main .collapse:not(.show){display: block!important;}
+.content-main .collapse:not(.show) {
+  display: block !important;
+}
 .collapse {
-   --sp-sm: 1.4rem;
-    --sp-md: 1.4rem;
-    width: 100%;
-    /* max-width: 72rem; */
-    /* margin: 0 auto; */
-    margin-bottom: 1.5em;
-    border-radius: 0.8rem;
-    /* border: 0.1rem solid #fafafa; */
-    /* box-shadow: 0.1rem 0.1rem 0.3rem rgb(0 0 0 / 25%); */
-    background-color: #f5f4f9;
-    transition: box-shadow 250ms;
-    will-change: box-shadow;
-    overflow: hidden;
+  --sp-sm: 1.4rem;
+  --sp-md: 1.4rem;
+  width: 100%;
+  /* max-width: 72rem; */
+  /* margin: 0 auto; */
+  margin-bottom: 1.5em;
+  border-radius: 0.8rem;
+  /* border: 0.1rem solid #fafafa; */
+  /* box-shadow: 0.1rem 0.1rem 0.3rem rgb(0 0 0 / 25%); */
+  background-color: #f5f4f9;
+  transition: box-shadow 250ms;
+  will-change: box-shadow;
+  overflow: hidden;
 }
 .collapse:hover {
   box-shadow: 0.1rem 0.1rem 1.8rem rgba(0, 0, 0, 0.25);
@@ -1409,4 +1432,34 @@ details summary {
 }
 .collapse .description:not(:first-of-type) {
   padding-top: 0;
+}
+/*Tab content panes*/
+.tab-content-pane{
+	display: block;
+}
+#pills-tab .nav-item{
+	
+}
+#pills-tab .nav-item .nav-link{
+	background: #fafafa;
+	color:#000;
+	border-radius: 12px;
+	padding: 10px 20px;
+	margin-right: 5px;
+	font-family: 'Inter Medium';
+	font-size:1.4em;
+}
+#pills-tab .nav-item .nav-link.active{
+	background: var(--primary-color);
+	color:#fff;
+	border-radius: 12px;
+	padding: 10px 20px;
+	font-family: 'Inter Medium';
+	font-size:1.4em;
+}
+#pills-tabContent .tab-pane{
+	display: none;
+}
+#pills-tabContent .tab-pane.show{
+	display: block;
 }
