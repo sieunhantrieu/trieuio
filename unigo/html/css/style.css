@@ -991,20 +991,16 @@ body {
 
 }
 
-.ss5-title h3 {
-    font-size: 3.4rem;
-    color: var(--primary-color);
-    font-family: 'Inter Bold';
-}
 
 .ss6-wrap:hover img{
     transform: scale(1.2);
 }
-
+.ss5-title h3,
 .ss6-title h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
     font-family: 'Inter Bold';
+    margin-bottom: 20px;
 }
 
 .ss6-item {
@@ -1687,6 +1683,7 @@ color: var(--primary-color);
     color: var(--primary-color);
     line-height: 56px;
     font-family: 'Inter Bold';
+    margin-bottom:20px
 }
 details summary {
     list-style: inside none;
