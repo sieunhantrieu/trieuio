@@ -1493,12 +1493,15 @@ color: var(--primary-color);
   .nav.nav-tabs.nav-stacked li {
     border-bottom: 1px solid #f0f0f0;
   }
+#chitiettintuc .tab-content {
+    border: none;
+  }
   .tab-content {
     display: inline-block;
     border-left: 1px solid #f0f0f0;
     float: right;
     overflow: hidden;
-    /* padding-left: 15px; */
+    padding-left: 15px;
   }
   .nav-tabs .nav-item a {
     font-family: 'Inter Bold';
