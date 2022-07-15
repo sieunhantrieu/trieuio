@@ -12,20 +12,25 @@
   <link rel="stylesheet" href="css/swiper-bundle.min.css" />  
   <link rel="stylesheet" href="css/style.css" />
 
+<!--  <script src="js/jquery-3.6.0.min.js"></script>-->
+	<script src="js/jquery-1.0.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/all.min.js"></script>
+
 </head>
 
 <body>
   <header id="page-header" class="page-header">
     <div class="container">
-      <div class="logo">
+      
+      <div class="page__header-wrapper">
+		  <div class="logo">
         <a href="#" class="logo-link">
           <img src="images/Logo Unigo_College 1 copy 1 (Traced).png" alt="Logo" />
         </a>
       </div>
-      <div class="page__header-wrapper">
         <div class="header_menu d-lg-block d-none">
-            <div class="container">
-                <div class="main-menu">
+            <div class="main-menu">
                     <nav>
                         <ul>
                             <li>
@@ -55,25 +60,25 @@
                                 <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
-														<li class="has-dropdown">
-													<a href="#">Tin tức - sự kiện<i class="fa fa-angle-right float-right"></i></a>
-													<ul class="sub-menu">
-														<li><a href="#">Link Variable 1</a></li>
-														<li><a href="#">Link Variable 1</a></li>
-														<li><a href="#">Link Variable 1</a></li>
-														<li><a href="#">Link Variable 1</a></li>
-														<li class="has-dropdown">
-													<a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
-													<ul class="sub-menu">
-														<li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
-														<li><a href="#">Tin hoạt động trường</a></li>
-														<li><a href="#">Tin hoạt động ngành</a></li>
-														<li><a href="#">Tin tức tiêu điểm</a></li>
-														<li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
-													</ul>
-												</li>
-													</ul>
-												</li>
+                                                        <li class="has-dropdown">
+                                                    <a href="#">Tin tức - sự kiện<i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li class="has-dropdown">
+                                                    <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
+                                                        <li><a href="#">Tin hoạt động trường</a></li>
+                                                        <li><a href="#">Tin hoạt động ngành</a></li>
+                                                        <li><a href="#">Tin tức tiêu điểm</a></li>
+                                                        <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
+                                                    </ul>
+                                                </li>
+                                                    </ul>
+                                                </li>
                                     <li><a href="#">Tin hoạt động ngành</a></li>
                                     <li><a href="#">Tin tức tiêu điểm</a></li>
                                     <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
@@ -93,7 +98,6 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
         </div>
         
         <div class="mobile-header-section d-block d-lg-none">
@@ -119,10 +123,18 @@
             </div>
         </div>
         <div class="searchbar">
-          <a href="#" class="searchbar-link">
+          <a href="javascript:;" onclick="showForm()" class="searchbar-link">
             <i class="fa-regular fa-magnifying-glass"></i>
           </a>
         </div>
+
+        <form action="" class="form-search" id="form-search">
+          <input type="text" class="form-control" placeholder="Tìm kiếm">
+          <a href="" class="btn-search">
+              <button> <i class="fa-regular fa-magnifying-glass"></i> </button>
+              <p>Tìm</p>
+          </a>
+      </form>
         <div class="toggle-eng">
           <a href="#" class="toggle-eng-link">
             <img src="images/english.png" alt="">
@@ -191,7 +203,7 @@
           </div>
           <div class="count__number-item-content">
             <div class="count_item-content-number">
-              <p>70<span>K</span></p>
+              <p><span class="counter">70</span>k</p>
             </div>
             <div class="count_item-content-text">
               <p>Học sinh</p>
@@ -219,7 +231,7 @@
           
           <div class="count__number-item-content">
             <div class="count_item-content-number">
-              <p>120</p>
+              <p class="counter">120</p>
             </div>
             <div class="count_item-content-text">
               <p>Lớp học</p>
@@ -233,7 +245,7 @@
           
           <div class="count__number-item-content">
             <div class="count_item-content-number">
-              <p>10.000</p>
+              <p class="counter">10.000</p>
             </div>
             <div class="count_item-content-text">
               <p>Học sinh giỏi quốc gia</p>
@@ -247,7 +259,7 @@
           
           <div class="count__number-item-content">
             <div class="count_item-content-number">
-              <p>120</p>
+              <p class="counter">120</p>
             </div>
             <div class="count_item-content-text">
               <p>Giáo viên nước ngoài</p>
@@ -255,8 +267,15 @@
           </div>
         </div>
       </div>
-	 </div>
-   
+    </div>
+    <script>
+      jQuery(document).ready(function( $ ) {
+          $('.counter').counterUp({
+              delay: 10,
+              time: 1000
+          });
+      });
+    </script>
   </section>
 
   <section id="section3" class="intro container-fluid">
@@ -351,32 +370,32 @@
         </div>
         <div #swiperRef="" class="swiper-container mySwiper">
           <div class="swiper-wrapper">
-            <a href="" class="swiper-slide-link">
-              <div class="swiper-slide">
+            <a href="" class="swiper-slide">
+              <div class="swiper-slide-wrap">
                 <img src="images/image 10.png" alt="">
                 <p>Hoạt động thể thao</p>
               </div>
             </a>
             <a href="" class="swiper-slide">
-              <div class="swiper-slide">
+              <div class="swiper-slide-wrap">
                 <img src="images/image 11.png" alt="">
                 <p>Sinh hoạt giờ học </p>
               </div>
             </a>
             <a href="" class="swiper-slide">
-              <div class="swiper-slide">
+              <div class="swiper-slide-wrap">
                 <img src="images/image 12.png" alt="">
                 <p>Đón tết năm mới</p>
               </div>
             </a>
             <a href="" class="swiper-slide">
-              <div class="swiper-slide">
+               <div class="swiper-slide-wrap">
                 <img src="images/image 14.png" alt="">
                 <p>Hoạt động ngoài trời</p>
               </div>
             </a>
             <a href="" class="swiper-slide">
-              <div class="swiper-slide">
+               <div class="swiper-slide-wrap">
                 <img src="images/image 10.png" alt="">
                 <p>Hoạt động thể thao</p>
               </div>
@@ -384,13 +403,13 @@
           </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-        
-          <!-- <div class="swiper-pagination"></div> -->
         </div>
       </div>
     </div>
   </section>
 
+
+  
   <section id="section6" class="py-5">
       <div class="container">
         <div class="ss6-title">
@@ -578,17 +597,17 @@
           <div class="ss8-news-bottom-wrap">
             <div class="ss8-news-botttom">
               <a href="" class="ss8-news-botttom-link">
-                <p class="line-clamp clamp1">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
+                <p class="line-clamp clamp2">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
               </a>
             </div>
             <div class="ss8-news-botttom">
               <a href="" class="ss8-news-botttom-link">
-                <p class="line-clamp clamp1">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
+                <p class="line-clamp clamp2">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
               </a>         
             </div>
             <div class="ss8-news-botttom">
               <a href="" class="ss8-news-botttom-link">
-                <p class="line-clamp clamp1">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
+                <p class="line-clamp clamp2">Điểm chuẩn tuyển sinh lớp 10 ở TP.HCM sẽ không tăng</p>
               </a>
             </div>
           </div>
@@ -639,7 +658,7 @@
     </div>
   </section>
 
-  <section id="section9" class="pb  -5">
+  <section id="section9">
     <a class="banner-bottom" href="">
       <img src="images/From tư vấn 2.jpg" alt="">
     </a>
@@ -771,7 +790,7 @@
 
       <div class="footer-bottom">
         <div class="footer__bottom-logo">
-          <img src="images/Logo-footer.png" alt="">
+          <img src="/images/Logo-footer.png" alt="">
         </div>
         <div class="footer__bottom-wrap">
           <div class="footer__bottom-wrap-copyright">
@@ -786,124 +805,126 @@
     </div>
   </footer>
 
-<div id="mobile-menu-offcanvas" class="offcanvas offcanvas-leftside offcanvas-mobile-menu-section">
-        <!-- Start Offcanvas Header -->
-        <div class="offcanvas-header text-right">
-            <button class="offcanvas-close"><i class="fa fa-times"></i></button>
-        </div> <!-- End Offcanvas Header -->
-        <!-- Start Offcanvas Mobile Menu Wrapper -->
-        <div class="offcanvas-mobile-menu-wrapper">
-            <div class="mobile-menu-center">
-                <!-- Start Mobile Menu Nav -->
-                <div class="offcanvas-menu">
-                    <ul>
-                        <li class=""><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                            <a href="#"><span>Home</span></a>
-                            <ul class="mobile-sub-menu" style="display: none;">
-                                <li><a href="#">Link Variable 0</a></li>
-                                <li><a href="#">Link Variable 0</a></li>
-                            </ul>
-                        </li>
-                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                            <a href="#"><span>Shop</span></a>
-                            <ul class="mobile-sub-menu">
-                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                                    <a href="#">Shop Layout</a>
-                                    <ul class="mobile-sub-menu">
-										<li><a href="#">Link Variable 1</a></li>
-										<li><a href="#">Link Variable 1</a></li>
-										<li><a href="#">Link Variable 1</a></li>
-										<li><a href="#">Link Variable 1</a></li>
-										<li><a href="#">Link Variable 1</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="mobile-sub-menu">
-                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                                    <a href="#">Shop Pages</a>
-                                    <ul class="mobile-sub-menu">
-										<li><a href="#">Link Variable 2</a></li>
-										<li><a href="#">Link Variable 2</a></li>
-										<li><a href="#">Link Variable 2</a></li>
-										<li><a href="#">Link Variable 2</a></li>
-										<li><a href="#">Link Variable 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="mobile-sub-menu">
-                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                                    <a href="#">Product Single</a>
-                                    <ul class="mobile-sub-menu">
-										<li><a href="#">Link Variable 3</a></li>
-										<li><a href="#">Link Variable 3</a></li>
-										<li><a href="#">Link Variable 3</a></li>
-										<li><a href="#">Link Variable 3</a></li>
-										<li><a href="#">Link Variable 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                            <a href="#"><span>Blogs</span></a>
-                            <ul class="mobile-sub-menu">
-                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                                    <a href="#">Blog 1</a>
-                                    <ul class="mobile-sub-menu">
-                                        <li><a href="#">Link Variable 1</a></li>
-                                        <li><a href="#">Link Variable 1</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="blog-full-width.html">Blog Full Width</a>
-                                </li>
-                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                                    <a href="#">Blog 2</a>
-                                    <ul class="mobile-sub-menu">
-                                        <li><a href="#">Link Variable 1</a></li>
-                                        <li><a href="#">Link Variable 1</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
-                            <a href="#"><span>Pages</span></a>
-                            <ul class="mobile-sub-menu">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="service.html">Service</a></li>
-                                <li><a href="faq.html">Frequently Questions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="404.html">404 Page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                    </ul>
-                </div> <!-- End Mobile Menu Nav -->
+  <div id="mobile-menu-offcanvas" class="offcanvas offcanvas-leftside offcanvas-mobile-menu-section">
+    <!-- Start Offcanvas Header -->
+    <div class="offcanvas-header text-right">
+        <button class="offcanvas-close"><i class="fa fa-times" style="font-size: 2rem;"></i></button>
+    </div> <!-- End Offcanvas Header -->
+    <!-- Start Offcanvas Mobile Menu Wrapper -->
+    <div class="offcanvas-mobile-menu-wrapper">
+        <div class="mobile-menu-center">
+            <!-- Start Mobile Menu Nav -->
+            <div class="offcanvas-menu">
+                <ul>
+                    <li class=""><div class="offcanvas-menu-expand"></div>
+                        <a href="#"><span>Trang chủ</span></a>
+                        <ul class="mobile-sub-menu" style="display: none;">
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Giới thiệu trường</a></li>
+                        </ul>
+                    </li>
+                    <li><div class="offcanvas-menu-expand"></div>
+                        <a href="#"><span>Tầm nhìn sứ mệnh</span></a>
+                        <ul class="mobile-sub-menu">
+                            <li><div class="offcanvas-menu-expand"></div>
+                                <a href="#">Giá trị cốt lõi</a>
+                                <ul class="mobile-sub-menu">
+                <li><a href="#">Đời sống học đường</a></li>
+                <li><a href="#">Cơ sở vật chất</a></li>
+                <li><a href="#">Lịch học theo khối lớp</a></li>
+                <li><a href="#">Thực đơn hàng ngày</a></li>
+                <li><a href="#">Tham quan nhà trường</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="mobile-sub-menu">
+                            <li><div class="offcanvas-menu-expand"></div>
+                                <a href="#">Thư viện ảnh</a>
+                                <ul class="mobile-sub-menu">
+                <li><a href="#">Đời sống học đường</a></li>
+                <li><a href="#">Cơ sở vật chất</a></li>
+                <li><a href="#">Lịch học theo khối lớp</a></li>
+                <li><a href="#">Thực đơn hàng ngày</a></li>
+                <li><a href="#">Tham quan nhà trường</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="mobile-sub-menu">
+                            <li><div class="offcanvas-menu-expand"></div>
+                                <a href="#">Thư viện video</a>
+                                <ul class="mobile-sub-menu">
+                <li><a href="#">Link Variable 3</a></li>
+                <li><a href="#">Link Variable 3</a></li>
+                <li><a href="#">Link Variable 3</a></li>
+                <li><a href="#">Link Variable 3</a></li>
+                <li><a href="#">Link Variable 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><div class="offcanvas-menu-expand"></div>
+                        <a href="#"><span>Tin tức sự kiện</span></a>
+                        <ul class="mobile-sub-menu">
+                            <li><div class="offcanvas-menu-expand"></div>
+                                <a href="#">Thông báo nhà trường</a>
+                                <ul class="mobile-sub-menu">
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li><a href="#">Link Variable 1</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="blog-full-width.html">Tuyển sinh 2022 - 2023</a>
+                            </li>
+                            <li><div class="offcanvas-menu-expand"></div>
+                                <a href="#">Blog 2</a>
+                                <ul class="mobile-sub-menu">
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li><a href="#">Link Variable 1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><div class="offcanvas-menu-expand"></div>
+                        <a href="#"><span>Pages</span></a>
+                        <ul class="mobile-sub-menu">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="service.html">Service</a></li>
+                            <li><a href="faq.html">Frequently Questions</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="404.html">404 Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact-us.html">Liên hệ</a></li>
+                </ul>
+            </div> <!-- End Mobile Menu Nav -->
 
-               
-            </div> <!-- End Mobile Menu Center -->
-        </div> <!-- End Offcanvas Mobile Menu Wrapper -->
-    </div>
+           
+        </div> <!-- End Mobile Menu Center -->
+    </div> <!-- End Offcanvas Mobile Menu Wrapper -->
+</div>
+
+
   <a href="#" id="back-to-top"><i class="fa-light fa-angle-up"></i></a>
 
   <div class="support-btn-wrap d-md-block d-none">
     <div class="sp_btn-danngky">
       <div class="btn--primary-tuvan mb-3">
-        <a href="#">Tư vấn</a>
+        <a href="#">Nhận Tư Vấn</a>
         <img src="images/Subtract.png" alt="">
       </div>
     </div>
     <div class="sp_btn-danngky">
       <div class="btn--primary">
-        <a href="#">Tuyển sinh</a>
+        <a href="#">Đăng Ký</a>
         <img src="images/Subtract.png" alt="">
       </div>
     </div>
   </div>
 
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/all.min.js"></script>
+  
   <script src="js/swiper-bundle.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
   <script src="js/main.js"></script>
 
   <script>
@@ -928,12 +949,9 @@
       },
      
     });
-
-    $("a[href='#top']").click(function() {
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-  return false;
-});
   </script>
+
+
   
 </body>
 

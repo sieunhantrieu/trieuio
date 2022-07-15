@@ -69,7 +69,6 @@
     mobileOffCanvasMenu();
 
 
-
     if ($('#back-to-top').length) {
         var scrollTrigger = 100, // px
             backToTop = function () {
@@ -91,5 +90,16 @@
             }, 0);
         });
     }
+
+    
 })(jQuery);
 
+  $("a[href='#top']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+
+  function showForm() {
+    var element = document.getElementById("form-search");
+    element.classList.toggle('show')
+  }

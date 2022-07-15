@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang tin tức</title>
+  <title>Trang kết quả tìm kiếm</title>
 
   <link rel="stylesheet" href="css/all.min.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />  
@@ -15,17 +15,17 @@
 </head>
 
 <body>
-  <header id="page-header" class="page-header">
+    <header id="page-header" class="page-header">
     <div class="container">
-      <div class="logo">
+      
+      <div class="page__header-wrapper">
+		  <div class="logo">
         <a href="#" class="logo-link">
           <img src="images/Logo Unigo_College 1 copy 1 (Traced).png" alt="Logo" />
         </a>
       </div>
-      <div class="page__header-wrapper">
         <div class="header_menu d-lg-block d-none">
-            <div class="container">
-                <div class="main-menu">
+            <div class="main-menu">
                     <nav>
                         <ul>
                             <li>
@@ -52,10 +52,28 @@
                                     <li><a href="#">Link Variable 1</a></li>
                                     <li><a href="#">Link Variable 1</a></li>
                                     <li class="has-dropdown">
-                                <a href="">Chương trình học <i class="fa fa-angle-down"></i></a>
+                                <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
-                                    <li><a href="#">Tin hoạt động trường</a></li>
+                                                        <li class="has-dropdown">
+                                                    <a href="#">Tin tức - sự kiện<i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li class="has-dropdown">
+                                                    <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
+                                                        <li><a href="#">Tin hoạt động trường</a></li>
+                                                        <li><a href="#">Tin hoạt động ngành</a></li>
+                                                        <li><a href="#">Tin tức tiêu điểm</a></li>
+                                                        <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
+                                                    </ul>
+                                                </li>
+                                                    </ul>
+                                                </li>
                                     <li><a href="#">Tin hoạt động ngành</a></li>
                                     <li><a href="#">Tin tức tiêu điểm</a></li>
                                     <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
@@ -75,7 +93,6 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
         </div>
         
         <div class="mobile-header-section d-block d-lg-none">
@@ -101,10 +118,18 @@
             </div>
         </div>
         <div class="searchbar">
-          <a href="#" class="searchbar-link">
+          <a href="javascript:;" onclick="showForm()" class="searchbar-link">
             <i class="fa-regular fa-magnifying-glass"></i>
           </a>
         </div>
+
+        <form action="" class="form-search" id="form-search">
+          <input type="text" class="form-control" placeholder="Tìm kiếm">
+          <a href="" class="btn-search">
+              <button> <i class="fa-regular fa-magnifying-glass"></i> </button>
+              <p>Tìm</p>
+          </a>
+      </form>
         <div class="toggle-eng">
           <a href="#" class="toggle-eng-link">
             <img src="images/english.png" alt="">
@@ -116,112 +141,112 @@
 
 	<section class="breadcrumbs">
         <div class="container">
-            <strong class="title">Tin tuyển sinh 2022 - 2023</strong>
+            <p class="title-result">Từ khoá: "<span class="result">Tuyển sinh lớp 10</span>"</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="/">Tin tuyển sinh</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tin tuyển sinh 2022 - 2023</li>
+                    <li class="breadcrumb-item active" aria-current="page">Kết quả tìm kiếm</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-	<section id="section6" class="py-5">
+	<section id="page-tintuc" class="py-5">
       <div class="container">
-        <div class="ss6-title">
+        <!-- <div class="news-title">
           <h3>Tin tức</h3>
-        </div>
-        <div class="row py-4">
-          <a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+        </div> -->
+        <div class="row">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 405.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
-          <a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 4052.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">TP.HCM thay đổi cách chấm điểm với bài thi Tiếng Anh có lỗi chính tả</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
-          <a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 4053.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
-			<a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+			<a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 405.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
-          <a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 4052.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">TP.HCM thay đổi cách chấm điểm với bài thi Tiếng Anh có lỗi chính tả</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
-          <a href="" class="col-lg-4 ss6-wrap">
-            <div class="ss6-item">
-              <div class="ss6-item-img">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
                 <img src="images/Rectangle 4053.png" alt="">
               </div>
-              <div class="ss6-item-title">
+              <div class="news-item-title">
                 <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
               </div>
-              <div class="ss6-item-content">
+              <div class="news-item-content">
                 <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
               </div>
             </div>
           </a>
 			
 			
-			<nav aria-label="Page navigation">
+			<nav aria-label="Page navigation" class="py-5">
                             <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled"><a class="page-link" href="?page=1">1</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=2">2</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=3">3</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=4">4</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=5">5</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=6">6</a></li>
-                                    <li class="page-item "><a class="page-link" href="?page=7">7</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=5"><i class="fa-light fa-chevrons-left"></i></a></li>
+                                <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=2">2</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=3">3</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">4</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">5</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">...</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=5"><i class="fa-light fa-chevrons-right"></i></a></li>
                             </ul>
                         </nav>
         </div>
@@ -476,55 +501,12 @@
     </div>
   <a href="#" id="back-to-top"><i class="fa-light fa-angle-up"></i></a>
 
-  <div class="support-btn-wrap d-md-block d-none">
-    <div class="sp_btn-danngky">
-      <div class="btn--primary-tuvan mb-3">
-        <a href="#">Xem thêm</a>
-        <img src="images/Subtract.png" alt="">
-      </div>
-    </div>
-    <div class="sp_btn-danngky">
-      <div class="btn--primary">
-        <a href="#">Xem thêm</a>
-        <img src="images/Subtract.png" alt="">
-      </div>
-    </div>
-  </div>
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/all.min.js"></script>
   <script src="js/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
-
-  <script>
-    var swiper = new Swiper('.mySwiper', {
-      breakpoints: {
-                        991: {
-                            slidesPerView: 4,
-                            spaceBetween: 20
-                        }
-                    },
-      slidesPerView: 2,
-      centeredSlides: false,
-      spaceBetween: 25,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction',
-      },
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-     
-    });
-
-    $("a[href='#top']").click(function() {
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-  return false;
-});
-  </script>
   
 </body>
 

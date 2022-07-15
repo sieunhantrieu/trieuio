@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang tin tức</title>
+
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />  
+  <link rel="stylesheet" href="css/swiper-bundle.min.css" />  
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <header id="page-header" class="page-header">
+    <div class="container">
+      
+      <div class="page__header-wrapper">
+		  <div class="logo">
+        <a href="#" class="logo-link">
+          <img src="images/Logo Unigo_College 1 copy 1 (Traced).png" alt="Logo" />
+        </a>
+      </div>
+        <div class="header_menu d-lg-block d-none">
+            <div class="main-menu">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a class="active main-menu-link" href="#"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li>
+                                <a href="">Giới thiệu</a>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="">Chương trình học <i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
+                                    <li><a href="#">Tin hoạt động trường</a></li>
+                                    <li><a href="#">Tin hoạt động ngành</a></li>
+                                    <li><a href="#">Tin tức tiêu điểm</a></li>
+                                    <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Tin tức - sự kiện<i class="fa fa-angle-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li><a href="#">Link Variable 1</a></li>
+                                    <li class="has-dropdown">
+                                <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
+                                                        <li class="has-dropdown">
+                                                    <a href="#">Tin tức - sự kiện<i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li><a href="#">Link Variable 1</a></li>
+                                                        <li class="has-dropdown">
+                                                    <a href="">Chương trình học <i class="fa fa-angle-right float-right"></i></a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="#">Hướng về 50 năm ngày truyền thống</a></li>
+                                                        <li><a href="#">Tin hoạt động trường</a></li>
+                                                        <li><a href="#">Tin hoạt động ngành</a></li>
+                                                        <li><a href="#">Tin tức tiêu điểm</a></li>
+                                                        <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
+                                                    </ul>
+                                                </li>
+                                                    </ul>
+                                                </li>
+                                    <li><a href="#">Tin hoạt động ngành</a></li>
+                                    <li><a href="#">Tin tức tiêu điểm</a></li>
+                                    <li><a href="#">Chào mừng ngày nhà giáo Việt Nam</a></li>
+                                </ul>
+                            </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">Đời sống học đường</a>
+                            </li>
+                            <li>
+                                <a href="">Liên hệ</a>
+                            </li>
+                            <li>
+                                <a href="">Nội bộ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+        
+        <div class="mobile-header-section d-block d-lg-none">
+            <div class="mobile-header-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <div class="mobile-header--left">
+                                <a href="" class="mobile-logo-link">
+                                    <img src="img/logo/LOGO-DKS-Footer.png" alt="">
+                                </a>
+                            </div>
+                            <div class="mobile-header--right">
+                                <a href="#mobile-menu-offcanvas" class="mobile-menu offcanvas-toggle">
+                                    <span class="mobile-menu-dash"></span>
+                                    <span class="mobile-menu-dash"></span>
+                                    <span class="mobile-menu-dash"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchbar">
+          <a href="javascript:;" onclick="showForm()" class="searchbar-link">
+            <i class="fa-regular fa-magnifying-glass"></i>
+          </a>
+        </div>
+
+        <form action="" class="form-search" id="form-search">
+          <input type="text" class="form-control" placeholder="Tìm kiếm">
+          <a href="" class="btn-search">
+              <button> <i class="fa-regular fa-magnifying-glass"></i> </button>
+              <p>Tìm</p>
+          </a>
+      </form>
+        <div class="toggle-eng">
+          <a href="#" class="toggle-eng-link">
+            <img src="images/english.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+	<section class="breadcrumbs">
+        <div class="container">
+            <strong class="title">Tin tuyển sinh 2022 - 2023</strong>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/">Tin tuyển sinh</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tin tuyển sinh 2022 - 2023</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+	<section id="page-tintuc" class="py-5">
+      <div class="container">
+        <!-- <div class="news-title">
+          <h3>Tin tức</h3>
+        </div> -->
+        <div class="row">
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 405.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 4052.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">TP.HCM thay đổi cách chấm điểm với bài thi Tiếng Anh có lỗi chính tả</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 4053.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+			<a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 405.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 4052.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">TP.HCM thay đổi cách chấm điểm với bài thi Tiếng Anh có lỗi chính tả</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+          <a href="" class="col-lg-4 news-wrap">
+            <div class="news-item">
+              <div class="news-item-img">
+                <img src="images/Rectangle 4053.png" alt="">
+              </div>
+              <div class="news-item-title">
+                <p class="line-clamp clamp2">Xuất hiện điểm tuyệt đối tại kỳ thi tuyển sinh lớp 10 ở TP.HCM</p>
+              </div>
+              <div class="news-item-content">
+                <p class="line-clamp clamp3">Trường sẽ mang đến những lộ trình tài chính giáo dục có thể tiết kiệm đến 100% học phí, giúp học sinh Việt học trường quốc tế mà không mất bất kỳ</p>
+              </div>
+            </div>
+          </a>
+			
+			
+			<nav aria-label="Page navigation" class="py-5">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item "><a class="page-link" href="?page=5"><i class="fa-light fa-chevrons-left"></i></a></li>
+                                <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=2">2</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=3">3</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">4</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">5</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=4">...</a></li>
+                                <li class="page-item "><a class="page-link" href="?page=5"><i class="fa-light fa-chevrons-right"></i></a></li>
+                            </ul>
+                        </nav>
+        </div>
+
+        
+      </div>
+  </section>
+
+  <section id="section9" class="pb  -5">
+    <a class="banner-bottom" href="">
+      <img src="images/From tư vấn 2.jpg" alt="">
+    </a>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid-row">
+        <div class="footer-item">
+          <div class="footer__item-title">
+            <h4>Giới thiệu</h4>
+          </div>
+          <ul class="footer__item-list">
+            <li><a href="#" class="footer__item-list-link">Liên hệ</a></li>
+            <li>
+              <a href="#" class="footer__item-list-link">Giới thiệu chung</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Sứ mệnh - Tầm nhìn</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Cơ sở vật chất</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Ban giám hiệu</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Hợp tác đào tạo</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <div class="footer__item-title">
+            <h4>Chương trình học</h4>
+          </div>
+          <ul class="footer__item-list">
+            <li>
+              <a href="#" class="footer__item-list-link">Chương trình mầm non</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Chương trình tiểu học</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Chương trình THCS & THPT</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Hoạt động trải nghiệm</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Hội nhập quóc tế</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Dành cho phụ huynh</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <div class="footer__item-title">
+            <h4>Tuyển sinh</h4>
+          </div>
+          <ul class="footer__item-list">
+            <li>
+              <a href="#" class="footer__item-list-link">Điểm chuẩn</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Chương trình đào tạo</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Học phí</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Quy trình tuyển sinh</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Cơ sở vật chất</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Câu hỏi thường gặp</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <div class="footer__item-title">
+            <h4>Đời sống học đường</h4>
+          </div>
+          <ul class="footer__item-list">
+            <li>
+              <a href="#" class="footer__item-list-link">Lịch học</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Hoạt động ngoại khoá</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Thực đơn hằng ngày</a>
+            </li>
+            <li>
+              <a href="#" class="footer__item-list-link">Xe đưa đón</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <div class="footer__item-title">
+            <h4>Theo dõi chúng tôi</h4>
+          </div>
+          <div class="footer__item-social">
+            <div class="footer__item-social-list">
+              <ul>
+                <li>
+                  <a href="#"><img src="images/social/facebook.png" alt=""></a>
+                </li>
+                <li>
+                  <a href="#"><img src="images/social/youtube.png" alt=""></a>
+                </li>
+                <li>
+                  <a href="#"><img src="images/social/instagram.png" alt=""></a>
+                </li>
+                <li>
+                  <a href="#"><img src="images/social/zalo.png" alt=""></a>
+                </li>
+                <li>
+                  <a href="#"><img src="images/social/facebook-messenger.png" alt=""></a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer__bottom-logo">
+          <img src="images/Logo-footer.png" alt="">
+        </div>
+        <div class="footer__bottom-wrap">
+          <div class="footer__bottom-wrap-copyright">
+            <p>Copyright © 2022 TRƯỜNG UNIGO COLLEGE</p>
+          </div>
+          <div class="footer__bottom-wrap-info"> 
+            <p>Kim Chung - Hoài Đức - Hà Nội &emsp; 0934 078 668 - 0243 386 1601 &emsp; thanhdo@thanhdouni.edu.vn &emsp; http://thanhdo.edu.vn</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+<div id="mobile-menu-offcanvas" class="offcanvas offcanvas-leftside offcanvas-mobile-menu-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close"><i class="fa fa-times"></i></button>
+        </div> <!-- End Offcanvas Header -->
+        <!-- Start Offcanvas Mobile Menu Wrapper -->
+        <div class="offcanvas-mobile-menu-wrapper">
+            <div class="mobile-menu-center">
+                <!-- Start Mobile Menu Nav -->
+                <div class="offcanvas-menu">
+                    <ul>
+                        <li class=""><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                            <a href="#"><span>Home</span></a>
+                            <ul class="mobile-sub-menu" style="display: none;">
+                                <li><a href="#">Link Variable 0</a></li>
+                                <li><a href="#">Link Variable 0</a></li>
+                            </ul>
+                        </li>
+                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                            <a href="#"><span>Shop</span></a>
+                            <ul class="mobile-sub-menu">
+                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                                    <a href="#">Shop Layout</a>
+                                    <ul class="mobile-sub-menu">
+										<li><a href="#">Link Variable 1</a></li>
+										<li><a href="#">Link Variable 1</a></li>
+										<li><a href="#">Link Variable 1</a></li>
+										<li><a href="#">Link Variable 1</a></li>
+										<li><a href="#">Link Variable 1</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="mobile-sub-menu">
+                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                                    <a href="#">Shop Pages</a>
+                                    <ul class="mobile-sub-menu">
+										<li><a href="#">Link Variable 2</a></li>
+										<li><a href="#">Link Variable 2</a></li>
+										<li><a href="#">Link Variable 2</a></li>
+										<li><a href="#">Link Variable 2</a></li>
+										<li><a href="#">Link Variable 2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="mobile-sub-menu">
+                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                                    <a href="#">Product Single</a>
+                                    <ul class="mobile-sub-menu">
+										<li><a href="#">Link Variable 3</a></li>
+										<li><a href="#">Link Variable 3</a></li>
+										<li><a href="#">Link Variable 3</a></li>
+										<li><a href="#">Link Variable 3</a></li>
+										<li><a href="#">Link Variable 3</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                            <a href="#"><span>Blogs</span></a>
+                            <ul class="mobile-sub-menu">
+                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                                    <a href="#">Blog 1</a>
+                                    <ul class="mobile-sub-menu">
+                                        <li><a href="#">Link Variable 1</a></li>
+                                        <li><a href="#">Link Variable 1</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog-full-width.html">Blog Full Width</a>
+                                </li>
+                                <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                                    <a href="#">Blog 2</a>
+                                    <ul class="mobile-sub-menu">
+                                        <li><a href="#">Link Variable 1</a></li>
+                                        <li><a href="#">Link Variable 1</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><div class="offcanvas-menu-expand"></div><div class="offcanvas-menu-expand"></div>
+                            <a href="#"><span>Pages</span></a>
+                            <ul class="mobile-sub-menu">
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="service.html">Service</a></li>
+                                <li><a href="faq.html">Frequently Questions</a></li>
+                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                <li><a href="404.html">404 Page</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div> <!-- End Mobile Menu Nav -->
+
+               
+            </div> <!-- End Mobile Menu Center -->
+        </div> <!-- End Offcanvas Mobile Menu Wrapper -->
+    </div>
+  
+    <a href="#" id="back-to-top"><i class="fa-light fa-angle-up"></i></a>
+  
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/all.min.js"></script>
+  <script src="js/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  
+</body>
+
+</html>
