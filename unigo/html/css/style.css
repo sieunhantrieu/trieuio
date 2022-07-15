@@ -1,18 +1,18 @@
 @font-face {
     font-family: 'Roboto Bold';
-    src: url('../fonts/RobotoCondensed-Bold.woff2') format('woff2');
+    src: url('../fonts/RobotoCondensed-Bold.ttf') format('woff2');
   
 }
 
 @font-face {
     font-family: 'Roboto Regular';
-    src: url('../fonts/RobotoCondensed-Regular.woff2') format('woff2');
+    src: url('../fonts/RobotoCondensed-Regular.ttf') format('woff2');
   
 }
 
 @font-face {
     font-family: 'Roboto Light';
-    src: url('../fonts/RobotoCondensed-Light.woff2') format('woff2');
+    src: url('../fonts/RobotoCondensed-Light.ttf') format('woff2');
   
 }
 
@@ -215,19 +215,24 @@ body {
 .page-header {
     position: relative;
     background: var(--primary-color);
-    font-family: 'Roboto Bold';
+    font-family: 'Roboto Regular';
+    display: flex;
+    width: 100%;
+    padding: 10px 0px;
+    margin-bottom: 0px;
+    height: 60px;
 }
 
 .page__header-wrapper {
     text-align: center;
     position: relative;
-
+    display: flex;
 }
 
 
 .logo-link {
     position: absolute;
-    top: 0;
+    top: -10px;
     height: 100px;
     display: block;
     background: #fff;
@@ -239,10 +244,17 @@ body {
 
 /* __________________________________________________________________ */
 /* MENU */
-
+.main-menu nav{
+  /* float:left; */
+}
 /* MENU 4 level*/
 .main-menu {
-    position: relative;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    float: right;
+    right: 0;
+    top: 0;
   }
   .main-menu nav ul {
     margin-bottom: 0;
@@ -251,6 +263,12 @@ body {
   .main-menu nav > ul {
     padding: 0;
   }
+/*.main-menu nav > ul ul li:first-child:hover{
+  border-radius:10px 10px 0px 0px;
+}*/
+.main-menu nav > ul ul  li:last-child:hover{
+  border-radius:0px 0px 10px 10px;
+}
   .main-menu nav > ul > li {
     position: relative;
     display: inline-block;
@@ -265,24 +283,27 @@ body {
     margin-right: 0;
   }
   .col-lg-3 .list-group .list-group-item:hover, .sub-menu > li:hover, .dropdown-item:focus, .dropdown-item:hover, .main-menu nav > ul > li:hover {
-    background: #00349B;
+    background: #00349B;}
+.main-menu nav > ul > li:hover {
+    border-radius:30px;
   }
   .sub-menu > li:hover {
     background: #1445A5;
   }
   .main-menu nav > ul > li > a {
     display: block;
-    padding: 10px 10px;
-    font-size: 1.6rem;
+    padding: 10px 18px;
+    line-height: 2rem;
+    font-size: 1.8rem;
     text-transform: capitalize;
-    font-family: 'Inter Bold';
+    /* font-family: 'Inter Bold'; */
     color: #fff;
   }
   .main-menu nav > ul > li > a > .fa-angle-down {
-    padding-left: 5px;
+    padding-left: 5px; display:none;
   }
   .sub-menu > li {
-    border-bottom: 1px solid #f9f9f9;
+    /* border-bottom: 1px solid #f9f9f9; */
     width: 100%;
     padding-left: 10px;
     position: relative;
@@ -293,10 +314,10 @@ body {
   .sub-menu > li > a {
     font-family: 'Inter Medium';
     display: block;
-    padding: 10px 10px;
+    padding: 12px 10px;
     line-height: 20px;
     text-transform: capitalize;
-    color: #666;
+    color: #111;
     position: relative;
     font-size: 1.5rem;
     transition: all 0.3s ease 0s;
@@ -354,7 +375,9 @@ body {
   }
   .sub-menu {
     position: absolute;
+    border-top: 2px solid #ffa300;
     min-width: 230px;
+    border-radius: 0px 0px 10px 10px;
     /* padding: 5px 10px; */
     background: #FFF;
     box-shadow: 0 3px 11px 0 rgba(0, 0, 0, 0.1);
@@ -365,7 +388,7 @@ body {
     visibility: hidden;
     transition: 0.5s;
     z-index: 99;
-    top: 100%;
+    top: calc(100% + 6px);
     text-align: left;
   }
   /* end MENU 4 level*/
@@ -377,7 +400,7 @@ body {
 }
 
 .mobile-menu {
-    padding: 5px;
+    padding: 5px 15px;
     display: block;
 }
 
@@ -404,7 +427,7 @@ body {
     transition: all 0.3s ease 0s;
     visibility: visible;
     transform: translateX(100%);
-    box-shadow: none;
+    
     background: #fff;
     color: #eaeaea;
     width: 300px;
@@ -481,7 +504,7 @@ body {
 
 .offcanvas-menu li a {
     display: block;
-    color: #222;
+    color: #000!important;
     font-family: 'Inter Medium';
     text-decoration: none;
     padding: 10px 0px;
@@ -531,29 +554,36 @@ body {
 }
 
 /* __________________________________________________________________ */
-
-
+.box_search{
+	/* float:
+	right; */
+	display: flex;
+	justify-content: center;
+	position: unset;
+}
+.searchbar:hover {background: #00349B;}
 .searchbar {
-    position: absolute;
-    top: 13%;
-    right: 0;
+    /* position: relative; */
+    float: right;
+    /* top: 13%; */
+    /* right: 0; */
     font-size: 1.6rem;
     color: #fff;
     height: 35px;
     width: 35px;
-    background: #00349B;
+    /* background: #00349B; */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     border-radius: 50%;
 }
 
 .searchbar .searchbar-link {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: #fff;
     height: 35px;
     width: 35px;
-    background: #00349B;
+    /* background: #00349B; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -633,12 +663,17 @@ body {
     
 
 .toggle-eng {
-    position: absolute;
-    top: 30%;
-    right: 4%;
+    /* position: relative; */
+    /* top: 30%; */
+    margin: 0 10px;
+    /* right: 4%; */
+    display: flex;
+    justify-content: center;
 }
-
-
+.toggle-eng a{
+    display: flex;
+    align-items: center;
+    }
 .carousel-control-next-icon, .carousel-control-prev-icon {
     width: 5rem;
     height: 5rem;
@@ -674,7 +709,7 @@ body {
 
 .count-number .count__number-desc p{
     font-size: 1.6rem;
-    color: #333;
+    color: #111;
     font-family: 'Inter Regular';
 }
 
@@ -960,7 +995,8 @@ body {
     color: #fff;
     position: absolute;
     bottom: 35px;
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-family: 'Inter Bold';
     left: 20px;
 }
 
@@ -1022,7 +1058,7 @@ body {
 
 .ss6-item-title p{
     font-size: 2rem;
-    color: #333;
+    color: #111;
     line-height: 30px;
     font-family: 'Inter Bold';
     padding: 5px 0;
@@ -1030,7 +1066,7 @@ body {
 
 .ss6-item-content p{
     font-size: 1.4rem;
-    color: #333;
+    color: #111;
     line-height: 26px;
     padding: 5px 0;
 }
@@ -1070,7 +1106,7 @@ body {
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 30px;
-    color: #333;
+    color: #111;
 }
 .ss6-item-title p:hover,
 .ss7-item-title p:hover{
@@ -1112,7 +1148,7 @@ body {
 }
 
 .ss8-news-link p {
-    color: #333;
+    color: #111;
     font-size: 1.8rem;
     font-family: 'Inter Bold';
     line-height: 30px;
@@ -1126,7 +1162,7 @@ body {
 }
 
 .ss8-news-botttom p{
-    color: #333;
+    color: #111;
     font-size: 1.8rem;
     line-height: 28px;
     font-weight: 600;
@@ -1391,15 +1427,23 @@ color: var(--primary-color);
 }
 
 /* =============================Trang Chi Tiet====================================== */
-
+.bg-breadcrumbs{
+  height:100%;
+}
+.bg-breadcrumbs img{
+  width:100%;
+  min-height: 100%;
+  object-fit: cover;
+}
 .breadcrumbs {
-    background: url("../images/bg-breadcrumb-1.png") center center no-repeat;
+    /* background: url("../images/bg-breadcrumb-1.png") center center no-repeat; */
     background-size: cover;
     position: relative;
     display: block;
+    overflow: hidden;
     width: 100%;
     border-bottom-right-radius: 60px;
-    height: 20em;
+    height: 25em;
   }
   .breadcrumbs:before {
     position: absolute;
@@ -1790,7 +1834,7 @@ details summary {
 
 .news-item-content p{
     font-size: 1.4rem;
-    color: #333;
+    color: #111;
     line-height: 26px;
      
     padding: 5px 0;
@@ -2189,7 +2233,7 @@ overflow: hidden;
         font-size: 3rem;
     }
     .logo-link {
-        top: 0;
+        top: -10px;
         left: -6px;
     }
 
@@ -2218,6 +2262,7 @@ overflow: hidden;
 
     .form-search {
         height: 44px;
+        width: 375px;
     }
     .breadcrumbs {
         border-bottom-right-radius: 30px;
