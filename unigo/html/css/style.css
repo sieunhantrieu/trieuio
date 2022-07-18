@@ -848,7 +848,7 @@ body {
   position: relative;
 }
 .ss5-title {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 .swiper-container {
   height: auto;
@@ -919,6 +919,7 @@ body {
 }
 .ss6-item {
   padding: 0 7px;
+  margin-bottom: 20px;
 }
 .ss6-item-img {
   overflow: hidden;
@@ -982,7 +983,7 @@ body {
   color: var(--primary-color);
 }
 .ss8-title {
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
 }
 .ss8-title h3 {
   font-size: 3.4rem;
@@ -993,6 +994,7 @@ body {
 }
 .ss8-news {
   padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 .ss8-news:hover img {
   transform: scale(1.2);
@@ -1019,7 +1021,7 @@ body {
 }
 .ss8-news-botttom {
   background: #FAFAFA;
-  margin: 10px 0;
+  margin-bottom: 10px;
   padding: 15px;
 }
 .ss8-news-botttom p {
@@ -1975,7 +1977,12 @@ details summary {
     padding: 20px 0;
   }
 }
-@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 768px) {
+  .ss4-wrap {
+  box-shadow: none;
+  padding: 20px 10px;
+  }
+}
 @media only screen and (max-width: 496px) {
   html {
     font-size: 50%;
