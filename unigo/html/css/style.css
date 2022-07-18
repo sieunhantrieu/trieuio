@@ -651,7 +651,7 @@ body {
     .form-search .btn-search p {
          font-size: 1.6rem;
          color: #fff;
-         line-height: 18px;
+         line-height: 1.8em;
         font-family: 'Inter Regular';
     }
 
@@ -881,7 +881,7 @@ body {
 
 .ss3-right-desc p {
     font-size: 1.4rem;
-    line-height: 26px;
+    line-height: 1.6em;
     color: #fff;
 }
 
@@ -906,7 +906,7 @@ body {
 .ss3-list p{
     color: #fff;
     font-size: 1.4rem;
-    line-height: 17px;
+    line-height: 1.6em;
 }
 
 .ss4-wrap {
@@ -926,7 +926,7 @@ body {
 
 .title-ss4 h3{
     font-size: 3.4rem;
-    line-height: 56px;
+    line-height: 2em;
     color: var(--primary-color);
 }
 
@@ -942,7 +942,7 @@ body {
     color: #121212;
     text-transform: uppercase;
     font-size: 1.4rem;
-    line-height: 28px;
+    line-height: 1.8em;
     margin: 0;
 
 }
@@ -1196,7 +1196,7 @@ color: var(--primary-color);
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1.4rem;
-    line-height: 17px;
+    line-height: 1.8em;
     color: #444;
     border: none;
 }
@@ -1217,7 +1217,7 @@ color: var(--primary-color);
 .ss8-btn-submit .btn--primary{
     width: 100%;
     font-size: 1.6rem;
-    line-height: 27px;
+    line-height: 1.7em;
 }
 
 .ss8-btn-submit .btn--primary a{
@@ -1238,7 +1238,7 @@ color: var(--primary-color);
     font-size: 3.4rem;
     color: #fff;
     font-family: 'Inter Bold';
-    line-height: 56px;
+    line-height: 2em;
     text-align: center;
     margin: 0;
 }
@@ -1574,7 +1574,7 @@ color: var(--primary-color);
     display: -webkit-box;
     text-transform: uppercase;
     padding: 15px 0px;
-    line-height: 1.6;
+    line-height: 1.6em;
     color: #8E8EA4;
   }
   .nav-tabs .nav-item:before {
@@ -1620,7 +1620,7 @@ color: var(--primary-color);
 .desc-gt p{
     font-size: 1.4rem;
     color: #000;
-    line-height: 28px;
+    line-height: 1.8em;
 }
 
 .content-gioithieu {
@@ -1630,7 +1630,7 @@ color: var(--primary-color);
 .title-giamhieu h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
 }
 
@@ -1673,14 +1673,14 @@ color: var(--primary-color);
 .title-giaovien h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
 }
 
 .title-nhanvien h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
 }
 
@@ -1689,7 +1689,7 @@ color: var(--primary-color);
 .contact-title h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
 }
 .contact-info {
@@ -1745,7 +1745,7 @@ color: var(--primary-color);
   .noiquy-title h3 {
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
     margin-bottom:20px
 }
@@ -1847,7 +1847,7 @@ details summary {
 .news-item-title p{
     font-size: 2rem;
     color: var(--primary-color);
-    line-height: 30px;
+    line-height: 2em;
     font-family: 'Inter Bold';
     padding: 5px 0;
 }
@@ -1855,7 +1855,7 @@ details summary {
 .news-item-content p{
     font-size: 1.4rem;
     color: #111;
-    line-height: 26px;
+    line-height: 1.6em;
      
     padding: 5px 0;
 }
@@ -1900,7 +1900,7 @@ details summary {
   .title-csvt h3{
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
     text-transform: uppercase;
 }
@@ -1908,7 +1908,7 @@ details summary {
 .csvt-block .title-block {
     font-size: 2.6rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 2em;
     font-family: 'Inter Bold';
 }
 
@@ -1931,7 +1931,7 @@ details summary {
 .content-block p{
     color: #000;
     font-size: 1.8rem;
-    line-height: 28px;
+    line-height: 2em;
     font-family: 'Inter Regular';
 }
 
@@ -2083,7 +2083,7 @@ overflow: hidden;
 
 .title-thanhtich p {
     color: #000;
-    line-height: 28px;
+    line-height:2em;
     font-size: 1.8rem;
     font-family: 'Inter Bold';
 }
@@ -2091,7 +2091,7 @@ overflow: hidden;
 .desc-thanhtich p {
     text-align: center;
     font-size: 1.4rem;
-    line-height: 26px;
+    line-height: 1.6em;
     color: #666;
 }
 
