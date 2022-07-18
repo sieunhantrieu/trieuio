@@ -1292,9 +1292,10 @@ body {
   border-bottom-right-radius: 60px;
 }
 .breadcrumbs .title {
-  font-size: 2.5em;
+  font-size: 3em;
   line-height: 2em;
   position: absolute;
+  font-family: 'Inter Bold';
   bottom: 2em;
   left: auto;
   z-index: 3;
@@ -1342,7 +1343,7 @@ body {
   color: #111111;
   font-size: 1.4rem;
   background: #FAFAFA;
-}
+}#pills-tab .nav-item .nav-link:hover,
 .pagination .page-item:hover {
   filter: brightness(0.9)
 }
@@ -1718,7 +1719,7 @@ details summary {
   display: block;
   overflow-x: auto;
 }
-#pills-tab .nav-item {}
+#pills-tab .nav-item {margin-bottom:10px}
 #pills-tab .nav-item .nav-link {
   background: #fafafa;
   color: #000;
