@@ -844,7 +844,7 @@ body {
   padding: 10px 0;
 }
 .section5-wrap {
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 .ss5-title {
@@ -879,8 +879,11 @@ body {
   bottom: 35px;
   left: 20px;
 }
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  box-shadow: 0px 8px 14px 6px rgb(0 0 0 / 11%);}
 .swiper-button-prev, .swiper-button-next {
   position: absolute;
+  box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
   right: 0;
   height: 38px;
   width: 38px;
@@ -890,13 +893,13 @@ body {
 .swiper-button-prev {
   margin-right: 50px;
   padding: 20px;
-  border: 1px solid var(--primary-color);
+  /* border: 1px solid var(--primary-color); */
   border-radius: 50%;
 }
 .swiper-button-next {
   margin-left: 50px;
   padding: 20px;
-  border: 1px solid var(--primary-color);
+  /* border: 1px solid var(--primary-color); */
   border-radius: 50%;
 }
 .swiper-button-next:after, .swiper-button-prev:after {
@@ -1202,6 +1205,9 @@ body {
   border-radius: 50%;
   text-align: center;
 }
+#back-to-top:hover{
+  box-shadow: 0px 8px 14px 6px rgb(0 0 0 / 11%);
+}
 #back-to-top {
   width: 50px;
   height: 50px;
@@ -1210,7 +1216,7 @@ body {
   right: 40px;
   font-size: 3rem;
   background: #fff;
-  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.03), 0px 1.6711px 2.92443px rgba(0, 0, 0, 0.0215656), 0px 0.893452px 1.56354px rgba(0, 0, 0, 0.0178832), 0px 0.500862px 0.876509px rgba(0, 0, 0, 0.015), 0px 0.266004px 0.465507px rgba(0, 0, 0, 0.0121168), 0px 0.11069px 0.193708px rgba(0, 0, 0, 0.00843437);
+  box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
   border-radius: 50%;
   text-align: center;
   transition: opacity 0.2s ease-out;
