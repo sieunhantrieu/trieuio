@@ -135,7 +135,7 @@ body {
 }
 
 .btn--primary  a{
-    /* padding: 7px 30px; */
+
     padding: 12px 30px;
     display: block;
     font-size: 1.4rem;
@@ -703,8 +703,10 @@ body {
 
 .count-number .count__number-title h2{
     font-size: 3.4rem;
+    line-height: 1.6em;
     color: var(--primary-color);
     font-family: 'Inter Bold';
+    margin-bottom: 20px;
 }
 
 .count-number .count__number-desc p{
@@ -862,8 +864,9 @@ body {
 .ss3-right-title h3 {
     color: #fff;
     font-size: 3.4rem;
-    line-height: 54px;
+    line-height: 1.6em;
     font-family: 'Inter Bold';
+    margin-bottom: 20px;
     padding-left: 15px;
 }
 
@@ -917,7 +920,8 @@ body {
     font-size: 3.4rem;
     color: var(--primary-color);
     font-family: 'Inter Bold';
-    line-height: 56px;
+    line-height: 1.6em;
+    margin-bottom: 20px;
 }
 
 .title-ss4 h3{
@@ -968,6 +972,7 @@ body {
 }
 .swiper-container {
     height: auto;
+    overflow: hidden;
 }
 
 .swiper-slide-wrap:hover > img {
@@ -992,6 +997,7 @@ body {
 
 .swiper-slide p{
     font-size: 2rem;
+    line-height: 1.8em;
     color: #fff;
     position: absolute;
     bottom: 35px;
@@ -1034,6 +1040,7 @@ body {
 .ss5-title h3,
 .ss6-title h3 {
     font-size: 3.4rem;
+    line-height: 1.6em;
     color: var(--primary-color);
     font-family: 'Inter Bold';
     margin-bottom: 20px;
@@ -1059,22 +1066,24 @@ body {
 .ss6-item-title p{
     font-size: 2rem;
     color: #111;
-    line-height: 30px;
+    line-height: 1.6em;
     font-family: 'Inter Bold';
     padding: 5px 0;
 }
 
 .ss6-item-content p{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #111;
-    line-height: 26px;
+    line-height: 2em;
     padding: 5px 0;
 }
 
 .ss7-title h3{
     font-size: 3.4rem;
+    line-height: 1.6em;
     color: var(--primary-color);
     font-family: 'Inter Bold';
+    margin-bottom: 20px;
 }
 
 .ss7-item {
@@ -1105,7 +1114,7 @@ body {
     padding: 5px 15px 5px 15px;
     font-size: 1.8rem;
     font-weight: 600;
-    line-height: 30px;
+    line-height: 2em;
     color: #111;
 }
 .ss6-item-title p:hover,
@@ -1121,7 +1130,8 @@ body {
     font-size: 3.4rem;
     color: var(--primary-color);
     font-family: 'Inter Bold';
-    line-height: 56px;
+    line-height: 1.6em;
+    margin-bottom: 20px;
 }
 
 .ss8-news {
@@ -1149,9 +1159,9 @@ body {
 
 .ss8-news-link p {
     color: #111;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-family: 'Inter Bold';
-    line-height: 30px;
+    line-height: 1.8em;
     padding: 5px 0;
 }
 
@@ -1164,7 +1174,7 @@ body {
 .ss8-news-botttom p{
     color: #111;
     font-size: 1.8rem;
-    line-height: 28px;
+    line-height: 1.6em;
     font-weight: 600;
 }
 .ss8-news-link p:hover,
@@ -1219,7 +1229,7 @@ color: var(--primary-color);
 .ss8-desc-bottom p {
     color: #fff;
     font-size: 1.4rem;
-    line-height: 24px;
+    line-height: 1.8em;
     font-style: italic;
     margin-top: 30px;
 }
@@ -1297,6 +1307,7 @@ color: var(--primary-color);
 
 .footer-item .footer__item-title h4{
     font-size: 2rem;
+    line-height: 1.6em;
     font-family: 'Inter Bold';
     color: #FFFFFF;
     margin-bottom: 20px;
@@ -1384,8 +1395,9 @@ color: var(--primary-color);
     bottom: 40px;
     right: 40px;
     font-size: 3rem;
-    background: #e5e6edcf;
-    border: 1px solid #e5e6ed;
+    background: #fff;
+    
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.03), 0px 1.6711px 2.92443px rgba(0, 0, 0, 0.0215656), 0px 0.893452px 1.56354px rgba(0, 0, 0, 0.0178832), 0px 0.500862px 0.876509px rgba(0, 0, 0, 0.015), 0px 0.266004px 0.465507px rgba(0, 0, 0, 0.0121168), 0px 0.11069px 0.193708px rgba(0, 0, 0, 0.00843437);
     border-radius: 50%;
     text-align: center;
     transition: opacity 0.2s ease-out;
@@ -1394,7 +1406,7 @@ color: var(--primary-color);
 }
 
 #back-to-top .fa-angle-up {
-    color: #000;
+    color: #1445a5;
 }
 
 #back-to-top.show{
@@ -1465,6 +1477,7 @@ color: var(--primary-color);
   }
   .breadcrumbs .title {
     font-size: 2.5em;
+    line-height: 2em;
     position: absolute;
     bottom: 2em;
     left: auto;
@@ -1510,11 +1523,12 @@ color: var(--primary-color);
     text-align: center;
     line-height: 35px;
     margin: 0 5px;
-    border: 1px solid #eee;
+    border: 1px solid #fafafa;
     color: #111111;
     font-size: 1.4rem;
     background: #FAFAFA;
   }
+.pagination .page-item:hover{ filter:brightness(0.9)}
   .pagination .page-link.active {
     background: #1445A5 !important;
     color: #fff !important;
@@ -1526,7 +1540,7 @@ color: var(--primary-color);
 
   .page-item.active .page-link {
     background: #1445A5 ;
-    color: #fff ;
+    color: #fff ;    border-color: #1445a5;
   }
 
   /* gioi thieu */
@@ -1548,7 +1562,7 @@ color: var(--primary-color);
     display: inline-block;
     border-left: 1px solid #f0f0f0;
     float: right;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-left: 15px;
   }
   .nav-tabs .nav-item a {
@@ -1599,7 +1613,7 @@ color: var(--primary-color);
   .title-gt h3{
     font-size: 3.4rem;
     color: var(--primary-color);
-    line-height: 56px;
+    line-height: 1.6em;
     font-family: 'Inter Bold';
 }
 
@@ -1610,7 +1624,7 @@ color: var(--primary-color);
 }
 
 .content-gioithieu {
-    padding: 0 15px 15px 0;
+    /* padding: 0 15px 15px 0; */
 }
 
 .title-giamhieu h3 {
@@ -1694,7 +1708,7 @@ color: var(--primary-color);
   .contact-info p {
     font-family: "Inter Light";
     line-height: 2em;
-    font-size: 1.2em;
+    font-size: 1.4rem;
   }
   #form0 {
     margin-top: 3em;
@@ -1851,12 +1865,12 @@ details summary {
   /* =============================Trang gioi thieu 2====================================== */
 
   .content-gioithieu2{
-    padding: 0 15px 20px 0;
+   
   }
 
   .content-gt2-main p{
-    font-size: 1.4rem;
-    line-height: 28px;
+    font-size: 1.6rem;
+    line-height: 2.2em;
     color: #000;
   }
 
@@ -1882,7 +1896,7 @@ details summary {
 
   /* =============================Trang co so vat chat===================================== */
   .content-cosovatchat{
-    padding: 0 15px 20px 0;
+    
   }
 
   .title-csvt h3{
@@ -2020,12 +2034,13 @@ details summary {
 }
 .title-tva {
     padding: 22px;
+    height: 10em;
     display: block;
 }
 .title-tva p{
     color: #000;
-    line-height: 30px;
-    font-size: 2rem;
+    line-height: 1.6em;
+    font-size: 1.8rem;
     font-family: 'Inter Bold';
 }
 
@@ -2097,6 +2112,7 @@ overflow: hidden;
         border-left: 1px solid rgba(255,255,255,0.1);
         text-transform: uppercase;
     }
+ 
     
 }
 
@@ -2107,6 +2123,14 @@ overflow: hidden;
     height: 478px;
 }
 @media only screen and (max-width: 991px){
+  .tab-content{
+    padding-left: 0.9rem;
+    border-left:none;
+  }
+   .form-search {
+        height: 44px;
+        width: 675px;
+    }
     .footer-item{
         width: 100%;
         padding-bottom: 20px;
@@ -2119,7 +2143,10 @@ overflow: hidden;
         width: 250px;
         text-align: center;
     }
-
+   .nav-tabs .nav-item a {
+    font-family: 'Inter Bold';
+    font-size: 1.8rem;
+    }
     .banner_home a {
         display: block;
         margin-bottom: 30px;
