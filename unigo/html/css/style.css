@@ -1735,6 +1735,7 @@ details summary {
   display: block;
 }
 /* =============================Trang thu vien anh====================================== */
+#page-thuvienanh, #page-thuvienvideo{margin-bottom: 20px;}
 #page-thuvienanh .row, #page-thuvienvideo .row {
   row-gap: 30px;
 }
