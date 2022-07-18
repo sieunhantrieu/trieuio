@@ -1038,11 +1038,12 @@ body {
   width: 100%;
   background: linear-gradient(159.9deg, #1445A5 42.55%, #3861C2 90.06%)red;
   border-bottom-right-radius: 30px;
-  padding: 40px;
+  padding: 3.5em;
 }
 .ss8-form-tu-van input, select {
   display: block;
   width: 100%;
+  min-height: 28px;
   margin: 10px 0;
   padding: 10px 20px;
   border-radius: 5px;
