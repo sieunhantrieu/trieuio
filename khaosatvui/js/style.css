@@ -56,10 +56,11 @@ h1 {
   }
 
   .btn-wrap {
-    left: 25%;
-    top: 50%;
+    left: 20%;
+    top: 65%;
     margin: auto;
-    margin-top: -50px;
+    /* margin-top: -50px; */
+    transform: translate(-50%, -50%);
     position: absolute;
   }
 }
