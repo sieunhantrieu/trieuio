@@ -663,7 +663,7 @@ body {
 }
 .count__number-main .count__number-item {
   position: relative;
-  padding: 5px;
+  padding: 1em;
   width: 15%;
   height: 191px;
   background: #fff;
@@ -675,23 +675,27 @@ body {
 .triangle-wrap {
   position: relative;
 }
-.triangle {
+.triangle,.triangle:before, .triangle:after {
   position: absolute;
-  float: right;
+  right:0em;
+  top:0em;
 }
 .triangle {
-  position: relative;
   background-color: #FFF0E7;
-  text-align: left;
 }
 .triangle:before, .triangle:after {
   content: '';
   position: absolute;
   background-color: inherit;
 }
-.triangle, .triangle:before, .triangle:after {
-  width: 6em;
-  height: 6em;
+.triangle{
+  width: 5em;
+  height: 5em;
+  border-top-right-radius: 30%;
+}
+.triangle:before, .triangle:after {
+  width: 5em;
+  height: 5em;
   border-top-right-radius: 50%;
 }
 .triangle {
