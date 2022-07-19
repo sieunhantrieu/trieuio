@@ -57,6 +57,10 @@ h1 {
     margin-top: -50px;
     position: absolute;
   }
+	.popup {
+  
+  min-width: 80%!important;
+	}
 }
 
 .tricky {
