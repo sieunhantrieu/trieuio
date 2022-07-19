@@ -160,7 +160,7 @@ h1 {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  min-width: 40%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -192,5 +192,6 @@ h1 {
 
 .popup .content {
   max-height: 30%;
+  font-size: 1.6em;
   overflow: auto;
 }
