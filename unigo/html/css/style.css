@@ -861,25 +861,30 @@ body {
 }
 .swiper-container {
   height: auto;
-  overflow: hidden;
+  overflow: hidden; 
 }
+.MainSlider{
+	position: relative;
+}
+.MainSlider .swiper-button-next, .MainSlider .swiper-button-prev{color:#fff;}
+.MainSlider .swiper-pagination-bullet-active  {background:#fff;}
 .swiper-slide-wrap:hover > img {
   transform: scale(1.2);
 }
-.swiper-slide {
+.ImageSlider .swiper-slide {
   overflow: hidden;
   transition: transform linear .3s;
   border-radius: 6px 6px 22px 6px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
-.swiper-slide img {
+.ImageSlider  .swiper-slide img {
   width: 100%;
   transition: transform linear .3s;
   height: auto;
   display: block;
   object-fit: cover;
 }
-.swiper-slide p {
+.ImageSlider .swiper-slide p {
   font-size: 2rem;
   font-family: 'Inter Bold';
   line-height: 1.8em;
@@ -888,9 +893,9 @@ body {
   bottom: 35px;
   left: 20px;
 }
-.swiper-button-prev:hover, .swiper-button-next:hover {
+.ImageSlider  .swiper-button-prev:hover, .ImageSlider .swiper-button-next:hover {
   box-shadow: 0px 8px 14px 6px rgb(0 0 0 / 11%);}
-.swiper-button-prev, .swiper-button-next {
+.ImageSlider  .swiper-button-prev,.ImageSlider  .swiper-button-next {
   position: absolute;
   box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
   right: 0;
@@ -899,23 +904,24 @@ body {
   left: auto;
   top: 30px;
 }
-.swiper-button-prev {
+.ImageSlider .swiper-button-prev {
   margin-right: 50px;
   padding: 20px;
   /* border: 1px solid var(--primary-color); */
   border-radius: 50%;
 }
-.swiper-button-next {
+.ImageSlider .swiper-button-next {
   margin-left: 50px;
   padding: 20px;
   /* border: 1px solid var(--primary-color); */
   border-radius: 50%;
 }
-.swiper-button-next:after, .swiper-button-prev:after {
+.ImageSlider .swiper-button-next:after, .ImageSlider .swiper-button-prev:after {
   font-size: 2.0rem;
   color:
     var(--primary-color);
 }
+
 .ss6-wrap:hover img {
   transform: scale(1.2);
 }
@@ -1024,7 +1030,7 @@ body {
 }
 .ss8-news-link p {
   color: #111;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Inter Bold';
   line-height: 1.6em;
   padding: 5px 0;

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trang chủ</title>
+<title>Trang chủ UNIGO COLLEGE</title>
 <link rel="stylesheet" href="css/all.min.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/swiper-bundle.min.css" />
@@ -92,25 +92,22 @@
   </div>
 </header>
 <section id="section1" class="slider pb-5">
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
+	<!-- Swiper -->
+    <div class="swiper-container MainSlider">
+      <div class="swiper-wrapper">
+        <a href="#" class="swiper-slide"><img src="images/slide-0.jpg" class="d-block w-100" alt="..." /></a>
+        <a href="#" class="swiper-slide"><img src="images/slide-1.png" class="d-block w-100" alt="..." /></a>
+        <a href="#" class="swiper-slide"><img src="images/slide-4.jpg" class="d-block w-100" alt="..." /></a>
+        <a href="#" class="swiper-slide"><img src="images/slide-5.jpg" class="d-block w-100" alt="..." /></a>    
+      </div>
+		
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+      
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active"> <a href="#" class="carousel-item-link"> <img src="images/Rectangle 4221.png" class="d-block w-100" alt="..." /> </a> </div>
-      <div class="carousel-item"> <a href="#" class="carousel-item-link"> <img src="images/Rectangle 4221.png" class="d-block w-100" alt="..." /> </a> </div>
-      <div class="carousel-item"> <a href="#" class="carousel-item-link"> <img src="images/Rectangle 4221.png" class="d-block w-100" alt="..." /> </a> </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span> </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span> </button>
-  </div>
+	
+  
 </section>
 <section id="section2" class="count-number py-5">
   <div class="container">
@@ -276,8 +273,10 @@
       <div class="ss5-title">
         <h3>Hình ảnh hoạt động</h3>
       </div>
-      <div #swiperRef="" class="swiper-container mySwiper">
-        <div class="swiper-wrapper"> <a href="" class="swiper-slide">
+      <div class="swiper-container ImageSlider">
+        <div class="swiper-wrapper">
+			
+			<a href="" class="swiper-slide">
           <div class="swiper-slide-wrap"> <img src="images/image 10.png" alt="">
             <p>Hoạt động thể thao</p>
           </div>
@@ -727,20 +726,33 @@
 <script src="js/jquery.counterup.min.js"></script> 
 <script src="js/main.js"></script> 
 <script>
-    var swiper = new Swiper('.mySwiper', {
+	var swiper1 = new Swiper('.MainSlider', {
+        autoHeight: true,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+        el: '.swiper-pagination',
+         clickable: true,
+        },
+      });
+	
+    var swiper2 = new Swiper('.ImageSlider', {
       breakpoints: {
-                        991: {
-                            slidesPerView: 4,
-                            spaceBetween: 20
-                        }
+			991: {
+				slidesPerView: 4,
+				spaceBetween: 20
+			}
                     },
       slidesPerView: 2,
       centeredSlides: false,
       spaceBetween: 25,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction',
-      },
+//      pagination: {
+//        el: '.swiper-pagination',
+//        clickable: true,
+//      },
       loop: true,
       navigation: {
         nextEl: '.swiper-button-next',
