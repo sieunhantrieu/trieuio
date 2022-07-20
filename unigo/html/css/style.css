@@ -473,12 +473,12 @@ body {
     border-left: 1px solid #005fd6; */
 }
 .offcanvas-menu-expand::after {
-  content: "\2b";
+  content: "\f105";
   position: absolute;
   font-family: "Font Awesome 6 Pro";
   right: 12px;
   top: 12px;
-  font-size: 2rem;
+  font-size: 1.8em;
   transition: all 0.3s ease;
   color: #1445a5;
 }
@@ -486,12 +486,12 @@ body {
   border-bottom: none;
 }
 .offcanvas-menu .active > .offcanvas-menu-expand::after, .sub-menu > .active .offcanvas-menu-expand::after {
-  content: "\f068";
+  content: "\f107";
   position: absolute;
   font-family: "Font Awesome 6 Pro";
   right: 12px;
   top: 12px;
-  font-size: 1.4em;
+  font-size: 1.8em;
   transition: all 0.3s ease;
   color: #1445a5;
 }
@@ -1185,10 +1185,10 @@ body {
 .footer-item .footer__item-list .footer__item-list-link:hover {
   color: #ffffffe6;
 }
-.footer-item .footer__item-social-list ul {
+.footer-item .footer__item-social-list {
   display: flex;
 }
-.footer-item .footer__item-social-list ul li {
+.footer-item .footer__item-social-list li {
   margin: 0 5px;
   background: #fff;
   height: 34px;
@@ -1197,7 +1197,7 @@ body {
   text-align: center;
   justify-content: center;
 }
-.footer-item .footer__item-social-list ul li a {
+.footer-item .footer__item-social-list li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1241,7 +1241,7 @@ body {
   height: 50px;
   position: fixed;
   bottom: 40px;
-  right: 40px;
+  right: 2rem;
   font-size: 3rem;
   background: #fff;
   box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
@@ -2009,6 +2009,25 @@ details summary {
     padding: 20px 0;
   }
 }
+.nav-footer .nav {
+  display: block;
+  padding: 0 10px;
+}
+.nav-footer .nav h4 {
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1.6em;
+  font-family: 'Inter Bold';
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+.nav-footer .nav ul li a {
+  color: #FFFFFFB2;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  display: flex;
+  padding: 5px 0;
+}
 @media only screen and (max-width: 768px) {
   .popup-master {
     width: 90% !important;
@@ -2016,6 +2035,38 @@ details summary {
   .ss4-wrap {
     box-shadow: none;
     padding: 20px 10px;
+  }
+  /*menu footer*/
+  .nav-footer ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-out;
+  }
+  .nav-footer .nav:last-child  ul {height: auto;overflow: initial;margin-bottom: 20px;}
+  .nav-footer .nav:last-child h4:after {display:none}
+  .nav-footer .nav h4:after {
+    content: "\f107";
+    position: relative;
+    font-family: "Font Awesome 6 Pro";
+    font-size: 1.2em;
+    right: 0;
+    top: 0;
+    width: 25px;
+    float: right;
+  }
+  .nav-footer .nav.open h4:after {
+    content: "\f106";
+    position: relative;
+    font-family: "Font Awesome 6 Pro";
+    font-size: 1.2em;
+    right: 0;
+    top: 0;
+    width: 25px;
+  }
+  .nav-footer .nav.open ul {
+    height: auto;
+    max-height: 500px;
+    transition: max-height 1s ease-in !important;
   }
 }
 @media only screen and (max-width: 496px) {
