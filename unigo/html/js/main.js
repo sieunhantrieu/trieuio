@@ -104,3 +104,24 @@
     element.classList.toggle('show')
   }
 
+// Time out show popup-master by SieuNhanTrieu
+window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".popup-master").style.display = "block";
+			document.querySelector(".bg-popup-master").style.display = "block";
+        },
+        1000
+    )
+
+ });
+document.querySelector(".bg-popup-master").addEventListener("click", function(){
+    document.querySelector(".bg-popup-master").style.display = "none";
+	document.querySelector(".popup-master").style.display = "none";
+
+ });
+document.querySelector("#close").addEventListener("click", function(){
+    document.querySelector(".bg-popup-master").style.display = "none";
+	document.querySelector(".popup-master").style.display = "none";
+
+ });
