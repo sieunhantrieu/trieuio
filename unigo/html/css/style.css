@@ -100,6 +100,10 @@ body {
   font-family: 'Inter Regular';
   overflow-x: hidden;
   position: relative;
+/*
+	background: url("../images/bg_unigo_web.png") repeat-x center;
+	background-size:contain;
+*/
 }
 /* .active {
     background: #00349B;
@@ -670,10 +674,10 @@ body {
   background: #fff;
   border: 1px solid #c2cbdb26;
   border-radius: 6px 6px 22px 6px;
-  box-shadow: 0px 5px 6px 2px rgb(0 0 0 /3%);
+  box-shadow: 0px 5px 6px 2px rgb(68 102 242 / 5%);
 }
 .count__number-main .count__number-item:hover {
-  box-shadow: 0px 18px 12px 10px rgb(0 0 0 / 5%);
+  box-shadow: 0px 18px 12px 10px rgb(68 102 242 / 10%);
   transition: all ease 0.3s
 }
 .triangle-wrap {
@@ -823,7 +827,8 @@ body {
 .ss4-wrap {
   background: #fff;
   border-radius: 26px 6px 6px 6px;
-  box-shadow: 0px 5px 20px 10px rgb(0 0 0 / 7%);
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+    box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 10%);
   padding: 40px 20px;
 }
 .ss4-title h3 {
@@ -902,11 +907,12 @@ body {
   left: 20px;
 }
 .ImageSlider .swiper-button-prev:hover, .ImageSlider .swiper-button-next:hover {
-  box-shadow: 0px 8px 14px 6px rgb(0 0 0 / 11%);
+  box-shadow: 0px 8px 14px 6px rgb(68 102 242 / 10%);
 }
 .ImageSlider .swiper-button-prev, .ImageSlider .swiper-button-next {
   position: absolute;
-  box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
+  box-shadow: 0px 5px 12px 2px rgb(68 102 242 / 10%);
+  background:#fff;
   right: 0;
   height: 38px;
   width: 38px;
@@ -941,8 +947,11 @@ body {
   margin-bottom: 20px;
 }
 .ss6-item {
-  padding: 0 7px;
+  padding: 16px;
   margin-bottom: 20px;
+  border-radius: 16px;
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+  box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
 }
 .ss6-item-img {
   overflow: hidden;
@@ -978,7 +987,9 @@ body {
 .ss7-item {
   display: flex;
   width: 100%;
-  background-color: #FAFAFA;
+  background-color: #Fff;
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+  box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
   border-radius: 6px;
   padding: 10px;
 }
@@ -1028,6 +1039,11 @@ body {
   overflow: hidden;
   border-radius: 8px;
 }
+.ss8-news{
+  padding:16px; border-radius:16px;
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+    box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+}
 .ss8-news-link img {
   width: 100%;
   height: auto;
@@ -1044,7 +1060,9 @@ body {
   padding: 5px 0;
 }
 .ss8-news-botttom {
-  background: #FAFAFA;
+  background: #Fff;
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+  box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
   margin-bottom: 10px;
   border-radius: 6px;
   padding: 15px;
@@ -1063,20 +1081,23 @@ body {
   width: 100%;
   background: linear-gradient(159.9deg, #1445A5 42.55%, #3861C2 90.06%)red;
   border-radius: 6px 6px 30px 6px;
+  -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+  box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
   padding: 3.5em;
 }
-.ss8-form-tu-van input, select {
+.ss8-form-tu-van input,.ss8-form-tu-van select {
   display: block;
   width: 100%;
   min-height: 28px;
-  margin: 10px 0;
-  padding: 10px 20px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
   border-radius: 5px;
   font-size: 1.4rem;
   line-height: 1.8em;
   color: #444;
   border: none;
 }
+.ss8-form-tu-van select option {padding-left: 0;display: inline-block;text-align: left;margin-left: -10px;}
 .ss8-form-tu-van input:focus, .ss8-form-tu-van select:focus {
   border-width: 1px;
   border-color: rgb(234, 234, 234);
@@ -1234,7 +1255,7 @@ body {
   text-align: center;
 }
 #back-to-top:hover {
-  box-shadow: 0px 8px 14px 6px rgb(0 0 0 / 11%);
+  box-shadow: 0px 8px 14px 6px rgb(68 102 242 / 10%)
 }
 #back-to-top {
   width: 50px;
@@ -1244,7 +1265,7 @@ body {
   right: 2rem;
   font-size: 3rem;
   background: #fff;
-  box-shadow: 0px 5px 12px 2px rgb(0 0 0 / 10%);
+  box-shadow: 0px 5px 12px 2px rgb(68 102 242 / 10%);
   border-radius: 50%;
   text-align: center;
   transition: opacity 0.2s ease-out;
@@ -1520,7 +1541,7 @@ body {
 }
 .contact-info {
   background: linear-gradient(80.93deg, #1445A5 35.19%, #3861C2 94.43%);
-  border-radius: 0px 0px 50px 0px;
+  border-radius: 6px 6px 50px 6px;
   color: #fff;
   height: 100%;
   padding: 4em;
@@ -2169,3 +2190,77 @@ details summary {
   outline: none;
   cursor: pointer;
 }
+/*background animation section*/
+.bg_animation{
+			background: url("../images/common_img.png");
+			background-attachment: fixed;
+			position: relative;
+		}
+		.bg_animation:before, .bg_animation:after {
+    content: "";
+    position: absolute;
+    border-radius: 20px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    /* background: -webkit-gradient(linear, left top, right top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%) 100%))); */
+    background: linear-gradient(to right, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
+    }
+  .bg_animation:before {
+    -webkit-animation: movearrow 10s linear infinite;
+    animation: movearrow 10s linear infinite;
+    left: 10%;
+    top: 33%;
+    height: 14px;
+    width: 85px;
+    }
+  .bg_animation:after {
+    height: 10px;
+    width: 55px;
+    right: 12%;
+    top: 40%;
+    animation: movearrow 5s linear infinite reverse;
+    }
+
+.plus_decore li {
+  background-color: #0e85f6;
+  height: 20px;
+  position: absolute;
+  width: 6px;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%) 100%)));
+  background: linear-gradient(to top, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
+  border-radius: 5px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  left: 100px; }
+  .plus_decore li:before {
+    content: "";
+    height: 20px;
+    position: absolute;
+    width: 6px;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%)));
+    background: linear-gradient(to top, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
+    border-radius: 5px;
+    -webkit-transform: rotate(-85deg);
+            transform: rotate(-85deg); }
+  .plus_decore li:nth-child(1) {
+    left: 120px;
+    bottom: 100px;
+    animation: movearrow 5s linear infinite reverse; }
+  .plus_decore li:nth-child(2) {
+    right: 120px;
+    bottom: 60px;
+    left: unset;
+    -webkit-animation: movearrow 10s linear infinite;
+            animation: movearrow 10s linear infinite; }
+
+		
+		@keyframes movearrow {
+  0% {
+    -webkit-transform: rotate(-45deg) translateX(0px);
+            transform: rotate(-45deg) translateX(0px); }
+  50% {
+    -webkit-transform: rotate(-45deg) translateX(30px);
+            transform: rotate(-45deg) translateX(30px); }
+  100% {
+    -webkit-transform: rotate(-45deg) translateX(0px);
+            transform: rotate(-45deg) translateX(0px); } }
