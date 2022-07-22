@@ -864,6 +864,7 @@ body {
 .section5-wrap {
   /* overflow: hidden; */
   position: relative;
+  z-index: 9;
 }
 .ss5-title {
   /* margin-bottom: 50px; */
@@ -986,6 +987,8 @@ body {
 }
 .ss7-item {
   display: flex;
+  z-index: 9;
+  position: relative;
   width: 100%;
   background-color: #Fff;
   -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
@@ -2191,6 +2194,10 @@ details summary {
   cursor: pointer;
 }
 /*background animation section*/
+section .container{
+  position:relative;
+  z-index:9
+}
 .bg_animation{
 			background: url("../images/common_img.png");
 			background-attachment: fixed;
@@ -2198,6 +2205,7 @@ details summary {
 		}
 		.bg_animation:before, .bg_animation:after {
     content: "";
+    z-index: 2;
     position: absolute;
     border-radius: 20px;
     -webkit-transform: rotate(-45deg);
@@ -2212,6 +2220,7 @@ details summary {
     top: 33%;
     height: 14px;
     width: 85px;
+    /* z-index: 2; */
     }
   .bg_animation:after {
     height: 10px;
