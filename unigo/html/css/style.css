@@ -1176,13 +1176,7 @@ body {
   object-fit: cover;
 }
 /* FOOTER */
-.footer {
-  background-image: url(../images/bg-footer-2.png);
-  background-color: var(--primary-color);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-}
+.footer {/*   background-image: url(https://themes.dhrubok.website/xpider/wp-content/uploads/2019/02/cta-bg.png); */background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);background-repeat: no-repeat;background-position: bottom;/* background-size: cover; */}
 .footer .container {
   padding-top: 42px;
   padding-bottom: 42px;
