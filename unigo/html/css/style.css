@@ -2055,7 +2055,7 @@ details summary {
   font-family: 'Inter Bold';
   color: #FFFFFF;
   margin-bottom: 2rem;
-}
+}.nav-footer .nav ul li a:hover {color: rgba(255,255,255,1);}
 .nav-footer .nav ul li a {
   color: rgba(255,255,255,0.7);
   font-size: 1.4rem;
@@ -2096,7 +2096,7 @@ details summary {
     font-size: 1.2em;
     right: 0;
     top: 0;
-    width: 25px;
+    width: 15px;
   }
   .nav-footer .nav.open ul {
     height: auto;
