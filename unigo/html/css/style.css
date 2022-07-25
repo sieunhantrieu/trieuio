@@ -2258,7 +2258,7 @@ section .container{
     height: 20px;
     position: absolute;
     width: 6px;
-    background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%));
+    background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%)100%));
     background: linear-gradient(to top, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
     border-radius: 5px;
     -webkit-transform: rotate(-85deg);
@@ -2275,7 +2275,7 @@ section .container{
             animation: movearrow 10s linear infinite; }
 
 		
-		@keyframes movearrow {
+@keyframes movearrow {
   0% {
     -webkit-transform: rotate(-45deg) translateX(0px);
             transform: rotate(-45deg) translateX(0px); }
@@ -2284,4 +2284,5 @@ section .container{
             transform: rotate(-45deg) translateX(30px); }
   100% {
     -webkit-transform: rotate(-45deg) translateX(0px);
-            transform: rotate(-45deg) translateX(0px); } }
+            transform: rotate(-45deg) translateX(0px); } 
+}
