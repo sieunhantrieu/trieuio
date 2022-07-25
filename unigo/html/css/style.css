@@ -1179,8 +1179,8 @@ body {
 }
 /* FOOTER */
 .footer {
-/*   background-image: url(../images/bg-footer-2.png); */
-  background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);
+  background-image: url(../images/bg-footer-3.png);
+/*   background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%); */
   background-color: var(--primary-color);
   background-repeat: no-repeat;
   background-position: bottom;
