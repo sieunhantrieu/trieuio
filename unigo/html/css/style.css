@@ -199,6 +199,8 @@ body {
 /* _____________________________________ */
 .page-header {
   position: relative;
+  background: -webkit-linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);
+  background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);
   background: var(--primary-color);
   font-family: 'Roboto Regular';
   display: flex;
@@ -1176,7 +1178,14 @@ body {
   object-fit: cover;
 }
 /* FOOTER */
-.footer {/*   background-image: url(https://themes.dhrubok.website/xpider/wp-content/uploads/2019/02/cta-bg.png); */background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);background-repeat: no-repeat;background-position: bottom;/* background-size: cover; */}
+.footer {
+/*   background-image: url(../images/bg-footer-2.png); */
+  background: linear-gradient(94deg, #011368 8%, #1445a5 80%, #0063bf 90%);
+  background-color: var(--primary-color);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
 .footer .container {
   padding-top: 42px;
   padding-bottom: 42px;
@@ -1321,6 +1330,7 @@ body {
   transform: translateY(-50%);
   /* object-position: center center; */
 }
+.breadcrumbs > .container {position:static;}
 .breadcrumbs {
   /* background: url("../images/bg-breadcrumb-1.png") center center no-repeat; */
   background-size: cover;
@@ -1349,7 +1359,7 @@ body {
   font-family: 'Inter Bold';
   bottom: 2em;
   left: auto;
-  z-index: 3;
+  z-index: 11;
   color: #ffffff;
   text-align: center;
   display: block;
@@ -2047,7 +2057,7 @@ details summary {
   margin-bottom: 2rem;
 }
 .nav-footer .nav ul li a {
-  color: #FFFFFFB2;
+  color: rgba(255,255,255,0.7);
   font-size: 1.4rem;
   vertical-align: middle;
   display: flex;
@@ -2196,8 +2206,9 @@ details summary {
 }
 /*background animation section*/
 section .container{
-  position:relative;
-  z-index:9
+  position:
+  relative;
+  z-index:9;
 }
 .bg_animation{
 			background: url("../images/common_img.png");
@@ -2236,7 +2247,7 @@ section .container{
   height: 20px;
   position: absolute;
   width: 6px;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%) 100%)));
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%) 100%));
   background: linear-gradient(to top, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
   border-radius: 5px;
   -webkit-transform: rotate(45deg);
@@ -2247,7 +2258,7 @@ section .container{
     height: 20px;
     position: absolute;
     width: 6px;
-    background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%)));
+    background: -webkit-gradient(linear, left bottom, left top, from(rgb(0 131 255 / 27%)), to(rgb(0 71 211 / 91%));
     background: linear-gradient(to top, rgb(0 131 255 / 27%) 0%, rgb(0 71 211 / 91%) 100%);
     border-radius: 5px;
     -webkit-transform: rotate(-85deg);
