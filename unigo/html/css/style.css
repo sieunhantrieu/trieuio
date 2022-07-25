@@ -109,24 +109,31 @@ body {
     background: #00349B;
 } */
 .btn--primary {
-  font-size: 1.6rem;
   background: linear-gradient(91.91deg, #FFA300 11.29%, #FFD362 97.59%);
-  display: inline-block;
+  display:block;
   border-bottom-right-radius: 16px;
   position: relative;
   width: 150px;
+  height: 50px;
   transition: transform linear .2s;
-  box-shadow: 0px 4px 2px 0px rgb(0 0 0 / 10%);
+/*   box-shadow: 0px 4px 2px 0px rgb(0 0 0 / 10%); */
   text-align: center;
+}
+.btn--primary.tuvan {
+  background: linear-gradient(to right, #1445a5 81%, #ffffff 177%);}
+.btn--primary.tuvan a{
+  color: #fff;
 }
 .btn--primary:hover {
   transform: scale(1.05);
   box-shadow: 0px 4px 2px 0px rgb(0 0 0 / 10%);
 }
 .btn--primary a {
-  padding: 12px 30px;
-  display: block;
-  font-size: 1.4rem;
+  /* padding: 12px 0px; */
+  display: inline-block;
+  /* height: 50px; */
+  line-height: 50px;
+  font-size: 1.6em;
   font-family: 'Inter Bold';
   color: #000;
   position: relative;
@@ -804,7 +811,7 @@ body {
   color: #fff;
 }
 #section3 .btn--primary a {
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
 }
 .ss3-highlights-title p {
   color: #fff;
@@ -1114,14 +1121,14 @@ body {
   margin-top: 30px;
 }
 .ss8-btn-submit .btn--primary {
-  width: 100%;
-  font-size: 1.6rem;
-  line-height: 1.7em;
+  /* width: 100%; */
+  /* font-size: 1.6rem; */
+  /* line-height: 1.7em; */
 }
 .ss8-btn-submit .btn--primary a {
-  width: 100%;
-  font-size: 1.6rem;
-  line-height: 27px;
+  /* width: 100%; */
+  /* font-size: 1.6rem; */
+  /* line-height: 27px; */
 }
 .ss8-desc-bottom p {
   color: #fff;
@@ -1302,7 +1309,7 @@ body {
   width: 100%;
 }
 .sp_btn-danngky .btn--primary a {
-  padding: 12px 30px;
+  /* padding: 12px 30px; */
 }
 /* =============================Trang Chi Tiet====================================== */
 .bg-breadcrumbs {
@@ -2075,7 +2082,7 @@ details summary {
     font-size: 1.2em;
     right: 0;
     top: 0;
-    width: 25px;
+    width: 15px;
     float: right;
   }
   .nav-footer .nav.open h4:after {
