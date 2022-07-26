@@ -981,7 +981,7 @@ body {
   font-family: 'Inter Bold';
   margin-bottom: 20px;
 }
-.ss6-item {
+.ss6-item,.news-item {
   padding: 16px;
   margin-bottom: 20px;
   border-radius: 16px;
@@ -1713,7 +1713,7 @@ details summary {
   font-family: 'Inter Bold';
 }
 .news-item {
-  padding: 10px 7px;
+  /* padding: 10px 7px; */
 }
 .news-item-img {
   overflow: hidden;
@@ -2064,7 +2064,7 @@ details summary {
     /* padding: 0; */
   }
   .news-item {
-    padding: 10px 0;
+    /* padding: 10px 0; */
   }
   .mobile-header-wrapper {
     padding: 20px 0;
