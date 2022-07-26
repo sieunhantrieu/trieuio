@@ -659,6 +659,7 @@ body {
 .count__number-main {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   gap: 30px;
   justify-content: center;
   margin-top: 20px;
@@ -678,8 +679,8 @@ body {
 .count__number-main .count__number-item {
   position: relative;
   padding: 1em;
-  width: 15%;
-  height: 191px;
+  width: 18%;
+  height: 220px;
   background: #fff;
   border: 1px solid #c2cbdb26;
   border-radius: 6px 6px 22px 6px;
