@@ -1579,14 +1579,16 @@ body {
   font-family: 'Inter Bold';
 }
 .contact-info {
-  background: linear-gradient(80.93deg, #1445A5 35.19%, #3861C2 94.43%);
+  background: linear-gradient(180deg, #f4f7fb 35.19%, #fbfbff 94.43%);
   border-radius: 6px 6px 50px 6px;
-  color: #fff;
+  color: #111;
   height: 100%;
-  padding: 4em;
+  /* margin-bottom: 4em; */
+  padding: 2em 3.6em;
 }
 .contact-info .title {
   font-family: "Inter Bold";
+  color: #1445a5;
   line-height: 2em;
   font-size: 2.5em;
 }
