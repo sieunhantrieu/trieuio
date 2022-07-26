@@ -887,7 +887,24 @@ body {
 .MainSlider {
   position: relative;
 }
+.MainSlider:hover > .swiper-button-next{
+  right: 20px;
+  transition:all ease 0.3s;
+  opacity:1;                                                                     
+}
+.MainSlider> .swiper-button-next{
+    right: -10px;                                                               
+}
+.MainSlider:hover > .swiper-button-prev { 
+  left: 20px;
+  transition:all ease 0.3s;
+  opacity:1;   
+ }
+.MainSlider > .swiper-button-prev { 
+  left: -10px;
+ }
 .MainSlider .swiper-button-next, .MainSlider .swiper-button-prev {
+  opacity:0;
   color: #fff;
 }
 .MainSlider .swiper-pagination-bullet-active {
