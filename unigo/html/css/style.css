@@ -1103,6 +1103,8 @@ body {
 }
 .ImageSlider .swiper-slide img {
   width: 100%;
+      z-index: -1;
+    position: relative;
   -webkit-transition: -webkit-transform linear .3s;
   transition: -webkit-transform linear .3s;
   -o-transition: transform linear .3s;
