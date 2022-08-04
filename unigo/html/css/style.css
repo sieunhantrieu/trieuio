@@ -895,7 +895,7 @@ body {
   font-family: 'Inter Medium';
 }
 .count__number-item-content {
-  padding: 20px 0 10px 5px;
+  padding: 20px 5px 10px 5px;
   position: absolute;
 }
 #section3 .col-md-6 {
