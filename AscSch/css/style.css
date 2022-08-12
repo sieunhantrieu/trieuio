@@ -313,8 +313,10 @@ button img{
 	background: url(../images/bg-2.png) no-repeat;
 	background-size: cover;
 	height: 100%;
-}.tab_yelow .nav-tabs .nav-link, .tab_yelow .nav-tabs .nav-link:focus, .tab_yelow .nav-tabs .nav-link:hover, .tab_yelow .nav-tabs .nav-item.show .nav-link, .tab_yelow .nav-tabs .nav-link.active{
-	color: #e9ba18;
+}
+.tab_huongdan.tab_yelow ul li .title:hover,
+.tab_yelow .nav-tabs .nav-link, .tab_yelow .nav-tabs .nav-link:focus, .tab_yelow .nav-tabs .nav-link:hover, .tab_yelow .nav-tabs .nav-item.show .nav-link, .tab_yelow .nav-tabs .nav-link.active{
+	color: #e9ba18!important;
 
 }
 .tab_yelow .nav-tabs .nav-link.active .number{
