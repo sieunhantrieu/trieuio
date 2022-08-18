@@ -118,10 +118,10 @@ body {
   width: 150px;
   height: 50px;
   -webkit-transition: -webkit-transform linear .2s;
-  transition: -webkit-transform linear .2s;
+  
   -o-transition: transform linear .2s;
   transition: transform linear .2s;
-  transition: transform linear .2s, -webkit-transform linear .2s;
+  
 /*   box-shadow: 0px 4px 2px 0px rgb(0 0 0 / 10%); */
   text-align: center;
 }
@@ -168,7 +168,7 @@ body {
   border-bottom-right-radius: 16px;
   position: relative;
   -webkit-transition: -webkit-transform linear .2s;
-  transition: -webkit-transform linear .2s;
+  
   -o-transition: transform linear .2s;
   transition: transform linear .2s;
   transition: transform linear .2s, -webkit-transform linear .2s;
@@ -1092,7 +1092,7 @@ body {
   position:relative;
   overflow: hidden;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
+  
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -1106,7 +1106,7 @@ body {
       z-index: -1;
     position: relative;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
+  
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -1188,7 +1188,7 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
+  
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -1287,7 +1287,7 @@ body {
      object-fit: cover;
   display: block;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
+  
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -1700,6 +1700,20 @@ body {
 #chitiettintuc .tab-content {
   border: none;
 }
+#chitiettintuc .content-videos{
+	display: block;	
+	background: #fff;
+	border-radius:6px;
+    -webkit-box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 5%);
+    box-shadow: 1px 5px 15px 2px rgb(68 102 242 / 10%);
+	margin-top: 20px;margin-bottom: 20px;
+    padding: 2em;
+}
+#chitiettintuc .content-videos iframe{
+	display: block;	
+	width: 100%;
+	min-height: 60em;
+}
 .tab-content {
   display: inline-block;
   border-left: 1px solid #f0f0f0;
@@ -1787,7 +1801,6 @@ body {
 }
 .swiper-slide .swiper-slide-img {
   -webkit-transition: -webkit-transform linear .2s;
-  transition: -webkit-transform linear .2s;
   -o-transition: transform linear .2s;
   transition: transform linear .2s;
   transition: transform linear .2s, -webkit-transform linear .2s;
@@ -1935,7 +1948,6 @@ details summary {
   /* box-shadow: 0.1rem 0.1rem 0.3rem rgb(0 0 0 / 25%); */
   background-color: #f5f4f9;
   -webkit-transition: -webkit-box-shadow 250ms;
-  transition: -webkit-box-shadow 250ms;
   -o-transition: box-shadow 250ms;
   transition: box-shadow 250ms;
   transition: box-shadow 250ms, -webkit-box-shadow 250ms;
@@ -2017,7 +2029,6 @@ details summary {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -2085,7 +2096,6 @@ details summary {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -2196,13 +2206,12 @@ details summary {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
 }
 .title-tva {
-  padding: 22px;
+  padding: 2em;
   height: 10em;
   display: block;
 }
@@ -2211,6 +2220,10 @@ details summary {
   line-height: 1.6em;
   font-size: 1.8rem;
   font-family: 'Inter Bold';
+	display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 /* =============================Trang thanh tich====================================== */
 #page-thanhtich .tab-content-pane {
@@ -2243,7 +2256,6 @@ details summary {
   -o-object-fit: cover;
      object-fit: cover;
   -webkit-transition: -webkit-transform linear .3s;
-  transition: -webkit-transform linear .3s;
   -o-transition: transform linear .3s;
   transition: transform linear .3s;
   transition: transform linear .3s, -webkit-transform linear .3s;
@@ -2421,6 +2433,10 @@ details summary {
   padding: 5px 0;
 }
 @media only screen and (max-width: 768px) {
+	#chitiettintuc .content-videos {padding: 1em!important;}
+	#chitiettintuc .content-videos iframe{
+	min-height: 30em!important;
+}
   .form-search:before {
     right:60px;
     z-index:-1;
