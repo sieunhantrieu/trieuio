@@ -1601,7 +1601,7 @@ body {
   overflow: hidden;
   width: 100%;
   border-bottom-right-radius: 60px;
-  height: 25em;
+  height: 30em;
 }
 .breadcrumbs:before {
   position: absolute;
