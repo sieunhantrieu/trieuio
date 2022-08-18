@@ -1,27 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-body{
-/*     background: #22dd96; */
-    background: #73CDE7;
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-size: 1.3em;
-    /* overflow-wrap: break-word; */
-    font-weight: 700;
-    letter-spacing: 0.5px;
+html, body {
+  height: 100%;
 }
-
+body {
+  position: relative;
+  background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3em;
+  /* overflow-wrap: break-word; */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
-
 @keyframes background {
   from {
     background-position: 0 0%;
@@ -33,7 +32,7 @@ a {
 h1 {
   color: #F2F5FE;
   text-align: center;
-  font-size: 4em;
+  font-size: 3.5em;
   line-height: 1;
   font-family: 'Rajdhani', sans-serif;
   background: -webkit-linear-gradient(transparent, transparent), url(http://html5book.ru/wp-content/uploads/2016/08/bubbles.png) repeat;
@@ -43,124 +42,156 @@ h1 {
   animation: background 10s infinite linear;
 }
 button {
-    border: none;
-    border-radius: 6px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #f5f1ed;
-    padding: 10px;
-    margin-left: 5px;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-.shorten-btn {
-    background: #dd7c21;
-}
-
-.shorten-btn:hover {
-    background: #b5661c;
-}
-
-.expand-btn {
-    background: #2188dd;
-}
-
-.expand-btn:hover {
-    background: #1c70b5;
-}
-
-.input-field {
-    background: white;
-    color: #22dd96;
-    padding: 5px;
-    border: none;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.input-field:focus {
-    border: 3px solid #179565;
-}
-
-.input-field::-webkit-input-placeholder {
-    color: #22dd96;
-}
-
-.container{
-    display: block;
-    width: 40%;
-    margin: 50px auto 0 auto;
-    padding: 10px;
-    text-align: center;
-}
-
-.container p{
-    line-height: 1.4;
-}
-
-.result{
-    color: black;
-    padding: 10px;
-    font-weight: 700;
-    text-align: center;
-}
-.input-field{
-	padding: 8px 10px;
-	font-size: 18px;
-	color: #555;
+  border: none;
   border-radius: 6px;
-	border: none;
-	outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #f5f1ed;
+  padding: 10px;
+  margin-left: 5px;
+}
+button:hover {
+  cursor: pointer;
+}
+.shorten-btn {
+  background: #06bb46;
+}
+.shorten-btn:hover, .expand-btn:hover {
+  filter: brightness(0.9);
+}
+.expand-btn {
+  background: #005aff;
+}
+.input-field {
+  background: white;
+  color: #22dd96;
+  padding: 5px;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.input-field:focus {
+  border: 3px solid #06bb46;
+}
+.input-field::-webkit-input-placeholder {
+  color: #22dd96;
+}
+.container {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 40%;
+  margin: 50px auto 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+.container p {
+  line-height: 1.4;
+}
+.result {
+  color: #fff;
+  padding: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+.input-field {
+  padding: 8px 10px;
+  font-size: 18px;
+  color: #222;
+  border-radius: 6px;
+  border: none;
+  outline: none;
 }
 .copy-text input.text {
-  background:none;
-	padding: 8px 10px;
-	font-size: 18px;
-	color: #555;
+  background: none;
+  padding: 8px 10px;
+  font-size: 18px;
+  color: #06bb46;
   border-radius: 6px;
-	border: none;
-	outline: none;
+  border: none;
+  outline: none;
 }
 .copy-text button {
-	padding: 10px;
-	background: #5784f5;
-	color: #fff;
-	font-size: 18px;
-	border: none;
-	outline: none;
-	border-radius: 10px;
-	cursor: pointer;
+  padding: 10px;
+  background: #ff5413;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
-
 .copy-text button:active {
-	background: #809ce2;
+  background: #809ce2;
 }
 .copy-text button:before {
-	content: "Copied";
-	position: absolute;
-	top: -45px;
-	right: 0px;
-	background: #5c81dc;
-	padding: 8px 10px;
-	border-radius: 20px;
-	font-size: 15px;
-	display: none;
+  content: "Copied";
+  position: absolute;
+  top: -45px;
+  right: 0px;
+  background: #5c81dc;
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  display: none;
 }
 .copy-text button:after {
-	content: "";
-	position: absolute;
-	top: -20px;
-	right: 25px;
-	width: 10px;
-	height: 10px;
-	background: #5c81dc;
-	transform: rotate(45deg);
-	display: none;
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 25px;
+  width: 10px;
+  height: 10px;
+  background: #5c81dc;
+  transform: rotate(45deg);
+  display: none;
 }
-.copy-text.active button:before,
-.copy-text.active button:after {
-	display: block;
+.copy-text.active button:before, .copy-text.active button:after {
+  display: block;
+}
+/* Animation */
+.waves {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+  .content {
+    height: 30vh;
+  }
+  h1 {
+    font-size: 24px;
+  }
 }

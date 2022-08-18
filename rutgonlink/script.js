@@ -25,7 +25,7 @@ shortenUrl = () => {
     ).then(jsonResponse => {
         console.log(jsonResponse);
         // $result.innerHTML = '<p>Your shortened url:</p><p>' + jsonResponse.data.url + '</p>';
-        $result.innerHTML = `<span>Link rút gọn của bạn: </span><input type='text' class='text' value='${jsonResponse.data.url}'/><button><i class='fa fa-clone'></i>COPY</button>`;
+        $result.innerHTML = `<span>Link rút gọn của bạn: </span><input type='text' class='text' value='${jsonResponse.data.url}'/><button><i class='fa fa-clone'></i>Sao chép</button>`;
 
       //copy text
 let copyText = document.querySelector(".copy-text");
