@@ -15,16 +15,16 @@ if ($http[3]=="http") { $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVE
 # Frist config
 define ("database","yFedzS_db/"); # LOCATION OF SHORTENED URL
 define ("memdb","user_db_CrfG/"); # LOCATION OF DATABASE USER
-define ("domain","shota.one"); # YOUR DOMAIN IS HERE
+define ("domain","sieunhan.one"); # YOUR DOMAIN IS HERE
 #
-define ("sitename","Shota.ONE"); # YOUR SITE NAME
+define ("sitename","sieunhan.xyz"); # YOUR SITE NAME
 define ("slogan","Your long to short"); # YOUR SLOGAN
 #
-define ("title","Shota.ONE | Shota URL Shortener and Stored Platform"); # YOUR SITE TITLE
-define ("description","Shorten your long url to more beautiful with shota.one and make some money for that."); # YOUR SITE description
+define ("title","sieunhan.xyz | Shota URL Shortener and Stored Platform"); # YOUR SITE TITLE
+define ("description","Shorten your long url to more beautiful with sieunhan.xyz and make some money for that."); # YOUR SITE description
 
 #
-define ("footer",'&copy; 2016 Shota.ONE <a  href="https://github.com/684102/shota.one" target="_blank">github project</a>'); # YOUR FOOTER
+define ("footer",'&copy; 2022 sieunhan.xyz <a  href="https://sieunhan.xyz" target="_blank">Siêu Nhân project</a>'); # YOUR FOOTER
 
 
 # incl
