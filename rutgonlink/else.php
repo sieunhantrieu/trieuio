@@ -4,12 +4,12 @@
  *		Drark license payto BitcoinAddress: 1HikvH2jnMNg4rDJHykMMk31gpyr2qrhU4
  *		Coders : develop@execs.com;yuna.elin@yandex.ru;tonghua@dr.com;
  *
- *		$Id: index.php [BuildDB.155478522] 10/07/2017 5:19 CH $
+ *		$Id: else.php [BuildDB.155478522] 10/07/2017 5:20 CH $
 	
 */
 
 include 'incl/database.php';
-$short = new shorten;
+$U = new user;
 ?>
 <html>
 <head>
@@ -55,6 +55,7 @@ $short = new shorten;
 						<div class="top-bar-right">
 							<!-- logged user and the menu -->
 							<?php $U = new user;echo $U->topmenu();?>
+
 							<!-- end logged user and the menu -->
 						</div>
 						<!-- end top-bar-right -->
@@ -74,8 +75,8 @@ $short = new shorten;
 						<li class="active"><a href="#" class="js-sub-menu-toggle"><i class="fa fa-dashboard fa-fw"></i><span class="text">Home</span>
 							<i class="toggle-icon fa fa-angle-left"></i></a>
 							<ul class="sub-menu open">
-								<li class="active"><a href="index.php"><span class="text">Shorten</span></a></li>
-								<li><a href="else.php?user=top"><span class="text">Management</span></a></li>
+								<li><a href="index.php"><span class="text">Shorten</span></a></li>
+								<li class="active"><a href="else.php?user=top"><span class="text">Management</span></a></li>
 						<!--
 								<li><a href="?user=login"><span class="text">Login</span></a></li>
 								!-->
@@ -96,21 +97,21 @@ $short = new shorten;
 				<div class="col-lg-4 ">
 					<ul class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="#">Home</a></li>
-						<li><a class="active" href="#">Shorten</a></li>
+						<li><a class="active" href="#">Management</a></li>
 					</ul>
 				</div>
 			</div>
 			<!-- main -->
 			<div class="content">
-				<div class="main-header">
+				<div class="main-header" style="margin-bottom: 20px;">
 					<h2><?php echo sitename;?></h2>
-					<em><?php echo slogan;?></em>
+					<em>Management</em>
 				</div>
 				<div class="main-content">
 					<div class="widget-content">
 						<div class="row">
 <?php
-				echo $short->short();
+				echo $U->theme();
 				
 				
 				

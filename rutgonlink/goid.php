@@ -4,21 +4,25 @@
  *		Drark license payto BitcoinAddress: 1HikvH2jnMNg4rDJHykMMk31gpyr2qrhU4
  *		Coders : develop@execs.com;yuna.elin@yandex.ru;tonghua@dr.com;
  *
- *		$Id: index.php [BuildDB.155478522] 10/07/2017 5:19 CH $
+ *		$Id: goid.php [BuildDB.155478522] 10/07/2017 5:20 CH $
 	
 */
 
 include 'incl/database.php';
-$short = new shorten;
+$n = new go;
+
 ?>
+
+
+
 <html>
 <head>
-<title><?php echo title;?></title>
+<title>Shota.ONE | Shota URL Shortener and Stored Platform</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 <meta name="referrer" content="always">
 <meta name="keywords" content="Shota, Shota.one, Shota URL, Shortener, shorten" />
-<meta name="description" content="<?php echo description;?>" />
+<meta name="description" content="Shorten your long url to more beautiful with shota.one and make some money for that." />
 <meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<!-- CSS -->
 	<link href="incl/theme/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -35,26 +39,29 @@ $short = new shorten;
 	<![endif]-->
 
 </head>
-<body  class="sidebar-fixed topnav-fixed dashboard2">
-	<!-- WRAPPER -->
-	<div id="wrapper" class="wrapper">
+<body   class="sidebar-fixed topnav-fixed dashboard2">
+	
 		<!-- TOP BAR -->
-		<div class="top-bar navbar-fixed-top">
-			<div class="container">
+<div style="min-width:360px;" class="top-bar navbar-fixed-top" style="padding-top: 0px;height: 50px;">
+			<div class="container" style="padding-left: 5px;">
 				<div class="clearfix">
-					<a href="#" class="pull-left toggle-sidebar-collapse"><i class="fa fa-bars"></i></a>
+					
 					<!-- logo -->
-					<div class="pull-left left logo">
-
+					<div class="pull-left left logo" style="margin-top: -5;">
+					<a class="" href="https://shota.one" target="_blank"><img src="incl/theme/img/logo.png" alt="KingAdmin - Admin Dashboard" /></a>
 					</div>
 					<!-- end logo -->
 					<div class="pull-right right">
 						<!-- search box -->
 						<!-- end search box -->
 						<!-- top-bar-right -->
-						<div class="top-bar-right">
+						<div class="top-bar-right" >
+						<div style="padding-top: -10px;margin-right: 15px;">
+					<?php 
+						echo $n->theme();
+					?>
+						</div>
 							<!-- logged user and the menu -->
-							<?php $U = new user;echo $U->topmenu();?>
 							<!-- end logged user and the menu -->
 						</div>
 						<!-- end top-bar-right -->
@@ -64,81 +71,31 @@ $short = new shorten;
 			<!-- /container -->
 		</div>
 </div>
-		<!-- END TOP BAR -->
-		<!-- LEFT SIDEBAR -->
-		<div id="left-sidebar" class="left-sidebar ">
-			<!-- main-nav -->
-			<div class="sidebar-scroll">
-				<nav class="main-nav">
-					<ul class="main-menu">
-						<li class="active"><a href="#" class="js-sub-menu-toggle"><i class="fa fa-dashboard fa-fw"></i><span class="text">Home</span>
-							<i class="toggle-icon fa fa-angle-left"></i></a>
-							<ul class="sub-menu open">
-								<li class="active"><a href="index.php"><span class="text">Shorten</span></a></li>
-								<li><a href="else.php?user=top"><span class="text">Management</span></a></li>
-						<!--
-								<li><a href="?user=login"><span class="text">Login</span></a></li>
-								!-->
-							</ul>
-						</li>
-					</ul>
-				</nav>
-				<!-- /main-nav -->
-			</div>
-		</div>
-		<!-- END LEFT SIDEBAR -->
-		<!-- MAIN CONTENT WRAPPER -->
-		<div id="main-content-wrapper" class="content-wrapper ">
-			<!-- top general alert -->
+<div id="term" class="modal modal-fullscreen fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" style="top: 40%;transform: translate(-00%, -50%);"><div class="modal-content">Loading..</div></div></div>
 
-			<!-- end top general alert -->
-			<div class="row">
-				<div class="col-lg-4 ">
-					<ul class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="#">Home</a></li>
-						<li><a class="active" href="#">Shorten</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- main -->
-			<div class="content">
-				<div class="main-header">
-					<h2><?php echo sitename;?></h2>
-					<em><?php echo slogan;?></em>
-				</div>
-				<div class="main-content">
-					<div class="widget-content">
-						<div class="row">
-<?php
-				echo $short->short();
-				
-				
-				
-				
-?>
+	<iframe src="//hoakhuya.com/HKG/?gears=movie" scrolling="auto" frameborder="0" allowtransparency="true" style="padding-top: 50px;width:100%;height:100%;display:block;visibility:visible;"></iframe>
 
-				</div>
-			</div>
-	</div>
-			<!-- /main -->
-			<!-- FOOTER -->
-			<footer class="footer footer-fixed">
-				<?php echo footer;?>
+
+	
+	
+	
+	
+	
+	
+	
+			<footer class="footer">
+				&copy; 2016 Shota.ONE <a  href="https://github.com/684102/shota.one" target="_blank">github project</a>	
 			</footer>
-			<!-- END FOOTER -->
-		</div>
-		<!-- END CONTENT WRAPPER -->
-	</div>
+
 	<script src="incl/theme/js/bootstrap/bootstrap.js"></script>
 	<script src="incl/theme/js/plugins/modernizr/modernizr.js"></script>
 	<script src="incl/theme/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script>
 	<script src="incl/theme/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="incl/theme/js/king-common.js"></script>
-	<script src="incl/theme/js/plugins/jquery-maskedinput/jquery.masked-input.min.js"></script>
-
+	
 	
 		<script type="text/javascript" charset="utf-8">
-			
 		var flashMsgSound = new Audio();
 		var offlineSound = new Audio();
 
@@ -154,4 +111,3 @@ $short = new shorten;
 
 </body>
 </html>
-	
