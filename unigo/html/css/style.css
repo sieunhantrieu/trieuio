@@ -1081,7 +1081,8 @@ body {
   color: #fff;
 }
 .MainSlider .swiper-pagination-bullet-active {
-  background: #fff;
+  background: #fff;width:25px;
+  height:8px;border-radius:10px;
 }
 .swiper-slide-wrap:hover > img {
   -webkit-transform: scale(1.2);
