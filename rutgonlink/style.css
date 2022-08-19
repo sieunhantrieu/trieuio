@@ -45,7 +45,7 @@ h1 {
 button {
   border: none;
   border-radius: 10px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 500;
   color: #fff;
   padding: 10px;
@@ -99,30 +99,36 @@ button:hover {
 }
 .result {
   color: #fff;
+  position: relative;
+  display: inline-block;
   padding: 10px;
   font-weight: 700;
   font-size:1.4em;
   text-align: center;
-  text-shadow:0px 5px 4px rgb(68 102 242 / 12%);
+  text-shadow:0px 5px 4px
+  rgb(68 102 242 / 12%);
 }
 .copy-text input.text {
   background: #fffbcf;
-    padding: 8px 10px;
-    font-size: 1em;
-    color: #ff4600;
-    border: 1px solid #f5ec8a;
-    border-radius: 6px;
+  padding: 8px 10px 7px 10px;
+  font-size: 1em;
+  color: #ff4600;
+  border: 1px solid #f5ec8a;
+  border-radius: 6px;
   outline: none;
+  box-shadow: 0px 5px 4px 2px rgb(68 102 242 / 7%);
 }
 .copy-text button {
-  position:relative;
+  position: absolute;
+  top: 11px;
+  right: 11px;
   padding: 10px;
   background: #ff5413;
   color: #fff;
-  font-size: 1em;
+  font-size: 0.8em;
   border: none;
   outline: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
 }
 .copy-text button:active {
@@ -145,7 +151,7 @@ button:hover {
   content: "";
   position: absolute;
   top: -15px;
-  right: 50px;
+  right: 42px;
   width: 10px;
   height: 10px;
   background: #fff;
