@@ -12,9 +12,9 @@ body {
   background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
   color: white;
   font-family: "Roboto", sans-serif;
-  font-size: 1.3em;
+  font-size: 1em;
   /* overflow-wrap: break-word; */
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.5px;
 }
 a {
@@ -31,6 +31,7 @@ a {
 }
 h1 {
   color: #F2F5FE;
+  text-shadow:0px 5px 4px rgb(68 102 242 / 12%);
   text-align: center;
   font-size: 3.5em;
   line-height: 3em;
@@ -43,35 +44,41 @@ h1 {
 }
 button {
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   color: #f5f1ed;
   padding: 10px;
+  font-size: 1.1em;
   margin-left: 5px;
+  box-shadow: 0px 5px 4px 2px rgb(68 102 242 / 7%);
 }
 button:hover {
   cursor: pointer;
 }
 .shorten-btn {
   background: #06bb46;
+  
 }
 .shorten-btn:hover, .expand-btn:hover {
   filter: brightness(0.9);
 }
 .expand-btn {
+  
   background: #005aff;
 }
 .input-field {
   background: white;
   color: #22dd96;
   padding: 5px;
-  border: none;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.5px;
+  border: 2px solid #fff;
+  box-shadow: 0px 5px 4px 2px rgb(68 102 242 / 7%);
 }
 .input-field:focus {
-  border: 3px solid #06bb46;
+  border: 2px solid #06bb46;
+  transition:all 0.3s ease;
 }
 .input-field::-webkit-input-placeholder {
   color: #22dd96;
@@ -80,7 +87,6 @@ button:hover {
   position: relative;
   z-index: 2;
   display: block;
-  
   margin: 50px auto 0 auto;
   padding: 10px;
   text-align: center;
@@ -92,30 +98,33 @@ button:hover {
   color: #fff;
   padding: 10px;
   font-weight: 700;
+  font-size:1.4em;
   text-align: center;
+  text-shadow:0px 5px 4px rgb(68 102 242 / 12%);
 }
 .input-field {
   padding: 8px 10px;
-  font-size: 18px;
+  font-size: 1.2em;
   color: #222;
   border-radius: 6px;
   border: none;
   outline: none;
 }
 .copy-text input.text {
-  background: none;
-  padding: 8px 10px;
-  font-size: 18px;
-  color: #06bb46;
-  border-radius: 6px;
-  border: none;
+  background: #fffbcf;
+    padding: 8px 10px;
+    font-size: 1.2em;
+    color: #ff4600;
+    border: 1px solid #f5ec8a;
+    border-radius: 6px;
   outline: none;
 }
 .copy-text button {
+  position:relative;
   padding: 10px;
   background: #ff5413;
   color: #fff;
-  font-size: 14px;
+  font-size: 1.1em;
   border: none;
   outline: none;
   border-radius: 10px;
@@ -125,24 +134,26 @@ button:hover {
   background: #809ce2;
 }
 .copy-text button:before {
-  content: "Copied";
+  content: "Đã copy";
   position: absolute;
-  top: -45px;
-  right: 0px;
-  background: #5c81dc;
+  top: -47px;
+  right: 5px;
+  color:#06bb46;
+  background: #fff;
   padding: 8px 10px;
   border-radius: 20px;
-  font-size: 15px;
+  font-size: 1em;
   display: none;
+  box-shadow: 0px 5px 4px 2px rgb(68 102 242 / 7%);
 }
 .copy-text button:after {
   content: "";
   position: absolute;
-  top: -20px;
-  right: 25px;
+  top: -15px;
+  right: 50px;
   width: 10px;
   height: 10px;
-  background: #5c81dc;
+  background: #fff;
   transform: rotate(45deg);
   display: none;
 }
@@ -192,6 +203,6 @@ button:hover {
     height: 30vh;
   }
   h1 {
-    font-size: 24px;
+    font-size: 2em;
   }
 }
