@@ -3,7 +3,7 @@
 //long url: https://bitly.com/blog/bitly-integrations/?utm_campaign=August+Blog+Posts&utm_medium=bitly&utm_source=Product+Blog+Posts
 
 //api key
-const apiKey = '05d6a635a4e0c77d96ab81cd7c6b3ccdfde3025e';
+const apiKey = '940fbf50ed7f200984f53e89f1888c3b11723cab';
 const url = 'https://api-ssl.bitly.com';
 
 //html elements
@@ -58,7 +58,7 @@ expandUrl = () => {
     ).then(jsonResponse => {
         console.log(jsonResponse);
         // $result.innerHTML = '<p>Your expanded url:</p><p>' + jsonResponse.data.expand[0].long_url + '</p>';
-        $result.innerHTML = `<p>Your expanded url:</p><p><a href='${jsonResponse.data.expand[0].long_url}'>${jsonResponse.data.expand[0].long_url}</a></p>`;
+        $result.innerHTML = `<p>Link mở rộng:</p><p><a href='${jsonResponse.data.expand[0].long_url}'>${jsonResponse.data.expand[0].long_url}</a></p>`;
     });
 }
 
@@ -75,3 +75,6 @@ const expand = () => {
 
 $shortenBtn.addEventListener('click', shorten);
 $expandBtn.addEventListener('click', expand);
+
+
+
