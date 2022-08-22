@@ -261,21 +261,19 @@ body {
 /* __________________________________________________________________ */
 /* MENU */
 .main-menu nav {
-  float:
-  left;
+  /* float:left; */
 }
 /* MENU 4 level*/
 .main-menu {
   position: absolute;
-  /* display: -webkit-box; */
+  display: -webkit-box;
   display: -ms-flexbox;
-  display: block;
+  display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  float: left;
-  width: 100%;
-  left: 100px;
+      -ms-flex-align: center;
+          align-items: center;
+  float: right;
+  right: 0;
   top: 0;
 }
 .main-menu nav ul {
@@ -593,16 +591,15 @@ body {
 }
 /* __________________________________________________________________ */
 .box_search {
-  float:
-	right;
+  /* float:
+	right; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  position: absolute;
-  right: 100px;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: unset;
 }
 .searchbar:hover {
   background: #00349B;
@@ -647,11 +644,10 @@ body {
   z-index: 9999;
   top: calc(100% + 9px);
   right: 0;
-  width: 300px;
+  width: 100%;
   height: 45px;
   opacity: 0;
-  visibility:
-  hidden;
+  visibility:hidden;
   transform: translateY(20px);
 }
 .form-search:before{
@@ -674,7 +670,7 @@ body {
   background: #FFFFFF;
   padding: 5px 20px;
   color: #fff;
-  /* width: 100%; */
+  width: 50%;
   float: right;
   height: 44px;
   font-size: 1.6rem;
@@ -2443,7 +2439,7 @@ details summary {
 	min-height: 30em!important;
 }
   .form-search:before {
-    right: 13px;
+    right:60px;
     z-index:-1;
   }
   .footer-item {
