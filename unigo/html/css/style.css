@@ -2254,7 +2254,7 @@ details summary {
   width: 100%;
   position: relative;
   height: 25em;
-  border: 6px;
+  border-radius: 6px;
   overflow: hidden;
 }
 .img-tva img {
