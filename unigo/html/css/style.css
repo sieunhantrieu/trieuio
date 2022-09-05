@@ -2660,6 +2660,9 @@ section .container {
   position: relative;
   z-index: 9;
 }
+section .container img {
+    max-width: 100%!important;
+}
 .bg_animation {
   background: url("../images/common_img.png");
   background-attachment: fixed;
