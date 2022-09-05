@@ -1899,25 +1899,25 @@ body {
   font-family: "Inter Bold";
 }
 .contact-info {
-  background: -webkit-gradient(
+  /* background: -webkit-gradient(
     linear,
     left top,
     left bottom,
     color-stop(35.19%, #f4f7fb),
     color-stop(94.43%, #fbfbff)
-  );
+  ); */
   background: -o-linear-gradient(top, #f4f7fb 35.19%, #fbfbff 94.43%);
-  background: linear-gradient(180deg, #f4f7fb 35.19%, #fbfbff 94.43%);
+  /* background: linear-gradient(180deg, #f4f7fb 35.19%, #fbfbff 94.43%); */
   border-radius: 6px 6px 50px 6px;
   color: #111;
   height: 100%;
-  padding: 2em 3.6em;
+  padding: 0em 3.6em;
 }
 .contact-info .title {
   font-family: "Inter Bold";
   color: #1445a5;
   line-height: 2em;
-  font-size: 2.5em;
+  font-size: 3.4em;
 }
 .contact-info p {
   font-family: "Inter Light";
@@ -1991,7 +1991,8 @@ body {
   font-style: italic;
 }
 .google-map {
-  height: 300px;
+  /* height: 300px; */
+  margin-bottom: -5px;
 }
 .noiquy-title h3 {
   font-size: 3.4rem;
