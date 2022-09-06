@@ -1534,7 +1534,7 @@ body {
   overflow: hidden;
   width: 100%;
   border-bottom-right-radius: 60px;
-  height: 30em;
+  height: 20em;
 }
 .breadcrumbs:before {
   position: absolute;
@@ -2337,6 +2337,15 @@ details summary {
   padding: 5px 0;
 }
 @media only screen and (max-width: 768px) {
+  .contact-info .title {
+    line-height: auto !important;
+  }
+  .contact-info {
+    padding: 0 0 20px 0 !important;
+  }
+  .section5-wrap .ImageSlider {
+    padding: 0 10px
+  }
   #chitiettintuc .content-videos {
     padding: 1em !important;
   }
@@ -2367,6 +2376,7 @@ details summary {
     -o-transition: max-height 1s ease-out;
     transition: max-height 1s ease-out;
   }
+  /*
   .nav-footer .nav:last-child ul {
     height: auto;
     overflow: initial;
@@ -2375,6 +2385,7 @@ details summary {
   .nav-footer .nav:last-child h4:after {
     display: none;
   }
+*/
   .nav-footer .nav h4:after {
     content: "\f107";
     position: relative;
