@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Xem mẫu giao diện DoorViet
+	</title>
+<meta content="" name="description">
+<meta content="" name="author">
+<meta content="" name="keywords">
+<meta content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+    background: url(ONE_files/bg-banner.png) center repeat;
+    background-size: cover;
+    position: relative;
+}
+.flex-container {
+    display: flex;
+    align-items: stretch;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    flex-direction: row;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 768px) {
+body {
+    padding: 0 20px;
+}
+.flex-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%!important;
+}
+.titleweb {
+    width: 100%!important;
+}
+}
+.flex-container > a {
+    background-color: #fff;
+    font-weight: 500;
+    border-radius: 6px;
+    border-left: 4px solid #fff;
+    border-right: 4px solid #fff;
+    color: #666;
+    width: 100%;
+    margin: 0.3em;
+    text-align: center;
+    line-height: 75px;
+    font-size: 1.4em;
+    text-decoration: none;
+    -webkit-box-shadow: 0.5rem 0.5rem 0.5rem rgb(29 29 29 / 5%);
+    box-shadow: 0.5rem 0.5rem 0.5rem rgb(29 29 29 / 5%);
+}
+.flex-container > a:hover {
+    background-color: #fff;
+    border-left: 4px solid orange;
+    border-right: 4px solid orange;
+    color: #0051cd;
+    font-weight: 500;
+    -webkit-box-shadow: 0.5rem 0.5rem 1rem rgb(29 29 29 / 16%);
+    box-shadow: 0.5rem 0.5rem 1rem rgb(29 29 29 / 16%);
+    transition: all ease 0.2s;
+}
+.titleweb {
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+h1 {
+    color: #0051cd;
+}
+</style>
+</head>
+<body>
+<div class="titleweb">
+  <h1>Xem giao diện DoorViet</h1>
+  <p>Click vào link bên dưới để xem demo</p>
+</div>
+<div class="flex-container"> <a href="page-1.html" style="flex-grow: 1" target="_blank">Trang home</a> </div>
+
+<div class="flex-container"> <a href="page-2.html" style="flex-grow: 5" target="_blank">Trang tin tức</a> <a href="page-3.html" style="flex-grow: 5" target="_blank">Tin chi tiết</a> </div>
+<!--<div class="flex-container"> <a href="page-tintuccapnhat.html" style="flex-grow: 5" target="_blank">Tin tức cập nhật</a> <a href="page-tintucchitiet.html" style="flex-grow: 5" target="_blank">Tin tức nội dung</a> </div>
+<div class="flex-container"> <a href="page-thuvienhinhanh.html" style="flex-grow: 5" target="_blank">Thư viện hình ảnh</a> <a href="page-thuvienvideo.html" style="flex-grow: 5" target="_blank">Thư viện video</a> </div>
+-->
+	<div class="flex-container"> <a href="page-4.html" style="flex-grow: 5" target="_blank">Trang liên hệ</a> </div>
+
+
+</body>
+</html>
