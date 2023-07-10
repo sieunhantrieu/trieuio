@@ -5,40 +5,74 @@
 <title>Hi you, I'm Siêu Nhân Triều</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="js/style.css">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+<link rel="preconnect" href="//connect.facebook.net" crossorigin>
+<link rel="preconnect" href="https://www.facebook.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://i9.ytimg.com">
+<link rel="preconnect" href="https://s.ytimg.com">
 </head>
 
 <body>
-	<section id="hero">
-	 <video id="heroVideoBg" autoplay loop muted>
-    <source type="video/mp4" src="https://rr1---sn-gjo-w43l.googlevideo.com/videoplayback?expire=1688988303&ei=L5arZMTJB8Tt8wSm6qmAAQ&ip=45.145.131.130&id=o-AHvjecIkpLH_zoZrbafKXqtzYHpm0j27761OwtonNgvS&itag=136&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313&source=youtube&requiressl=yes&mh=L9&mm=31%2C29&mn=sn-gjo-w43l%2Csn-ab5sznzs&ms=au%2Crdu&mv=m&mvi=1&pcm2cms=yes&pl=23&initcwndbps=251250&spc=Ul2Sq8x28etND4aADBrnLRhAoBc2YMphLU6qB6KeXQ&vprv=1&svpuc=1&mime=video%2Fmp4&ns=Ba-6LMpiLr3mgw-LonGOiE8O&gir=yes&clen=8474659309&dur=43199.999&lmt=1664143275915830&mt=1688966235&fvip=3&keepalive=yes&fexp=24007246%2C51000014&beids=24350018&c=WEB&txp=5432434&n=pim2EsWSbBKbYA&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRAIgYTVT9a9VIqGQANLZJnD7cZ0EPgHcgzE-tUpFY9HBiggCICieZvAQz39R2ltDXebvGeXZfu5-ZDcS-08Yk6QrlgnJ&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRAIgf12Ymao2hcNULgPZ5rh4q4r3NKixGw-Czki1D8dxoPgCIF9rwmzWyIvs9u_i2MvfB1cnxV7HBTkx26dolOgWcNiB&title=Cyberpunk+City+Flying+-+12+Hours+-+4K+Ultra+HD=1000,5000">
-  </video> 
-	</section>
-	
-	<div id="page">
+<section id="hero">
+  <div class="embed">
+    <div id="yt-embed"></div>
+  </div>
+  <script async src="https://www.youtube.com/iframe_api"></script> 
+  <script>
+		// link youtube embed for background
+function onYouTubeIframeAPIReady() {
+  var player;
+  player = new YT.Player('yt-embed', { // Replaces the <div id="yt-embed"> with an iframe
+    videoId: 'HIvqw74pCFc', // Video ID
+    width: 1920, // Video width
+    height: 1080, // Video height
+    playerVars: {
+      autoplay: 1, // Auto-play
+      controls: 0, // Turn off controls
+      showinfo: 0, // Hide the video title
+      modestbranding: 1, // Hide all YouTube branding
+      loop: 1, // Loop video
+      fs: 0, // Remove full screen button
+      cc_load_policy: 1, // Turn off closed captions
+      iv_load_policy: 3,  // Turn off annotations
+      autohide: 0, // Turn off controls auto-hiding
+	  frameborder:0,
+      rel: 0, // Turn off related content on pause
+      disablekb: 1, // Turn off keyboard controls
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+      }
+    }
+  });
+}
+		</script> 
+</section>
+<div id="page">
   <div id="container">
     <h1>:(</h1>
     <h2>Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for
       you.</h2>
-    <h2>
-      <span id="percentage">0</span>% complete</h2>
+    <h2> <span id="percentage">0</span>% complete</h2>
     <div id="details">
       <div id="qr">
-        <div id="image">
-          <img src="js/qr-code.png" alt="QR Code" />
-        </div>
+        <div id="image"> <img src="js/qr-code.png" alt="QR Code" /> </div>
       </div>
       <div id="stopcode">
-        <h4>For more information about this issue and possible fixes, visit
-          <br/>https://sieunhan.xyz</h4>
-        <h5>If you call a support person, give them this info:
-          <br/>Stop Code: 404 PAGE NOT FOUND</h5>
+        <h4>For more information about this issue and possible fixes, visit <br/>
+          https://sieunhan.xyz</h4>
+        <h5>If you call a support person, give them this info: <br/>
+          Stop Code: 404 PAGE NOT FOUND</h5>
       </div>
     </div>
   </div>
 </div>
 </body>
-	<script src="js/script.js"></script>
-	<script src="//code.tidio.co/3wkqr3fgxqiqokcdvw3vuzy7ryaoh0hk.js" async></script>
+<script src="js/script.js"></script>
+<script src="//code.tidio.co/3wkqr3fgxqiqokcdvw3vuzy7ryaoh0hk.js" async></script>
 </html>
-
