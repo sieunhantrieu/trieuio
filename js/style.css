@@ -1,86 +1,99 @@
 body {
-    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-    background: #1974d2;
-    color: #fefeff;
-    height: 100vh;
-    margin: 0;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  background: rgb(25 116 210 / 100%);
+  color: #fefeff;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
 }
-
 #page {
-    display: table;
-    height: 100%;
-    margin: 0 auto;
-    margin-top: -10px;
-    width: 70%;
-    font-size: 1.9vw;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 5%;
+  /* margin-top: 2%; */
+  width: 70%;
+  font-size: 1.9vw;
+  /* position: relative; */
+  z-index: 2;
+  top: 50%;
 }
-
 #container {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    font-weight: normal;
-    padding: 0;
-    margin: 25px 0;
-    margin-top: 0;
-    font-weight: 300;
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  padding: 0;
+  margin: 25px 0;
+  margin-top: 0;
+  font-weight: 300;
 }
-
 h1 {
-    font-size: 6.5em;
-    margin-bottom: 10px;
+  font-size: 6.5em;
+  margin-bottom: 10px;
 }
-
 h2 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
-
 h4 {
-    font-size: 0.8em;
-    line-height: 1.2em;
+  font-size: 0.8em;
+  line-height: 1.2em;
 }
-
 h5 {
-    font-size: 0.8em;
-    line-height: 1.2em;
+  font-size: 0.8em;
+  line-height: 1.2em;
 }
-
 #details {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: nowrap;
-    padding-top: 10px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  padding-top: 10px;
 }
-
 #qr {
-    flex: 0 1 auto;
+  flex: 0 1 auto;
+  border-radius: 20px;
+  overflow: hidden;
 }
-
 #image {
-    background: white;
-    padding: 5px;
-    line-height: 0;
+  background: white;
+  padding: 5px;
+  line-height: 0;
 }
-
 #image img {
-    width: 9.8em;
-    height: 9.8em;
+  width: 9.8em;
+  height: 9.8em;
 }
-
 #stopcode {
-    padding-left: 10px;
-    flex: 1 1 auto;
+  padding-left: 10px;
+  flex: 1 1 auto;
 }
-
 @media (min-width: 840px) {
-    #page {
-        font-size: 140%;
-        width: 800px;
-    }
+  #page {
+    font-size: 140%;
+    width: 800px;
+  }
+}
+#hero {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.4;
+  min-height: 100vh;
+}
+#heroVideoBg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  display: flex;
+}
+@media (min-width: 768px) {
+  #heroVideoBg {
+    display: inline-block;
+  }
 }
