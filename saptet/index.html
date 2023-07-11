@@ -23,7 +23,7 @@
       <div class="text-div3 color-yellow" id="countdown_days_num">213</div>
       <div class="text-div4 color-yellow">NGÀY</div>
       <div class="text-div5"><span id="countdown_hours_num">13</span> giờ <span id="countdown_minutes_num">58</span> phút <span id="countdown_seconds_num">48</span> giây</div>
-      <div class="text-div6">Tết nhằm ngày: Thứ Bảy, 10/2/2024 (dương lịch), 1/1/2024 âm lịch</div>
+      <div class="text-div6">Tết nhằm ngày: Thứ Bảy, 10/2/2024 DL (1/1/2024 ÂL)</div>
     </div>
   </div>
 </section>
@@ -37,7 +37,7 @@
 function onYouTubeIframeAPIReady() {
   var player;
   player = new YT.Player('yt-embed', { // Replaces the <div id="yt-embed"> with an iframe
-    videoId: 'iaVmsp7dU1Y', // Video ID
+    videoId: 'HHi8qOtHnhE', // Video ID
     width: 1920, // Video width
     height: 1080, // Video height
     playerVars: {
@@ -70,7 +70,7 @@ function onYouTubeIframeAPIReady() {
   width: 100%;
   z-index: -1;
   margin-top: -50px;
-  opacity: 0.4;
+  opacity: 0.7;
   min-height: 100vh;
 }
 #heroVideoBg iframe{
@@ -122,9 +122,10 @@ function onYouTubeIframeAPIReady() {
 	body{
 		margin: 0;
 		padding: 0;
-		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;
+		background: #212121;
+/*		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;*/
 		display: flex;
-   		 justify-content: center;
+   		justify-content: center;
 		overflow: hidden;
 	}
 		#lichdemnguoc{
@@ -138,48 +139,49 @@ function onYouTubeIframeAPIReady() {
 		}
 		.block-lich {
 /*    background: url(https://cdn.lichngaytot.com/medias/original/2022/5/11/Con-bao-nhieu-ngay-nua-den-Tet-2024---Dem-nguoc-Tet-Nguyen-Dan-[year].png) center repeat-y;*/
-			    background: rgba(233, 233, 233, 0.50);
+			    background: rgb(229 245 247 / 20%);
     border-radius: 2em;
-   
+    border: solid 1px rgb(255 255 255 / 20%);
     backdrop-filter: blur(3px);
     background-size: 100%;
   
-    color:#12002e;
+    color:#f0f0f0;
     padding: 4em 2em;
     text-align: center;
 			
 }
 		.text-div1 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding: 0 10px;
 }
 		.text-div2 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin-bottom: 16px;
     padding: 0 10px;
 }
 		.text-div3 {
-    font-size: 5em;
+    font-size: 4.6em;
     line-height: 1em;
     font-weight: bold;
 }
 		.text-div4 {
-    font-size: 2.4em;
+    font-size: 2em;
     line-height: 1em;
     margin-bottom: 16px;
     font-weight: bold;
 }
 .text-div5 {
-    font-size: 1.6em;
+    font-size: 1.2em;
     margin-bottom: 30px;
     padding: 0 10px;
     font-weight: bold;
 }
 		.text-div6 {
-    font-size: 1.4em;
+    font-size: 1em;
 }
 		.color-yellow {
-    background-image: linear-gradient( 45deg, #6306f9 25%, #f9069c );
+/*    background-image: linear-gradient( 45deg, #6306f9 25%, #f9069c );*/
+	background-image: linear-gradient(0deg, #fd7e14 5%, #ffd43b 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
