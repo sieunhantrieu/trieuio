@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Đếm ngược Tết</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+<link rel="preconnect" href="//connect.facebook.net" crossorigin>
+<link rel="preconnect" href="https://www.facebook.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://i9.ytimg.com">
+<link rel="preconnect" href="https://s.ytimg.com">
+</head>
+
+<body>
+<section id="lichdemnguoc">
+  <div class="div-row" id="countdown">
+    <div class="block-lich">
+      <div class="text-div1">Hôm nay, <span id="current_lunardate"></span></div>
+      <div class="text-div2">Đến <strong class="color-yellow">Tết Nguyên Đán 2024</strong> chỉ còn:</div>
+      <div class="text-div3 color-yellow" id="countdown_days_num">213</div>
+      <div class="text-div4 color-yellow">NGÀY</div>
+      <div class="text-div5"><span id="countdown_hours_num">13</span> giờ <span id="countdown_minutes_num">58</span> phút <span id="countdown_seconds_num">48</span> giây</div>
+      <div class="text-div6">Tết nhằm ngày: Thứ Bảy, 10/2/2024 (dương lịch), 1/1/2024 âm lịch</div>
+    </div>
+  </div>
+</section>
+<section id="hero">
+  <div class="embed">
+    <div id="yt-embed"></div>
+  </div>
+  <script async src="https://www.youtube.com/iframe_api"></script> 
+  <script>
+		// link youtube embed for background
+function onYouTubeIframeAPIReady() {
+  var player;
+  player = new YT.Player('yt-embed', { // Replaces the <div id="yt-embed"> with an iframe
+    videoId: 'iaVmsp7dU1Y', // Video ID
+    width: 1920, // Video width
+    height: 1080, // Video height
+    playerVars: {
+      autoplay: 1, // Auto-play
+      controls: 0, // Turn off controls
+      showinfo: 0, // Hide the video title
+      modestbranding: 1, // Hide all YouTube branding
+      loop: 1, // Loop video
+      fs: 0, // Remove full screen button
+      cc_load_policy: 1, // Turn off closed captions
+      iv_load_policy: 3,  // Turn off annotations
+      autohide: 0, // Turn off controls auto-hiding
+	  frameborder:0,
+      rel: 0, // Turn off related content on pause
+      disablekb: 1, // Turn off keyboard controls
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+      }
+    }
+  });
+}
+		</script> 
+</section>
+<style>
+	
+#hero {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  margin-top: -50px;
+  opacity: 0.4;
+  min-height: 100vh;
+}
+#heroVideoBg iframe{
+	position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+#vidtop-content {
+    top: 0;
+}
+#heroVideoBg {
+	position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+/*
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  display: flex;
+*/
+}
+@media (min-width: 768px) {
+  #heroVideoBg {
+    display: inline-block;
+  }
+}
+.embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+}
+.embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+	</style>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;
+		display: flex;
+   		 justify-content: center;
+		overflow: hidden;
+	}
+		#lichdemnguoc{
+			font-family: Roboto, Arial, sans-serif;
+			display: flex;
+			height: 100vh;
+			width: 500px;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: nowrap;
+		}
+		.block-lich {
+/*    background: url(https://cdn.lichngaytot.com/medias/original/2022/5/11/Con-bao-nhieu-ngay-nua-den-Tet-2024---Dem-nguoc-Tet-Nguyen-Dan-[year].png) center repeat-y;*/
+			    background: rgba(233, 233, 233, 0.50);
+    border-radius: 2em;
+   
+    backdrop-filter: blur(3px);
+    background-size: 100%;
+  
+    color:#12002e;
+    padding: 4em 2em;
+    text-align: center;
+			
+}
+		.text-div1 {
+    font-size: 1.4em;
+    padding: 0 10px;
+}
+		.text-div2 {
+    font-size: 1.4em;
+    margin-bottom: 16px;
+    padding: 0 10px;
+}
+		.text-div3 {
+    font-size: 5em;
+    line-height: 1em;
+    font-weight: bold;
+}
+		.text-div4 {
+    font-size: 2.4em;
+    line-height: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+.text-div5 {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    font-weight: bold;
+}
+		.text-div6 {
+    font-size: 1.4em;
+}
+		.color-yellow {
+    background-image: linear-gradient( 45deg, #6306f9 25%, #f9069c );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+	</style>
+	
+	<script src="https://www.javascriptbank.com/javascript/time/Lunar_Calendar_script/amlich-hnd.js"></script>
+<script>
+	//lich am hom nay
+	document.getElementById("current_lunardate").innerHTML = getTodayString();
+	
+	function getDayString(lunar, solarDay, solarMonth, solarYear) {
+	var s;
+	var dayOfWeek = TUAN[(lunar.jd + 1) % 7];
+	s = dayOfWeek + " " + solarDay + "/" + solarMonth + "/" + solarYear;
+	s += " dương lịch, nhằm ";
+	s = s + "ng\u00E0y " + lunar.day+"/"+lunar.month+"/"+lunar.year ;
+	if (lunar.leap == 1) {
+		s = s + " nhu\u1EADn";
+	}
+	return s;
+}
+	function getTodayString() {
+	var s = getDayString(currentLunarDate,today.getDate(), today.getMonth()+1, today.getFullYear());
+	s += " âm lịch " ;
+	return s;
+}
+	
+	//
+	
+	var timeinterval;var deadline=new Date();
+	var currHour=deadline.getHours();
+	var currMinute=deadline.getMinutes();
+	deadline.setFullYear(2024,1,10);
+	deadline.setHours(0);deadline.setMinutes(0);
+	deadline.setSeconds(0);initializeClock();
+	
+	function getTimeRemaining(){var dateNow=new Date();
+	
+	
+	
+	var t=Date.parse(deadline)-Date.parse(dateNow);var seconds=Math.floor((t/1000)%60);var minutes=Math.floor((t/1000/60)%60);var hours=Math.floor((t/(1000*60*60))%24);var days=Math.floor(t/(1000*60*60*24));return{'total':t,'days':days,'hours':hours,'minutes':minutes,'seconds':seconds};}
+	function initializeClock(){if(typeof $==='undefined'||$===null){console.log("jQuery loading");window.setTimeout("initializeClock()",500);return;}
+	updateClock();timeinterval=setInterval(updateClock,1000);}
+	function updateClock(){var t=getTimeRemaining(deadline);var daysSpan=$('#countdown_days_num');var hoursSpan=$('#countdown_hours_num');var minutesSpan=$('#countdown_minutes_num');var secondsSpan=$('#countdown_seconds_num');daysSpan.html(t.days);hoursSpan.html(t.hours);minutesSpan.html(t.minutes);secondsSpan.html(t.seconds);if(t.total<=0){clearInterval(timeinterval);$('#countdown').css("display","none");}}
+	
+	</script>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
+</html>
