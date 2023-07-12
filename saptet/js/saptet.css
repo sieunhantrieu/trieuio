@@ -1,0 +1,225 @@
+/*
+HTML/CSS3/PSD/AI/FIGMA/XD/SKETCH/PREMIERE/AFTEREFFECT/3DANIMATION/UX/UI/VIDEO/ 
+
+2024 Copyright © 2024. Designed by ĐỖ NGUYÊN THANH TRIỀU
+
+https://www.facebook.com/profile.php?id=100015727831838
+
+Please Call me or Zalo App: 084 0901 479 994
+
+Mọi thông tin vui lòng liên hệ Email: sngdesigner@gmail.com
+
+Website: https://forum.sieunhan.xyz
+*/
+#hero {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  margin-top: -50px;
+  opacity: 0.7;
+  min-height: 100vh;
+}
+#heroVideoBg iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+  top: 0;
+}
+#heroVideoBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /*
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  display: flex;
+*/
+}
+@media (min-width: 768px) {
+  #heroVideoBg {
+    display: inline-block;
+  }
+}
+.embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+}
+.embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/*amimation border*/
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+:root {
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+.boxes {
+  border: 0.35rem solid;
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  animation: borderRotate var(--d) linear infinite forwards;
+}
+.boxe:nth-child(2) {
+  border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+  animation: borderRadial var(--d) linear infinite forwards;
+}
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
+  }
+}
+@keyframes borderRadial {
+  20% {
+    --gradX: 100%;
+    --gradY: 50%;
+  }
+  40% {
+    --gradX: 100%;
+    --gradY: 100%;
+  }
+  60% {
+    --gradX: 50%;
+    --gradY: 100%;
+  }
+  80% {
+    --gradX: 0%;
+    --gradY: 50%;
+  }
+  100% {
+    --gradX: 50%;
+    --gradY: 0%;
+  }
+}
+/**/
+body {
+  margin: 0;
+  padding: 0;
+  background: #212121;
+  /*		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;*/
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+#lichdemnguoc {
+  font-family: Roboto, Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  width: 460px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.block-lich {
+  /*    background: url(https://cdn.lichngaytot.com/medias/original/2022/5/11/Con-bao-nhieu-ngay-nua-den-Tet-2024---Dem-nguoc-Tet-Nguyen-Dan-[year].png) center repeat-y;*/
+  background: rgb(229 245 247 / 20%);
+  /*    border-radius: 2em;*/
+  border: solid 1px rgb(255 255 255 / 20%);
+  backdrop-filter: blur(3px);
+  background-size: 100%;
+  position: relative;
+  color: #f0f0f0;
+  padding: 2.2em 2em 3em 2em;
+  text-align: center;
+}
+.text-div1 {
+  font-size: 1em;
+  line-height: 1.8em;
+  padding: 0 40px;
+}
+.text-div2 {
+  font-size: 1.2em;
+  margin-bottom: 16px;
+  padding: 0 10px;
+}
+.text-div3 {
+  font-size: 4.6em;
+  line-height: 1em;
+  font-weight: bold;
+}
+.text-div4 {
+  font-size: 2em;
+  line-height: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+.text-div5 {
+  font-size: 1em;
+  margin-bottom: 30px;
+  padding: 0 10px;
+  font-weight: bold;
+}
+.text-div6 {
+  font-size: 1em;
+}
+.text-div7 {
+  font-size: 0.8em;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.color-copyright {
+  background-image: linear-gradient(180deg, #2AFADF 51%, #4C83FF 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+.color-yellow {
+  /*    background-image: linear-gradient( 45deg, #6306f9 25%, #f9069c );*/
+  background-image: linear-gradient(0deg, #fd7e14 5%, #ffd43b 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+/*
+HTML/CSS3/PSD/AI/FIGMA/XD/SKETCH/PREMIERE/AFTEREFFECT/3DANIMATION/UX/UI/VIDEO/ 
+
+2024 Copyright © 2024. Designed by ĐỖ NGUYÊN THANH TRIỀU
+
+https://www.facebook.com/profile.php?id=100015727831838
+
+Please Call me or Zalo App: 084 0901 479 994
+
+Mọi thông tin vui lòng liên hệ Email: sngdesigner@gmail.com
+
+Website: https://forum.sieunhan.xyz
+*/

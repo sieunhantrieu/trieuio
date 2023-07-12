@@ -12,20 +12,21 @@
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="preconnect" href="https://i9.ytimg.com">
 <link rel="preconnect" href="https://s.ytimg.com">
+<link rel="stylesheet" href="js/saptet.css" media="all">
 </head>
 
 <body>
-<section id="lichdemnguoc">
+<section id="lichdemnguoc" >
   <div class="div-row" id="countdown">
-    <div class="block-lich">
-      <div class="text-div1">Hôm nay, <span id="current_lunardate"></span></div>
-      <div class="text-div2">Sắp đến <strong class="color-yellow">Tết Nguyên Đán 2024</strong> chỉ còn:</div>
-      <div class="text-div3 color-yellow" id="countdown_days_num">213</div>
-      <div class="text-div4 color-yellow">NGÀY</div>
-      <div class="text-div5"><span id="countdown_hours_num">13</span> giờ <span id="countdown_minutes_num">58</span> phút <span id="countdown_seconds_num">48</span> giây</div>
-      <div class="text-div6">Tết nhằm ngày: Thứ Bảy, 10/2/2024 DL (1/1/2024 ÂL)</div>
-		
-		<a class="text-div7 color-copyright" href="https://forum.sieunhan.xyz/">© Copyright by Siêu Nhân Designer</a>
+    <div class="boxes">
+      <div class="block-lich">
+        <div class="text-div1">Hôm nay, <span id="current_lunardate"></span></div>
+        <div class="text-div2">Sắp đến <strong class="color-yellow">Tết Nguyên Đán 2024</strong> chỉ còn</div>
+        <div class="text-div3 color-yellow" id="countdown_days_num">213</div>
+        <div class="text-div4 color-yellow">NGÀY</div>
+        <div class="text-div5"><span id="countdown_hours_num">13</span> giờ <span id="countdown_minutes_num">58</span> phút <span id="countdown_seconds_num">48</span> giây</div>
+        <div class="text-div6">Tết trúng ngày Thứ Bảy, 10/2/2024 DL (1/1/2024 ÂL)</div>
+        <a class="text-div7 color-copyright" href="https://forum.sieunhan.xyz/">© Copyright by Siêu Nhân Designer</a> </div>
     </div>
   </div>
 </section>
@@ -65,149 +66,7 @@ function onYouTubeIframeAPIReady() {
 }
 		</script> 
 </section>
-<style>
-	
-#hero {
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-  margin-top: -50px;
-  opacity: 0.7;
-  min-height: 100vh;
-}
-#heroVideoBg iframe{
-	position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-}
-#vidtop-content {
-    top: 0;
-}
-#heroVideoBg {
-	position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-/*
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  display: flex;
-*/
-}
-@media (min-width: 768px) {
-  #heroVideoBg {
-    display: inline-block;
-  }
-}
-.embed {
-  position: relative;
-  padding-bottom: 56.25%;
-  /* 16:9 */
-  padding-top: 25px;
-}
-.embed iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-	</style>
-<style>
-	body{
-		margin: 0;
-		padding: 0;
-		background: #212121;
-/*		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;*/
-		display: flex;
-   		justify-content: center;
-		overflow: hidden;
-	}
-		#lichdemnguoc{
-			font-family: Roboto, Arial, sans-serif;
-			display: flex;
-			height: 100vh;
-			width: 460px;
-			align-items: center;
-			justify-content: center;
-			flex-wrap: nowrap;
-		}
-		.block-lich {
-/*    background: url(https://cdn.lichngaytot.com/medias/original/2022/5/11/Con-bao-nhieu-ngay-nua-den-Tet-2024---Dem-nguoc-Tet-Nguyen-Dan-[year].png) center repeat-y;*/
-	 background: rgb(229 245 247 / 20%);
-    border-radius: 2em;
-    border: solid 1px rgb(255 255 255 / 20%);
-    backdrop-filter: blur(3px);
-    background-size: 100%;
-  	position: relative;
-    color:#f0f0f0;
-    padding: 2.6em 2em;
-    text-align: center;
-			
-}
-		.text-div1 {
-    font-size: 1em;
-    line-height: 1.8em;
-    padding: 0 40px;
-}
-		.text-div2 {
-    font-size: 1.2em;
-    margin-bottom: 16px;
-    padding: 0 10px;
-}
-		.text-div3 {
-    font-size: 4.6em;
-    line-height: 1em;
-    font-weight: bold;
-}
-		.text-div4 {
-    font-size: 2em;
-    line-height: 1em;
-    margin-bottom: 16px;
-    font-weight: bold;
-}
-.text-div5 {
-    font-size: 1em;
-    margin-bottom: 30px;
-    padding: 0 10px;
-    font-weight: bold;
-}
-		.text-div6 {
-    font-size: 1em;
-}
-	.text-div7 {
-    font-size: 0.8em;
-	position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translate(-50%,0%);
-}
-	
-		.color-copyright {
-    background-image: linear-gradient( 2deg, #6306f9 5%, #f9069c 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
-}
-		.color-yellow {
-/*    background-image: linear-gradient( 45deg, #6306f9 25%, #f9069c );*/
-	background-image: linear-gradient(0deg, #fd7e14 5%, #ffd43b 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
-}
-	</style>
-	
-	<script src="https://www.javascriptbank.com/javascript/time/Lunar_Calendar_script/amlich-hnd.js"></script>
+<script src="js/amlich-hnd.js"></script> 
 <script>
 	//lich am hom nay
 	document.getElementById("current_lunardate").innerHTML = getTodayString();
@@ -249,7 +108,15 @@ function onYouTubeIframeAPIReady() {
 	
 	</script>
 </body>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	
+<script type="text/javascript">
+//<![CDATA[
+// Inspect
+var message="Cám ơn bạn ghé thăm !!! \nXem thêm tại forum.sieunhan.xyz";function clickIE4(){if(2==event.button)return alert(message),!1}function clickNS4(e){if((document.layers||document.getElementById&&!document.all)&&(2==e.which||3==e.which))return alert(message),!1}document.layers?(document.captureEvents(Event.MOUSEDOWN),document.onmousedown=clickNS4):document.all&&!document.getElementById&&(document.onmousedown=clickIE4),document.oncontextmenu=new Function("alert(message);return false");
+!function t(){try{!function t(n){1===(""+n/n).length&&0!==n||function(){}.constructor("debugger")(),t(++n)}(0)}catch(n){setTimeout(t,5e3)}}();
+shortcut={all_shortcuts:{},add:function(e,t,a){var o={type:"keydown",propagate:!1,disable_in_input:!1,target:document,keycode:!1};if(a)for(var r in o)void 0===a[r]&&(a[r]=o[r]);else a=o;o=a.target,"string"==typeof a.target&&(o=document.getElementById(a.target)),e=e.toLowerCase(),r=function(o){var r;if((o=o||window.event,a.disable_in_input)&&(o.target?r=o.target:o.srcElement&&(r=o.srcElement),3==r.nodeType&&(r=r.parentNode),"INPUT"==r.tagName||"TEXTAREA"==r.tagName))return;o.keyCode?code=o.keyCode:o.which&&(code=o.which),r=String.fromCharCode(code).toLowerCase(),188==code&&(r=","),190==code&&(r=".");var n=e.split("+"),c=0,l={"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",";":":","'":'"',",":"<",".":">","/":"?","\\":"|"},s={esc:27,escape:27,tab:9,space:32,return:13,enter:13,backspace:8,scrolllock:145,scroll_lock:145,scroll:145,capslock:20,caps_lock:20,caps:20,numlock:144,num_lock:144,num:144,pause:19,break:19,insert:45,home:36,delete:46,end:35,pageup:33,page_up:33,pu:33,pagedown:34,page_down:34,pd:34,left:37,up:38,right:39,down:40,f1:112,f2:113,f3:114,f4:115,f5:116,f6:117,f7:118,f8:119,f9:120,f10:121,f11:122,f12:123},i=!1,d=!1,p=!1,u=!1,h=!1,f=!1,g=!1,v=!1;o.ctrlKey&&(u=!0),o.shiftKey&&(d=!0),o.altKey&&(f=!0),o.metaKey&&(v=!0);for(var y=0;k=n[y],y<n.length;y++)"ctrl"==k||"control"==k?(c++,p=!0):"shift"==k?(c++,i=!0):"alt"==k?(c++,h=!0):"meta"==k?(c++,g=!0):1<k.length?s[k]==code&&c++:a.keycode?a.keycode==code&&c++:r==k?c++:l[r]&&o.shiftKey&&(r=l[r],r==k&&c++);if(c==n.length&&u==p&&d==i&&f==h&&v==g&&(t(o),!a.propagate))return o.cancelBubble=!0,o.returnValue=!1,o.stopPropagation&&(o.stopPropagation(),o.preventDefault()),!1},this.all_shortcuts[e]={callback:r,target:o,event:a.type},o.addEventListener?o.addEventListener(a.type,r,!1):o.attachEvent?o.attachEvent("on"+a.type,r):o["on"+a.type]=r},remove:function(e){e=e.toLowerCase();
+var t=this.all_shortcuts[e];
+if(delete this.all_shortcuts[e],t){e=t.event;var a=t.target;t=t.callback;a.detachEvent?a.detachEvent("on"+e,t):a.removeEventListener?a.removeEventListener(e,t,!1):a["on"+e]=!1}}},shortcut.add("Ctrl+U",function(){alert("Cám ơn bạn ghé thăm !!! \nXem thêm tại sieunhan.xyz")}),shortcut.add("F12",function(){alert("Cám ơn bạn ghé thăm !!! \nXem thêm tại sieunhan.xyz")}),shortcut.add("Ctrl+C",function(){alert("Cám ơn bạn ghé thăm !!! \nXem thêm tại sieunhan.xyz")}),shortcut.add("Ctrl+A",function(){alert("Cám ơn bạn ghé thăm !!! \nXem thêm tại sieunhan.xyz")});
+//]]>
+</script>
 </html>
