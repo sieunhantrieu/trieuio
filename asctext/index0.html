@@ -65,22 +65,7 @@ Website: https://forum.sieunhan.xyz
     return false;
   }
   return true;
-			html2canvas(document.getElementById('html-content-holder'),
-			{
-				allowTaint: true,
-				useCORS: true
-			}).then(function (canvas) {
-				var anchorTag = document.createElement('a');
-				document.body.appendChild(anchorTag);
-//				document.getElementById('previewImg').appendChild(canvas);
-				anchorTag.download = 'sieunhantrieu.png';
-				anchorTag.href = canvas.toDataURL('image/png');
-				anchorTag.target = '_blank';
-				anchorTag.click();
-			});
-  });
-}
-  </script> 
+}</script> 
       </div>
     </div>
     <div id="html-content-holder">
@@ -104,7 +89,20 @@ Website: https://forum.sieunhan.xyz
   <script>
 		
 	   document.getElementById('btn_convert').addEventListener('click', function() {
-		
+		html2canvas(document.getElementById('html-content-holder'),
+			{
+				allowTaint: true,
+				useCORS: true
+			}).then(function (canvas) {
+				var anchorTag = document.createElement('a');
+				document.body.appendChild(anchorTag);
+//				document.getElementById('previewImg').appendChild(canvas);
+				anchorTag.download = 'sieunhantrieu.png';
+				anchorTag.href = canvas.toDataURL('image/png');
+				anchorTag.target = '_blank';
+				anchorTag.click();
+			});
+  });
     </script>
   <div class="footer"> ©2023. Design by Siêu Nhân Triều. All Rights Reserved. </div>
 </div>
