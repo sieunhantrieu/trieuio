@@ -44,7 +44,7 @@ Website: https://forum.sieunhan.xyz
   <div class="box">
     <div class="mainasc">
       <div class="form-container">
-        <form>
+        <form action="javascript:alert('Thông báo bằng tiếng Việt');">
           <label for="name">Họ và Tên:</label>
           <input type="text" name="name" class="form-control input" placeholder="Nhập tên của bạn" required>
           <br>
@@ -53,7 +53,19 @@ Website: https://forum.sieunhan.xyz
           <br>
           <input type="submit" class="btn-asc" id="btn_convert" value="Tải ảnh của bạn">
         </form>
-       
+        <script>
+		function validateForm() {
+  var name = document.getElementById("name").value;
+  var birthyear = document.getElementById("year").value;
+  if (name == "") {
+    alert("Tên không được để trống");
+    return false;
+  } else if (birthyear < 2012 || birthyear > 2013) {
+    alert("Năm không hợp lệ");
+    return false;
+  }
+  return true;
+}</script> 
       </div>
     </div>
     <div id="html-content-holder">
@@ -69,46 +81,29 @@ Website: https://forum.sieunhan.xyz
     var source_name = $(this).attr('name');
     $('#output-'+source_name).text( $(this).val() );
   });
-}); 
+});
+	
+	  
 	  </script>
   <div id="previewImg"></div>
- <script>
-	 
-  function validateForm() {
-  var name = document.getElementById("name").value;
-  var birthyear = document.getElementById("year").value;
-  if (name == "") {
-    alert("Tên không được để trống");
-    return false;
-  } else if (birthyear < 2012 || birthyear > 2013) {
-    alert("Năm không hợp lệ");
-    return false;
-  }
-	return true;
-}
-
- function text2img() {
-			html2canvas(document.getElementById('html-content-holder'),
+  <script>
+		
+	   document.getElementById('btn_convert').addEventListener('click', function() {
+		html2canvas(document.getElementById('html-content-holder'),
 			{
 				allowTaint: true,
 				useCORS: true
 			}).then(function (canvas) {
 				var anchorTag = document.createElement('a');
 				document.body.appendChild(anchorTag);
-				document.getElementById('previewImg').appendChild(canvas);
+//				document.getElementById('previewImg').appendChild(canvas);
 				anchorTag.download = 'sieunhantrieu.png';
 				anchorTag.href = canvas.toDataURL('image/png');
 				anchorTag.target = '_blank';
 				anchorTag.click();
 			});
-  }
-if(validateForm()){
-	text2img();
-}
-else{
-	validateForm();
-}
-  </script> 
+  });
+    </script>
   <div class="footer"> ©2023. Design by Siêu Nhân Triều. All Rights Reserved. </div>
 </div>
 </body>
