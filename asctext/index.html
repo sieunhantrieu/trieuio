@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+HTML/CSS3/PSD/AI/FIGMA/XD/SKETCH/PREMIERE/AFTEREFFECT/3DANIMATION/UX/UI/VIDEO/ 
+
+2024 Copyright © 2024. Designed by ĐỖ NGUYÊN THANH TRIỀU
+
+https://www.facebook.com/profile.php?id=100015727831838
+
+Please Call me or Zalo App: 084 0901 479 994
+
+Mọi thông tin vui lòng liên hệ Email: sngdesigner@gmail.com
+
+Website: https://forum.sieunhan.xyz
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="language" content="vi">
+<title>Bạn đã gia nhập ASCVN bao nhiêu năm? Giữ lửa cho tương lai ASCVN</title>
+<meta name="description" content="Trang web tạo hình ảnh với chữ, Bạn đã gia nhập bao nhiêu năm? Giữ lửa cho tương lai ASCVN thành lập từ 2012">
+<meta name="keywords" content="tạo hình ảnh với chữ, ASCVN, công tác, cống hiến">
+<meta property="article:headline" content="Giữ lửa cho tương lai ASCVN">
+<meta name="author" content="Siêu Nhân Designer">
+<meta property="og:title" content="Giữ lửa cho tương lai ASCVN 2012">
+<meta property="og:description" content="Cảm ơn những cống hiến và đóng góp của bạn cho ASCVN trong suốt thời gian qua">
+<meta property="og:image" content="./css/image-default.png">
+<meta property="og:url" content="https://ascvn.com.vn">
+<link rel="stylesheet" href="./css/sieunhantrieu.css">
+
+<script src="css/jquery.min.js"></script> 
+<script src="css/html2canvas.js"></script>
+	
+</head>
+<body>
+<div class="container">
+<!--
+  <div class="header">
+    <div class="logo"><a href="#"><img class="img-responsive" src="./css/logo.png" alt="logo ASCVN - website tạo hình ảnh năm công tác bởi Siêu Nhân Designer"></a></div>
+    <div class="nameco">CTY TIẾN BỘ SÀI GÒN<strong>ASCVN</strong></div>
+  </div>
+-->
+  <!--
+  <div class="body">
+    <p>Cảm ơn những cống hiến và đóng góp của bạn cho ASCVN trong suốt thời gian qua</p>
+    <h1>ASCVN được thành lập vào năm 2012</h1>
+    <p>Bạn đã gia nhập Đại gia đình ASCVN bao nhiêu năm?</p>
+  </div>
+-->
+  <div class="mainvsp">
+    <div class="form-container">
+      <div class="form">
+        <label for="name">Họ và Tên:</label>
+        <input type="text" name="name" class="form-control input" placeholder="Nhập tên của bạn" required>
+        <br>
+        <label for="year">Năm bạn bắt đầu gia nhập Ngôi nhà chung ASCVN:</label>
+        <input type="number" name="year" class="form-control input" placeholder="Nhập năm gia nhập" required="Nhập số">
+		  <br>
+        <input type="button" class="btn-vsp" id="btn_convert" value="Download Now">
+		<script>
+	$(function() {
+  $('.input').on('input', function(){
+    var source_name = $(this).attr('name');
+    $('#output-'+source_name).text( $(this).val() );
+  });
+});
+	  </script>
+      </div>
+    </div>
+  </div>
+  <div id="html-content-holder">
+    <div id="output-name">Tên bạn là ?</div>
+    <div id="output-year">Năm ?</div>
+	<div id="img-input"><img src="css/image-400.png" alt="" width="100%"> </div>
+	
+  </div>
+ 
+  
+	 <div id="previewImg"></div>
+	
+	<script>
+		
+	   document.getElementById('btn_convert').addEventListener('click', function() {
+		html2canvas(document.getElementById('html-content-holder'),
+			{
+				allowTaint: true,
+				useCORS: true
+			}).then(function (canvas) {
+				var anchorTag = document.createElement('a');
+				document.body.appendChild(anchorTag);
+//				document.getElementById('previewImg').appendChild(canvas);
+				anchorTag.download = 'sieunhantrieu.png';
+				anchorTag.href = canvas.toDataURL('image/png');
+				anchorTag.target = '_blank';
+				anchorTag.click();
+			});
+  });
+    </script>
+<!--
+	<script>
+	document.getElementById('download').addEventListener('click', function(e) {
+  let canvasUrl = canvas.toDataURL("image/jpeg", 0.5);
+  console.log(canvasUrl);
+  const createEl = document.createElement('a');
+  createEl.href = canvasUrl;
+  createEl.download = "download-this-canvas";
+  createEl.click();
+  createEl.remove();
+	</script>
+-->
+  <div class="footer"> ©2023. Design by Siêu Nhân Triều. All Rights Reserved. </div>
+</div>
+	
+</body>
+</html>
