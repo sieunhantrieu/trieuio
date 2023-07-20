@@ -44,7 +44,7 @@ body {
 .nameco strong {
   color: #e90000;
   display: block;
-  font-size: 36px;
+  font-size: 2em;
   font-weight: 900;
   padding-left: 75px
 }
@@ -53,7 +53,7 @@ body {
   margin-bottom: 30px
 }
 .body h1 {
-  font-size: 36px;
+  font-size: 2em;
   margin: 0;
   color: #2d65c3
 }
@@ -301,10 +301,11 @@ form button:hover {
     transform: translate(-50%,-50%);
 }
 #output-name{font-size: 1.3em;
+	text-transform: uppercase;
 	display: inline-block;
 	color: #005aa9;
 	position: absolute;
-	top:calc(50% - 20px);left: 50%;
+	top:calc(45% - 20px);left: 50%;
 	transform: translate(-50%,-50%);
 }
 
@@ -312,13 +313,13 @@ form button:hover {
 	color: #005aa9;
 	display: inline-block;
 	position: absolute;
-	top:calc(50% + 20px);left: 50%;
+	top:calc(45% + 10px);left: 50%;
 	transform: translate(-50%,-50%);
 }
 .box{
 	display: flex;
 	background: #F8F9FC;
-/*	overflow: hidden;*/
+	overflow: hidden;
     margin: 0 auto;
     max-width: 90%;
     padding:2em;

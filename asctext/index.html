@@ -34,12 +34,12 @@ Website: https://forum.sieunhan.xyz
 <div class="container">
   <div class="header">
     <div class="logo"><a href="#"><img class="img-responsive" src="./css/logo.png" alt="logo ASCVN - website tạo hình ảnh năm công tác bởi Siêu Nhân Designer"></a></div>
-    <div class="nameco">CTY TIẾN BỘ SÀI GÒN<strong>ASCVN</strong></div>
+    <div class="nameco">CTY CP TIẾN BỘ SÀI GÒN<strong>ASCVN</strong></div>
   </div>
   <div class="body">
     <p>Cảm ơn những cống hiến và đóng góp của bạn cho ASCVN trong suốt thời gian qua</p>
     <h1>ASCVN được thành lập vào năm 2012</h1>
-    <p>Bạn đã gia nhập Đại gia đình ASCVN bao nhiêu năm?</p>
+    <p>Bạn đã gia nhập Đại gia đình ASCVN bao nhiêu năm ?</p>
   </div>
   <div class="box">
     <div class="mainasc">
@@ -68,7 +68,7 @@ Website: https://forum.sieunhan.xyz
 }</script> 
       </div>
     </div>
-    <div id="previewImg"></div>
+    
     <div id="html-content-holder">
       <div id="output-name">Bạn chưa nhập tên !!!</div>
       <div id="output-year">Năm chưa nhập ?</div>
@@ -93,6 +93,7 @@ Website: https://forum.sieunhan.xyz
  
 }
 	  </script> 
+	<div id="previewImg"></div>
   <script>
 		
 	   document.getElementById('btn_convert').addEventListener('click', function() {	   
@@ -103,7 +104,7 @@ Website: https://forum.sieunhan.xyz
 			}).then(function (canvas) {
 				var anchorTag = document.createElement('a');
 				document.body.appendChild(anchorTag);
-   			    document.getElementById('previewImg').appendChild(canvas);
+//   			    document.getElementById('previewImg').appendChild(canvas);
 				anchorTag.download = 'sieunhantrieu.png';
 				anchorTag.href = canvas.toDataURL('image/png');
 				anchorTag.target = '_blank';
