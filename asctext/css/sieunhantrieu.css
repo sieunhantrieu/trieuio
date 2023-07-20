@@ -284,21 +284,32 @@ form button:hover {
 	width: 400px;
 	height:400px;
 }
-#output-name,#output-year{
-	font-size: 1.3em;
-	font-weight: 700;
-    color: #005aa9;
+#output-name,#output-year,#sumyear{
+	font-weight: 700; 
     z-index: 2;
 	line-height: 1.4em;
 }
-#output-name{
+#sumyear{
 	display: inline-block;
-	
+    position: absolute;
+    color: #f70037;
+    font-size: 0.9em;
+    text-align: center;
+    width: 80%;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#output-name{font-size: 1.3em;
+	display: inline-block;
+	color: #005aa9;
 	position: absolute;
 	top:calc(50% - 20px);left: 50%;
 	transform: translate(-50%,-50%);
 }
-#output-year{
+
+#output-year{font-size: 1.3em;
+	color: #005aa9;
 	display: inline-block;
 	position: absolute;
 	top:calc(50% + 20px);left: 50%;
@@ -307,7 +318,7 @@ form button:hover {
 .box{
 	display: flex;
 	background: #F8F9FC;
-	overflow: hidden;
+/*	overflow: hidden;*/
     margin: 0 auto;
     max-width: 90%;
     padding:2em;
