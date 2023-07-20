@@ -66,7 +66,7 @@ form-container {
 }
 form {
   max-width: 600px;
-  width: 90%
+  
 }
 form label {
   font-size: 1.5em;
@@ -278,7 +278,10 @@ form button:hover {
 	flex: 0 0 auto;
 	background-size: contain;
 	display: block;
-	position: relative;
+	position: absolute;
+    z-index: -1;
+    top: -10000px;
+    left: 99999px;
 	width: 400px;
 	height:400px;
 }
@@ -305,7 +308,7 @@ form button:hover {
 .box{
 	display: flex;
 	background: #F8F9FC;
-    width: 50%;
+	overflow: hidden;
     margin: 0 auto;
     max-width: 90%;
     padding:2em;
