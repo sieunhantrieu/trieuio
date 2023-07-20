@@ -32,7 +32,6 @@ Website: https://forum.sieunhan.xyz
 </head>
 <body>
 <div class="container">
-<!--
   <div class="header">
     <div class="logo"><a href="#"><img class="img-responsive" src="./css/logo.png" alt="logo ASCVN - website tạo hình ảnh năm công tác bởi Siêu Nhân Designer"></a></div>
     <div class="nameco">CTY TIẾN BỘ SÀI GÒN<strong>ASCVN</strong></div>
@@ -42,59 +41,54 @@ Website: https://forum.sieunhan.xyz
     <h1>ASCVN được thành lập vào năm 2012</h1>
     <p>Bạn đã gia nhập Đại gia đình ASCVN bao nhiêu năm?</p>
   </div>
--->
   <div class="box">
     <div class="mainasc">
       <div class="form-container">
-        <form>
+        <form action="javascript:alert('Thông báo bằng tiếng Việt');">
           <label for="name">Họ và Tên:</label>
           <input type="text" name="name" class="form-control input" placeholder="Nhập tên của bạn" required>
           <br>
           <label for="year">Năm bạn bắt đầu gia nhập Ngôi nhà chung ASCVN:</label>
-          <input type="number" name="year" class="form-control input" placeholder="Nhập năm gia nhập" required>
+          <input type="number" name="year" class="form-control input" placeholder="Nhập năm gia nhập" min="2012" max="2023" required>
           <br>
-<!--          <button type="submit" class="btn-asc" id="btn_convert">Tải ảnh của bạn</button>-->
-			<input type="submit" class="btn-asc" id="btn_convert" value="Tải ảnh của bạn">
+          <input type="submit" class="btn-asc" id="btn_convert" value="Tải ảnh của bạn">
         </form>
-       
+        <script>
+		function validateForm() {
+  var name = document.getElementById("name").value;
+  var birthyear = document.getElementById("year").value;
+  if (name == "") {
+    alert("Tên không được để trống");
+    return false;
+  } else if (birthyear < 2012 || birthyear > 2013) {
+    alert("Năm không hợp lệ");
+    return false;
+  }
+  return true;
+}</script> 
       </div>
     </div>
-<!--
     <div id="html-content-holder">
       <div id="output-name">Tên bạn là ?</div>
       <div id="output-year">Năm ?</div>
-      	<div id="img-input"><img src="css/image-400.png" alt="" width="100%"> </div> 
+      <!--	<div id="img-input"><img src="css/image-400.png" alt="" width="100%"> </div>--> 
       
     </div>
--->
-	   <div id="previewImg"></div>
   </div>
-<!--
   <script>
 	$(function() {
   $('.input').on('input', function(){
     var source_name = $(this).attr('name');
     $('#output-'+source_name).text( $(this).val() );
   });
-}); 
+});
+	
+	  
 	  </script>
--->
- 
- <script>
-//	 
-//  function validateForm() {
-//  var name = document.getElementById("name").value;
-//  var birthyear = document.getElementById("year").value;
-//  if (name == "") {
-//    alert("Tên không được để trống");
-//    return false;
-//  } else if (birthyear < 2012 || birthyear > 2013) {
-//    alert("Năm không hợp lệ");
-//    return false;
-//  }
-//	return true;
-//}
-document.getElementById('btn_convert').addEventListener('click', function() {
+  <div id="previewImg"></div>
+  <script>
+		
+	   document.getElementById('btn_convert').addEventListener('click', function() {
 		html2canvas(document.getElementById('html-content-holder'),
 			{
 				allowTaint: true,
@@ -102,16 +96,14 @@ document.getElementById('btn_convert').addEventListener('click', function() {
 			}).then(function (canvas) {
 				var anchorTag = document.createElement('a');
 				document.body.appendChild(anchorTag);
-				document.getElementById('previewImg').appendChild(canvas);
+//				document.getElementById('previewImg').appendChild(canvas);
 				anchorTag.download = 'sieunhantrieu.png';
 				anchorTag.href = canvas.toDataURL('image/png');
 				anchorTag.target = '_blank';
 				anchorTag.click();
 			});
   });
-	 
- 
-  </script> 
+    </script>
   <div class="footer"> ©2023. Design by Siêu Nhân Triều. All Rights Reserved. </div>
 </div>
 </body>
