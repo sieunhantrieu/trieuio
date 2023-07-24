@@ -290,8 +290,7 @@ form button:hover {
 	width: 400px;
 	height:400px;
 }
-#output-name,#output-year,#sumyear{
-	font-weight: 700; 
+#output-name,#output-year,#sumyear{ 
     z-index: 2;
 	line-height: 1.4em;
 }
@@ -311,7 +310,7 @@ form button:hover {
 		0 3px 0 #16b9ff,-1px -1px 0 #416aff,0 4px 0 #416aff;
 }
 #output-name{
-	font-size: 2.7em;
+	font-size: 2.6em;
 	text-transform: uppercase;
 	text-align: right;
 	font-family: 'Black Ops One', cursive;
@@ -337,9 +336,8 @@ form button:hover {
 
 #output-year{
 	font-size: 1.5em;
-	width: 100%;
 	text-align: right;
-	color:#f9a219;
+	color:#002852;
 	
 }
 .fullname{
