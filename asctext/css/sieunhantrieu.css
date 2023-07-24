@@ -340,12 +340,13 @@ form button:hover {
 	width: 100%;
 	text-align: right;
 	color:#f9a219;
-	display: inline-block;
+	
 }
 .fullname{
-	width: 80%;
+	display: inline-block;
 	position: absolute;
-	top: 50%;
+	max-width: 100%;
+	top: 46%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 
