@@ -311,6 +311,7 @@ form button:hover {
 }
 #output-name{
 	font-size: 2.6em;
+	width: max-content;
 	text-transform: uppercase;
 	text-align: right;
 	font-family: 'Black Ops One', cursive;
