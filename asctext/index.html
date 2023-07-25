@@ -29,7 +29,7 @@ Website: https://forum.sieunhan.xyz
 <link rel="stylesheet" href="./css/sieunhantrieu.css">
 <script src="css/jquery.min.js"></script> 
 <script src="css/html2canvas.js"></script>
-	<script src="css/trieusieunhan.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -55,7 +55,18 @@ Website: https://forum.sieunhan.xyz
           <input onclick="calculateYears()" type="submit" class="btn-asc" id="btn_convert" value="Tải ảnh của bạn">
         </form>
         <script>
-		</script> 
+		function validateForm() {
+  var name = document.getElementById("name").value;
+  var birthyear = document.getElementById("year").value;
+  if (name == "") {
+    alert("Tên không được để trống");
+    return false;
+  } else if (birthyear < 2012 || birthyear > 2023) {
+    alert("Năm không hợp lệ");
+    return false;
+  }
+  return true;
+}</script> 
       </div>
     </div>
     
@@ -69,11 +80,42 @@ Website: https://forum.sieunhan.xyz
     </div>
   </div>
   <script>
+	$(function() {
+  $('.input').on('input', function(){
+    var source_name = $(this).attr('name');
+    $('#output-'+source_name).text( $(this).val() );
+	  
+  });
 	
+}); 
+	  function calculateYears() {
+  const inputYear = parseInt(document.getElementById("year").value, 10);
+  const currentYear = new Date().getFullYear();
+  const number_year = currentYear - inputYear;
+		  document.getElementById('sumyear').textContent = `Cảm ơn những cống hiến và đóng góp của bạn cho công ty suốt ${number_year} năm vừa qua`;
+ 
+}
 	  </script> 
 	<div id="previewImg"></div>
   <script>
+		
+	   document.getElementById('btn_convert').addEventListener('click', function() {	   
+		html2canvas(document.getElementById('html-content-holder'),
+			{
+				allowTaint: true,
+				useCORS: true
+			}).then(function (canvas) {
+				var anchorTag = document.createElement('a');
+				document.body.appendChild(anchorTag);
+//   			    document.getElementById('previewImg').appendChild(canvas);
+				anchorTag.download = 'sieunhantrieu.png';
+				anchorTag.href = canvas.toDataURL('image/png');
+				anchorTag.target = '_blank';
+				anchorTag.click();
+			   
+			});
 	
+  });
     </script>
   <div class="footer"> ©2023. Design by Siêu Nhân Triều. All Rights Reserved. </div>
 </div>
