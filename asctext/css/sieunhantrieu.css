@@ -5,13 +5,23 @@
 }
 body {
   font-family: Inter, Arial, sans-serif;
-  background: url(skyline.png) repeat-x bottom center;
-	background-size: contain;
+  background-image: url(skyline.png);
+	background-size: cover;
 	height: 100vh;
   color: #000;
   margin: 0;
   padding: 0;
   overflow: hidden;
+	animation: scrollingBg 60s linear infinite;
+}
+
+@keyframes scrollingBg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
 }
 .container {
   display: flex;
