@@ -19,8 +19,8 @@ svg {
   position: absolute;
   width: 100%;
   z-index: -1;
-  margin-top: -50px;
-  opacity: 0.7;
+  
+  opacity: 0.9;
   min-height: 100vh;
 }
 #heroVideoBg iframe {
