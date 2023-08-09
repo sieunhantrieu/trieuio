@@ -135,7 +135,7 @@ svg {
 body {
   margin: 0;
   padding: 0;
-  background: #212121;
+  background: transparent;
   /*		background: url(https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODUxNjI5NTB8&ixlib=rb-4.0.3&q=85) no-repeat;*/
   display: flex;
   justify-content: center;

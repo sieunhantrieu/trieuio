@@ -31,17 +31,65 @@
   </div>
 </section>
 <section id="hero">
-
-	<svg id="hearts" viewBox="-600 -400 1200 800" preserveAspectRatio="xMidYMid slice">
+	<svg id="stars" viewBox="-600 -400 1200 800" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <symbol  id="heart" viewBox="-69 -16 138 138">
-    <path d="M0,12
+    <symbol id="star" viewBox="-69 -69 138 138">
+      <polygon points="0,-50 15.5,-15.5 50,-15.5 21.5,14.5 35,50 0,30 -35,50 -21.5,14.5 -50,-15.5 -15.5,-15.5"/>
+    </symbol>
+  </defs>
+</svg>
+<script>
+  const colors = ["#e03776", "#8f3e98", "#4687bf", "#3bab6f", "#f9c25e", "#f47274"];
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const SVG_XLINK = "http://www.w3.org/1999/xlink";
+
+  let starsRy = []
+
+  function useTheStar(n) {
+    let use = document.createElementNS(SVG_NS, 'use');
+    use.n = n;
+    use.setAttributeNS(SVG_XLINK, 'xlink:href', '#star');
+    use.setAttributeNS(null, 'transform', `scale(${use.n})`);
+    use.setAttributeNS(null, 'fill', colors[n % colors.length]);
+    use.setAttributeNS(null, 'x', -69);
+    use.setAttributeNS(null, 'y', -69);
+    use.setAttributeNS(null, 'width', 138);
+    use.setAttributeNS(null, 'height', 138);
+
+    starsRy.push(use)
+    stars.appendChild(use);
+  }
+
+  for (let n = 50; n >= 0; n--) {
+    useTheStar(n)
+  }
+
+  function Frame() {
+    window.requestAnimationFrame(Frame);
+    for (let i = 0; i < starsRy.length; i++) {
+      if (starsRy[i].n < 50) {
+        starsRy[i].n += 0.01
+      } else {
+        starsRy[i].n = 0;
+        stars.appendChild(starsRy[i])
+      }
+      starsRy[i].setAttributeNS(null, 'transform', `scale(${starsRy[i].n})`);
+    }
+  }
+
+  Frame()
+</script>
+<!--
+  <svg id="hearts" viewBox="-600 -400 1200 800" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <symbol  id="heart" viewBox="-69 -16 138 138">
+        <path d="M0,12
              C 50,-30 110,50  0,120
              C-110,50 -50,-30 0,12z"/>
-    </symbol>
-</defs>
-</svg>
-	<script>
+      </symbol>
+    </defs>
+  </svg>
+  <script>
 	const colors = ["#e03776","#8f3e98","#4687bf","#3bab6f","#f9c25e","#f47274"];
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const SVG_XLINK = "http://www.w3.org/1999/xlink";
@@ -79,8 +127,8 @@ function Frame(){
 
 Frame()
 
-	</script>
-
+	</script> 
+-->
 </section>
 <script src="js/amlich-hnd.js"></script> 
 <script>
