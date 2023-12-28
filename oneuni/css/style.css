@@ -89,7 +89,7 @@
   /* Main */
   .menu-fixed {
     position: relative;
-}
+  }
   .fixed-header {
     position: fixed;
     width: 100%;
@@ -528,16 +528,16 @@
 */ #popupContact {
       width: 90%;
     }
-    .consoantuong{
-      width: 111%!important;
-      padding: 0px!important;
-      margin: 20px -15px!important;
+    .consoantuong {
+      width: 111% !important;
+      padding: 0px !important;
+      margin: 20px -15px !important;
     }
     .consoantuong li {
-    width: calc(99% / 2 - 4px)!important;
-    margin-left: 4px;
-  }
-	  #popupContact img{
+      width: calc(99% / 2 - 4px) !important;
+      margin-left: 4px;
+    }
+    #popupContact img {
       width: 100%;
     }
     .tab-content > .tab-pane {
@@ -623,12 +623,15 @@
       margin-top: 10px;
     }
   }
+  .bg_hidden {
+    overflow: hidden
+  }
   .consoantuong {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
     padding: 30px 0px;
-    margin: 0 -20px;
+    margin: 0 -15px;
   }
   .consoantuong li {
     width: calc(100% / 4);
