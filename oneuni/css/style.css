@@ -295,6 +295,7 @@
     font-family: 'Inter', Helvetica, Arial, "sans-serif";
     font-weight: 700;
     font-size: 1.8em;
+    white-space: pre-wrap;
     /* padding: 30px 0 10px 0; */
     /* text-transform: uppercase; */
   }
@@ -555,6 +556,7 @@
     }
     .img_info {
       margin-top: 0px;
+      height: 360px;
     }
     .img_info img {
       /* display: none; */
