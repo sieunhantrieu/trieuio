@@ -21,11 +21,11 @@
     <div class="boxes">
       <div class="block-lich">
         <div class="text-div1">Hôm nay, <span id="current_lunardate"></span></div>
-        <div class="text-div2">Sắp đến <strong class="color-yellow">Tết Nguyên Đán 2024</strong> chỉ còn</div>
+        <div class="text-div2">Sắp đến <strong class="color-yellow">Tết Nguyên Đán 2025</strong> chỉ còn</div>
         <div class="text-div3 color-yellow" id="countdown_days_num">213</div>
         <div class="text-div4 color-yellow">NGÀY</div>
         <div class="text-div5"><span id="countdown_hours_num">13</span> giờ <span id="countdown_minutes_num">58</span> phút <span id="countdown_seconds_num">48</span> giây</div>
-        <div class="text-div6">Tết trúng ngày Thứ Bảy, 10/2/2024 DL (1/1/2024 ÂL)</div>
+        <div class="text-div6">Tết trúng ngày Thứ Tư, 29/01/2025 DL (1/1/2025 ÂL)</div>
         <a class="text-div7 color-copyright" href="https://forum.sieunhan.xyz/">© Copyright by Siêu Nhân Designer</a> </div>
     </div>
   </div>
@@ -146,18 +146,19 @@ Frame()
 	}
 	return s;
 }
+	
 	function getTodayString() {
-	var s = getDayString(currentLunarDate,today.getDate(), today.getMonth()+1, today.getFullYear());
-	s += " âm lịch " ;
-	return s;
+    var s = getDayString(currentLunarDate, today.getDate(), today.getMonth() + 1, today.getFullYear());
+    s += " âm lịch ";
+    return s;
 }
 	
-	//
+	
 	
 	var timeinterval;var deadline=new Date();
 	var currHour=deadline.getHours();
 	var currMinute=deadline.getMinutes();
-	deadline.setFullYear(2024,1,10);
+	deadline.setFullYear(2025,0,29);
 	deadline.setHours(0);deadline.setMinutes(0);
 	deadline.setSeconds(0);initializeClock();
 	
