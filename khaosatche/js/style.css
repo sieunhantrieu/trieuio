@@ -1,0 +1,198 @@
+@charset "UTF-8";
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background: url(https://gmi.vietjet.net/uploads/2023/08/top-quan-che-sai-gon.webp) center center no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+html {
+  height: 100vh;
+}
+body:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+h1 {
+  color: #fff;
+  text-shadow: 0px 8px 12px rgba(0, 0, 0, 0.7);
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  position:
+    absolute;
+  /* z-index: 222222222; */
+  top: 50%;
+  width: 100%;
+  height: 300px;
+  display: block;
+  left: 50%;
+  /* -webkit-transform: translateY(-50%); */
+  -ms-transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+.btn-wrap {
+  display: inline-block;
+  transition: all 0.75s ease;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+@media screen and (max-width:768px) {
+  h1, .popup {
+    min-width: 80% !important;
+  }
+
+  .btn-wrap {
+    left: 20%;
+    top: 65%;
+    margin: auto;
+    /* margin-top: -50px; */
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+}
+.tricky {
+  left: 60%;
+  z-index: 50;
+}
+.tricky:after {
+  background-color: #cc0000;
+  border-bottom-color: #ae0000;
+}
+.tricky .btn {
+  background: #f0f0f0;
+  border-bottom: 5px solid #ddd;
+  color: #111;
+}
+.tricky .btn:hover {
+  border-bottom: 3px solid #eee;
+}
+.tricky .btn span:before {
+  content: "Không ngon";
+}
+.tricky.active {
+  height: 50px;
+  filter: brightness(1.4);
+}
+.tricky.active span {
+  font-size: 22px;
+}
+.tricky.active span:before {
+  content: "Bắt tui đi !!!";
+}
+.tricky.active:before {
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.15);
+  width: 60px;
+  height: 60px;
+  left: -5px;
+  top: -5px;
+}
+.tricky.active:after {
+  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
+  left: -10px;
+  top: -10px;
+  width: 70px;
+  height: 70px;
+}
+.btn {
+  color: #fff;
+  background: #1f66f5;
+  border-bottom: 5px solid #1e46f5;
+  box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 2em;
+  display: inline-block;
+  min-height: 4em;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+.btn:hover {
+  border-bottom: 3px solid #1e26f5;
+  box-shadow: 0px 2px 12px 1px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.2);
+  margin-top: 2px;
+}
+.btn span {
+  padding: 0px 20px;
+  font-size: 1.4em;
+  line-height: 3em;
+  display: inline-block;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  position: relative;
+  top: 1.4em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/*popup1*/
+.overlay {
+  position: absolute;
+  z-index: 999999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+  top: 0px;
+}
+.popup {
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  min-width: 40%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 5s ease-in-out;
+}
+.popup h2 {
+  margin-top: 0;
+  color: #1e46f5;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: red;
+  transform: rotate(90deg);
+}
+.popup .content {
+  max-height: 30%;
+  font-size: 1.6em;
+  overflow: auto;
+}
