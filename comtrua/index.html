@@ -464,18 +464,38 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, serverTimestamp, setLogLevel, addDoc, getDocs, deleteDoc, onSnapshot, doc, setDoc, query, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, serverTimestamp, addDoc, getDocs, deleteDoc, onSnapshot, doc, setDoc, query, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // =========================================================================
+        // BƯỚC 1: ĐIỀN THÔNG TIN FIREBASE CỦA BẠN VÀO ĐÂY (Tạo project mới trên firebase.google.com)
+        // =========================================================================
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Đặt một ID chung để lưu database (bạn có thể đổi tên tùy ý)
+        const appId = "cong-ty-dat-com-2026"; 
 
-        let db, auth, userId;
-        const app = firebaseConfig ? initializeApp(firebaseConfig) : null;
-        if (app) {
+        // =========================================================================
+        // BƯỚC 2: ĐIỀN API KEY GEMINI CỦA BẠN VÀO ĐÂY (Lấy tại aistudio.google.com)
+        // =========================================================================
+        const GEMINI_API_KEY = "ĐIỀN_API_KEY_GEMINI_CỦA_BẠN_VÀO_ĐÂY"; 
+
+        
+        let db, auth, userId, app;
+        // Kiểm tra xem người dùng đã cấu hình Firebase chưa
+        if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+            app = initializeApp(firebaseConfig);
             db = getFirestore(app);
             auth = getAuth(app);
+        } else {
+            console.warn("⚠️ BẠN CHƯA CẤU HÌNH FIREBASE. Ứng dụng sẽ không lưu được dữ liệu.");
         }
         
         let allOrdersCache = []; 
@@ -620,9 +640,7 @@
 
         // Tạo ảnh dựa trên tên món
         function getDishImageUrl(dishName) {
-            // Lấy ảnh chính xác theo tên món, ép buộc từ khóa "món ăn cơm trưa" để tránh ra hình người/cảnh vật
             const query = encodeURIComponent(dishName + " món ăn ngon");
-            // Yêu cầu kích thước 4:3 (400x300) để vừa vặn khung
             return `https://tse2.mm.bing.net/th?q=${query}&w=400&h=300&c=7&rs=1&p=0&dpr=1&pid=1.7`;
         }
 
@@ -662,7 +680,6 @@
                 return;
             }
             
-            // Render list mimicking KiotViet receipt items
             orderListEl.innerHTML = orders.map((order, index) => {
                 const customerName = order.customerName || 'N/A';
                 const dessertName = order.dessertName || 'Món không xác định';
@@ -696,14 +713,10 @@
                 return;
              }
              
-             // KiotViet Table Card Style (Updated with Images 4:3)
              dishListContainer.innerHTML = dishes.map((dish) => {
                 const nameParts = dish.name.split(/ [-\u2013] /);
                 const mainName = nameParts[0];
-                // Lấy URL hình, nếu chưa có trong DB thì tự tạo theo tên
                 const imgUrl = dish.imageUrl || getDishImageUrl(dish.name);
-                
-                // Ảnh dự phòng: Một phần cơm trưa chung chung 4:3 nếu không tìm thấy ảnh
                 const fallbackImg = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop";
 
                 return `
@@ -714,7 +727,6 @@
                     <div class="py-[10px] px-2 md:p-4 flex flex-col items-center justify-center text-center bg-white z-10 h-auto">
                         <h3 class="font-bold text-gray-800 text-base md:text-lg leading-snug line-clamp-2">${mainName}</h3>
                     </div>
-                    <!-- Hover Add Button Overlay -->
                     <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm z-20">
                          <button class="bg-[#155EEF] text-white rounded-full px-4 py-2 shadow-lg transform scale-50 group-hover:scale-100 transition-transform duration-200 hover:bg-[#114cd6] flex items-center gap-1.5 font-bold text-sm">
                              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
@@ -739,7 +751,6 @@
             });
         }
 
-        // Render Management List in Admin
         function renderAdminManageList(dishes) {
             if (!adminManageDishList) return;
             if (dishes.length === 0) {
@@ -768,7 +779,7 @@
         }
 
         async function submitOrder() {
-            if (!dishToOrder) return;
+            if (!dishToOrder || !db) return;
             const customerName = customerNameInput.value.trim();
             const note = noteInput.value.trim();
             if (!customerName) { setStatusMessage('Vui lòng nhập tên!', 'error'); return; }
@@ -845,25 +856,25 @@
             setTimeout(() => { if (statusMessageEl.textContent === message) setStatusMessage('', 'info'); }, 4000);
         }
 
-        // --- Firebase Actions --- 
         async function resetAllOrders() {
+            if(!db) return;
             const snap = await getDocs(collection(db, `artifacts/${appId}/public/data/orders`));
             await Promise.all(snap.docs.map(doc => deleteDoc(doc.ref)));
             setStatusMessage("Đã xóa hết đơn.", 'success');
         }
 
         async function deleteSingleOrder(orderId) {
-            if (!orderId) return;
+            if (!orderId || !db) return;
             await deleteDoc(doc(db, `artifacts/${appId}/public/data/orders`, orderId));
         }
         
         async function togglePaymentStatus(orderId, currentStatus) {
-            if (!orderId) return;
+            if (!orderId || !db) return;
             await updateDoc(doc(db, `artifacts/${appId}/public/data/orders`, orderId), { isPaid: !currentStatus });
         }
 
-        // --- Hàm đánh dấu Đã thanh toán cho toàn bộ đơn của 1 người ---
         async function markPersonAsPaid(customerName) {
+            if(!db) return;
             const ordersToUpdate = allOrdersCache.filter(o => o.customerName === customerName && !o.isPaid);
             if (ordersToUpdate.length === 0) return;
 
@@ -873,17 +884,14 @@
                 );
                 await Promise.all(promises);
                 setStatusMessage(`Đã xác nhận thu tiền của ${customerName}`, 'success');
-                // Tự động load lại danh sách nợ nếu popup đang mở
                 if (!unpaidModal.classList.contains('hidden')) {
                     openUnpaidModal();
                 }
             } catch (error) {
-                console.error("Lỗi cập nhật thu tiền:", error);
                 setStatusMessage('Lỗi khi cập nhật thu tiền', 'error');
             }
         }
 
-        // --- Local Storage Datalists ---
         function updateCustomerDatalist() {
             const storageNames = JSON.parse(localStorage.getItem('customerNames') || '[]');
             const orderNames = allOrdersCache.map(o => o.customerName).filter(Boolean);
@@ -907,14 +915,15 @@
             if (!notes.includes(note)) { notes.push(note); if (notes.length > 20) notes.shift(); localStorage.setItem('savedNotes', JSON.stringify(notes)); updateNoteDatalist(); }
         }
 
-        // --- AI API ---
         async function callGeminiAPI(payload) {
-             const apiKey = ""; 
+             if (GEMINI_API_KEY === "ĐIỀN_API_KEY_GEMINI_CỦA_BẠN_VÀO_ĐÂY") {
+                 return "Lỗi: Bạn chưa cấu hình API Key của Gemini. Vui lòng mở code và điền API Key vào.";
+             }
              const maxRetries = 5;
              let delay = 1000;
              for (let attempt = 1; attempt <= maxRetries; attempt++) {
                  try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                     if (!response.ok) throw new Error('API Error');
                     const result = await response.json();
                     return result.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -952,12 +961,10 @@
             };
             const text = await callGeminiAPI(payload);
             if (text && !text.startsWith("Lỗi:")) {
-                // Tách dòng, xóa ký tự đánh dấu (*, -, +), xóa số thứ tự (1., 2.), xóa in đậm (**)
                 let dishes = text.split('\n')
                     .map(d => d.replace(/^[-*+]\s*/, '').replace(/^[0-9]+[\.\)]\s*/, '').replace(/\*\*/g, '').trim())
                     .filter(d => d.length > 0);
                 
-                // Lọc bỏ các dòng văn bản giao tiếp rác
                 dishes = dishes.filter(d => {
                     const lowerD = d.toLowerCase();
                     const badWords = ['dưới đây là', 'danh sách', 'trích xuất', 'các món', 'sau đây', 'hình ảnh', 'chào bạn'];
@@ -971,7 +978,7 @@
                     menuParserStatus.innerHTML = `<p class="text-red-500 font-medium">Không tìm thấy món nào.</p>`;
                 }
             } else { 
-                menuParserStatus.innerHTML = `<p class="text-red-500 font-medium">Không nhận diện được.</p>`; 
+                menuParserStatus.innerHTML = `<p class="text-red-500 font-medium">${text}</p>`; 
             }
         }
 
@@ -986,6 +993,7 @@
         }
 
         async function handleAddSelectedDishes() {
+            if(!db) return setStatusMessage('Lỗi: Chưa kết nối Database', 'error');
             const selectedDishes = Array.from(document.querySelectorAll('input[name="extracted_dishes"]:checked')).map(cb => cb.value);
             if (selectedDishes.length === 0) return;
             
@@ -1029,7 +1037,6 @@
             btn.innerHTML = `✨ AI Viết Tin Nhắn Báo Nhóm`;
         }
 
-        // --- Modals & Toggles ---
         function toggleCartPanel() {
             const isClosed = cartPanel.classList.contains('translate-x-full');
             if (isClosed) {
@@ -1132,7 +1139,6 @@
             updateCustomerDatalist();
             updateNoteDatalist();
 
-            // Mobile & Modals
             mobileCartBtn.addEventListener('click', toggleCartPanel);
             closeCartBtn.addEventListener('click', toggleCartPanel);
             mobileOverlay.addEventListener('click', toggleCartPanel);
@@ -1148,18 +1154,16 @@
             if (openUnpaidModalBtn) openUnpaidModalBtn.addEventListener('click', openUnpaidModal);
             closeUnpaidModal.addEventListener('click', () => unpaidModal.classList.add('hidden'));
 
-            // Xử lý nút thanh toán trong danh sách Nợ
             unpaidListContainer.addEventListener('click', async (e) => {
                 const btn = e.target.closest('.person-payment-btn');
                 if (btn && !btn.disabled) {
-                    btn.disabled = true; // Khóa nút ngay lập tức để tránh bấm 2 lần
+                    btn.disabled = true;
                     btn.innerHTML = '<span class="px-2">Đang xử lý...</span>';
                     const customerName = btn.dataset.customerName;
                     await markPersonAsPaid(customerName);
                 }
             });
 
-            // Admin Logic
             const openAdmin = () => requestPassword('Xác thực quản trị', '', () => adminModalEl.classList.remove('hidden'));
             headerAdminBtn.addEventListener('click', openAdmin);
             closeAdminModalButton.addEventListener('click', () => adminModalEl.classList.add('hidden'));
@@ -1175,7 +1179,6 @@
                 })
             });
 
-            // Password Modal
             confirmPasswordButton.addEventListener('click', () => {
                 if (passwordInput.value === '654321') {
                      passwordModalEl.classList.add('hidden'); 
@@ -1190,7 +1193,6 @@
                 }
             });
 
-            // Image Events
             imageUploadArea.addEventListener('click', () => menuImageInput.click());
             menuImageInput.addEventListener('change', (e) => e.target.files[0] && processImageFile(e.target.files[0]));
             imageUploadArea.addEventListener('dragover', (e) => { e.preventDefault(); imageUploadArea.classList.add('border-blue-400', 'bg-blue-50'); });
@@ -1208,8 +1210,8 @@
             addSelectedDishesButton.addEventListener('click', handleAddSelectedDishes);
             geminiSummaryButton.addEventListener('click', handleGeminiSummary);
 
-            // Manual Add
             addManualDishBtn.addEventListener('click', async () => {
+                if(!db) return setStatusMessage('Lỗi Database', 'error');
                 const names = manualDishName.value.split(/[,;]/).map(n => n.trim()).filter(Boolean);
                 if (names.length === 0) return setStatusMessage('Nhập tên món!', 'error');
                 try {
@@ -1221,8 +1223,8 @@
                 } catch (e) { setStatusMessage('Lỗi hệ thống', 'error'); }
             });
 
-            // Admin Manage Dish List Actions (Edit/Delete)
             adminManageDishList.addEventListener('click', async (e) => {
+                if(!db) return;
                 const target = e.target;
                 const dishId = target.dataset.id;
                 if (!dishId) return;
@@ -1240,7 +1242,6 @@
                     target.disabled = true;
 
                     try {
-                        // Cập nhật tên, giá và tạo lại hình ảnh mới theo tên
                         await updateDoc(doc(db, `artifacts/${appId}/public/data/menuItems`, dishId), {
                             name: newName,
                             price: newPrice,
@@ -1261,19 +1262,19 @@
                 }
             });
 
-            // Settings
             saveMenuTitleBtn.addEventListener('click', async () => {
+                if(!db) return;
                 await setDoc(doc(db, `artifacts/${appId}/public/data/settings`, 'general'), { menuTitle: adminMenuTitleInput.value.trim() }, { merge: true });
                 setStatusMessage('Lưu tiêu đề OK', 'success');
             });
             resetButton.addEventListener('click', () => requestPassword('Nguy hiểm', 'Bạn chắc chắn xóa hết đơn?', resetAllOrders));
             resetMenuButton.addEventListener('click', () => requestPassword('Nguy hiểm', 'Xóa toàn bộ thực đơn?', async () => {
+                if(!db) return;
                 const snap = await getDocs(collection(db, `artifacts/${appId}/public/data/menuItems`));
                 await Promise.all(snap.docs.map(d => deleteDoc(d.ref)));
                 setStatusMessage('Đã dọn dẹp Menu', 'success');
             }));
 
-            // Review Tabs
             tabSummary.addEventListener('click', () => {
                 tabSummary.className = 'flex-1 py-1.5 text-sm font-medium rounded-md transition-all text-white bg-blue-600 shadow-sm';
                 tabDetails.className = 'flex-1 py-1.5 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all';
@@ -1298,16 +1299,20 @@
             closeQrCodeModalButton.addEventListener('click', () => qrCodeModal.classList.add('hidden'));
 
             // Firebase Init
-            if (app) {
+            if (app && db && auth) {
                 onAuthStateChanged(auth, async (user) => {
-                    if (auth.currentUser) userId = auth.currentUser.uid;
-                    else if (initialAuthToken) userId = (await signInWithCustomToken(auth, initialAuthToken)).user.uid;
-                    else userId = (await signInAnonymously(auth)).user.uid;
+                    if (!user) {
+                        try {
+                            await signInAnonymously(auth);
+                        } catch (error) {
+                            console.error("Lỗi đăng nhập ẩn danh:", error);
+                        }
+                    }
                     
                     onSnapshot(collection(db, `artifacts/${appId}/public/data/menuItems`), (snapshot) => {
                         menuItemsCache = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         renderDishList(menuItemsCache);
-                        renderAdminManageList(menuItemsCache); // Cập nhật cả danh sách trong Quản trị
+                        renderAdminManageList(menuItemsCache);
                     });
 
                     onSnapshot(query(collection(db, `artifacts/${appId}/public/data/orders`), orderBy('timestamp', 'desc')), (snapshot) => {
@@ -1326,6 +1331,10 @@
                         }
                     });
                 });
+            } else {
+                // Hiển thị giao diện rỗng nếu không có DB
+                renderDishList([]);
+                renderOrderList([]);
             }
         });
     </script>

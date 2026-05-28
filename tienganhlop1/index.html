@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiếng Anh Lớp 1 - Khang & Khánh</title>
+    
+    <!-- Cài đặt Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cài đặt FontAwesome cho các icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Cài đặt React và ReactDOM qua CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Cài đặt Babel để chạy JSX trực tiếp trên trình duyệt -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.4s ease-out forwards;
+        }
+        body {
+            background-color: #f8fafc;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- DỮ LIỆU BÀI HỌC ---
+        const NUMBERS_DATA = Array.from({ length: 20 }, (_, i) => ({
+            id: i + 1,
+            en: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 
+                'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'][i],
+            vi: `Số ${i + 1}`,
+            num: i + 1
+        }));
+
+        const DAYS_DATA = [
+            { id: 'd1', en: 'Monday', vi: 'Thứ Hai', icon: '📅' },
+            { id: 'd2', en: 'Tuesday', vi: 'Thứ Ba', icon: '📅' },
+            { id: 'd3', en: 'Wednesday', vi: 'Thứ Tư', icon: '📅' },
+            { id: 'd4', en: 'Thursday', vi: 'Thứ Năm', icon: '📅' },
+            { id: 'd5', en: 'Friday', vi: 'Thứ Sáu', icon: '📅' },
+            { id: 'd6', en: 'Saturday', vi: 'Thứ Bảy', icon: '🎉' },
+            { id: 'd7', en: 'Sunday', vi: 'Chủ Nhật', icon: '☀️' },
+        ];
+
+        const MONTHS_DATA = Array.from({ length: 12 }, (_, i) => ({
+            id: `m${i+1}`,
+            en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][i],
+            vi: `Tháng ${i + 1}`,
+            icon: '🗓️'
+        }));
+
+        const BASE_VOCAB = [
+            { theme: 'Trái cây (Fruits)', words: [ { en: 'Apple', vi: 'Quả táo', icon: '🍎' }, { en: 'Banana', vi: 'Quả chuối', icon: '🍌' }, { en: 'Orange', vi: 'Quả cam', icon: '🍊' }, { en: 'Mango', vi: 'Quả xoài', icon: '🥭' } ] },
+            { theme: 'Màu sắc (Colors)', words: [ { en: 'Red', vi: 'Màu đỏ', icon: '🔴' }, { en: 'Blue', vi: 'Màu xanh dương', icon: '🔵' }, { en: 'Green', vi: 'Màu xanh lá', icon: '🟢' }, { en: 'Yellow', vi: 'Màu vàng', icon: '🟡' } ] },
+            { theme: 'Thú cưng (Pets)', words: [ { en: 'Dog', vi: 'Con chó', icon: '🐶' }, { en: 'Cat', vi: 'Con mèo', icon: '🐱' }, { en: 'Bird', vi: 'Con chim', icon: '🐦' }, { en: 'Fish', vi: 'Con cá', icon: '🐟' } ] },
+            { theme: 'Gia đình (Family)', words: [ { en: 'Mom', vi: 'Mẹ', icon: '👩' }, { en: 'Dad', vi: 'Ba', icon: '👨' }, { en: 'Baby', vi: 'Em bé', icon: '👶' }, { en: 'Home', vi: 'Ngôi nhà', icon: '🏠' } ] },
+            { theme: 'Học tập (School)', words: [ { en: 'Book', vi: 'Quyển sách', icon: '📖' }, { en: 'Pen', vi: 'Cái bút', icon: '🖊️' }, { en: 'Bag', vi: 'Cái cặp', icon: '🎒' }, { en: 'Desk', vi: 'Cái bàn', icon: '🪑' } ] },
+            { theme: 'Cơ thể (Body)', words: [ { en: 'Eye', vi: 'Con mắt', icon: '👁️' }, { en: 'Ear', vi: 'Cái tai', icon: '👂' }, { en: 'Nose', vi: 'Cái mũi', icon: '👃' }, { en: 'Mouth', vi: 'Cái miệng', icon: '👄' } ] },
+            { theme: 'Đồ chơi (Toys)', words: [ { en: 'Ball', vi: 'Quả bóng', icon: '⚽' }, { en: 'Car', vi: 'Xe hơi', icon: '🚗' }, { en: 'Doll', vi: 'Búp bê', icon: '🎎' }, { en: 'Kite', vi: 'Con diều', icon: '🪁' } ] },
+            { theme: 'Hình khối (Shapes)', words: [ { en: 'Star', vi: 'Ngôi sao', icon: '⭐' }, { en: 'Heart', vi: 'Trái tim', icon: '❤️' }, { en: 'Circle', vi: 'Hình tròn', icon: '🔵' }, { en: 'Square', vi: 'Hình vuông', icon: '🔲' } ] },
+            { theme: 'Màu sắc 2 (Colors)', words: [ { en: 'Purple', vi: 'Màu tím', icon: '🟪' }, { en: 'Black', vi: 'Màu đen', icon: '⬛' }, { en: 'White', vi: 'Màu trắng', icon: '⬜' }, { en: 'Brown', vi: 'Màu nâu', icon: '🟫' } ] },
+            { theme: 'Thức ăn (Food)', words: [ { en: 'Cake', vi: 'Bánh ngọt', icon: '🍰' }, { en: 'Milk', vi: 'Sữa', icon: '🥛' }, { en: 'Bread', vi: 'Bánh mì', icon: '🍞' }, { en: 'Egg', vi: 'Quả trứng', icon: '🥚' } ] },
+            { theme: 'Xe cộ (Vehicles)', words: [ { en: 'Bus', vi: 'Xe buýt', icon: '🚌' }, { en: 'Train', vi: 'Tàu hỏa', icon: '🚂' }, { en: 'Boat', vi: 'Con thuyền', icon: '⛵' }, { en: 'Plane', vi: 'Máy bay', icon: '✈️' } ] },
+            { theme: 'Quần áo (Clothes)', words: [ { en: 'Hat', vi: 'Cái mũ', icon: '🧢' }, { en: 'Shirt', vi: 'Áo thun', icon: '👕' }, { en: 'Shoe', vi: 'Chiếc giày', icon: '👞' }, { en: 'Coat', vi: 'Áo khoác', icon: '🧥' } ] },
+            { theme: 'Thiên nhiên (Nature)', words: [ { en: 'Sun', vi: 'Mặt trời', icon: '☀️' }, { en: 'Tree', vi: 'Cái cây', icon: '🌳' }, { en: 'Flower', vi: 'Bông hoa', icon: '🌸' }, { en: 'Moon', vi: 'Mặt trăng', icon: '🌙' } ] },
+            { theme: 'Động vật rừng', words: [ { en: 'Lion', vi: 'Sư tử', icon: '🦁' }, { en: 'Bear', vi: 'Con gấu', icon: '🐻' }, { en: 'Monkey', vi: 'Con khỉ', icon: '🐵' }, { en: 'Tiger', vi: 'Con hổ', icon: '🐯' } ] },
+            { theme: 'Cơ thể 2 (Body)', words: [ { en: 'Head', vi: 'Cái đầu', icon: '👤' }, { en: 'Hand', vi: 'Bàn tay', icon: '🖐️' }, { en: 'Arm', vi: 'Cánh tay', icon: '💪' }, { en: 'Leg', vi: 'Cái chân', icon: '🦵' } ] }
+        ];
+
+        let wordIdCounter = 1;
+        const ALL_WORDS = [];
+        const THEME_LESSONS = BASE_VOCAB.map((item, index) => {
+            const wordsWithIds = item.words.map(w => {
+                const word = { ...w, id: wordIdCounter++ };
+                ALL_WORDS.push(word);
+                return word;
+            });
+            return {
+                id: index + 1,
+                title: `Bài ${index + 1}`,
+                desc: item.theme,
+                words: wordsWithIds
+            };
+        });
+
+        const LESSONS = Array.from({ length: 50 }, (_, i) => {
+            if (i < THEME_LESSONS.length) return THEME_LESSONS[i];
+            
+            const reviewWords = [];
+            for (let j = 0; j < 4; j++) {
+                const wordIndex = (i * 11 + j * 17) % ALL_WORDS.length; 
+                reviewWords.push(ALL_WORDS[wordIndex]);
+            }
+            return {
+                id: i + 1,
+                title: `Bài ${i + 1}`,
+                desc: `Ôn Tập Tổng Hợp`,
+                words: reviewWords
+            };
+        });
+
+        // --- HOOKS ---
+        const useSpeechSynthesis = () => {
+            const speak = (text) => {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.85; 
+                    utterance.pitch = 1.1; 
+                    window.speechSynthesis.speak(utterance);
+                }
+            };
+            return speak;
+        };
+
+        const useSpeechRecognition = (onResult) => {
+            const [isListening, setIsListening] = useState(false);
+            const [errorMsg, setErrorMsg] = useState('');
+            const recognitionRef = useRef(null);
+
+            useEffect(() => {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    const recognition = new SpeechRecognition();
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.lang = 'en-US';
+
+                    recognition.onstart = () => { setIsListening(true); setErrorMsg(''); };
+                    recognition.onend = () => setIsListening(false);
+                    recognition.onresult = (event) => {
+                        const transcript = event.results[0][0].transcript;
+                        onResult(transcript);
+                    };
+                    recognition.onerror = () => {
+                        setIsListening(false);
+                        setErrorMsg('Lỗi mic rồi, bé thử lại nhé!');
+                    };
+                    
+                    recognitionRef.current = recognition;
+                }
+            }, [onResult]);
+
+            const startListening = () => {
+                if (recognitionRef.current) {
+                    try {
+                        recognitionRef.current.start();
+                    } catch (e) {
+                        console.error(e);
+                    }
+                } else {
+                    setErrorMsg("Máy của bé chưa hỗ trợ thu âm.");
+                }
+            };
+
+            return { isListening, startListening, errorMsg };
+        };
+
+        // --- COMPONENTS GIAO DIỆN ---
+        const Header = ({ setView, view }) => (
+            <header className="bg-red-600 text-white pt-6 pb-6 px-6 shadow-md relative z-10 border-b-8 border-red-800/20">
+                <div className="max-w-5xl mx-auto flex justify-between items-center">
+                <div className="flex items-center gap-4">
+                    {view !== 'home' && (
+                    <button 
+                        onClick={() => setView('home')}
+                        className="p-3 bg-white/20 hover:bg-white/30 rounded-2xl transition-all shadow-sm flex items-center gap-2 font-bold"
+                    >
+                        <i className="fas fa-home text-xl"></i> Trang chủ
+                    </button>
+                    )}
+                    <h1 className="text-2xl md:text-3xl font-black tracking-wide drop-shadow-md flex items-center gap-2">
+                    <span>🎯</span> Tiếng Anh Lớp 1
+                    </h1>
+                </div>
+                <div className="hidden sm:flex bg-white/20 px-4 py-2 rounded-xl font-bold items-center gap-2">
+                    <span>🧒 Khang & Khánh</span>
+                </div>
+                </div>
+            </header>
+        );
+
+        const Footer = () => (
+            <footer className="bg-white border-t-2 border-gray-100 py-6 text-center text-sm font-medium text-gray-400 mt-auto">
+                © 2019 - 2026 Copyright by Siêu Nhân Designer
+            </footer>
+        );
+
+        const HomeView = ({ setView }) => (
+            <div className="flex-1 w-full max-w-5xl mx-auto p-6 flex flex-col items-center animate-fade-in">
+                <div className="mt-4 mb-10 text-center w-full bg-white p-8 rounded-[40px] shadow-sm border-4 border-red-50 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-400 via-yellow-400 to-blue-400"></div>
+                    <h2 className="text-3xl md:text-5xl font-black text-red-600 mb-4 drop-shadow-sm leading-tight">
+                        Học tiếng Anh lớp 1 cùng <br className="md:hidden"/> 
+                        <span className="text-blue-600">Nguyên Khang</span> & <span className="text-green-600">Hoàng Khánh</span> nhé! 🎉
+                    </h2>
+                    <p className="text-xl text-gray-500 font-bold">Hôm nay hai bé muốn học gì nào?</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                    {/* Option 1: Số đếm */}
+                    <button onClick={() => setView('numbers')} className="group relative flex flex-col items-center justify-center bg-white rounded-[32px] p-8 shadow-xl border-4 border-blue-100 hover:border-blue-400 hover:-translate-y-2 transition-all active:scale-95 overflow-hidden">
+                        <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-100 rounded-full group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                        <div className="z-10 flex flex-col items-center">
+                            <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center text-white mb-6 shadow-inner">
+                                <i className="fas fa-hashtag text-4xl"></i>
+                            </div>
+                            <h3 className="text-2xl font-black text-gray-800 mb-2">Học Số Đếm</h3>
+                            <p className="text-blue-500 font-bold">Số từ 1 đến 20</p>
+                        </div>
+                    </button>
+
+                    {/* Option 2: Ngày tháng */}
+                    <button onClick={() => setView('dates')} className="group relative flex flex-col items-center justify-center bg-white rounded-[32px] p-8 shadow-xl border-4 border-green-100 hover:border-green-400 hover:-translate-y-2 transition-all active:scale-95 overflow-hidden">
+                        <div className="absolute -right-6 -top-6 w-24 h-24 bg-green-100 rounded-full group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                        <div className="z-10 flex flex-col items-center">
+                            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center text-white mb-6 shadow-inner">
+                                <i className="far fa-calendar-alt text-4xl"></i>
+                            </div>
+                            <h3 className="text-2xl font-black text-gray-800 mb-2">Ngày & Tháng</h3>
+                            <p className="text-green-500 font-bold">Thứ và Tháng trong năm</p>
+                        </div>
+                    </button>
+
+                    {/* Option 3: Từ Vựng */}
+                    <button onClick={() => setView('lessons')} className="group relative flex flex-col items-center justify-center bg-red-600 rounded-[32px] p-8 shadow-[0_8px_0_0_#991b1b] hover:shadow-[0_4px_0_0_#991b1b] hover:-translate-y-1 hover:mt-1 active:translate-y-2 active:shadow-none active:mt-2 transition-all overflow-hidden">
+                        <div className="absolute -right-10 -top-10 w-32 h-32 bg-red-500 rounded-full group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                        <div className="z-10 flex flex-col items-center text-white">
+                            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-white mb-6 shadow-inner border-2 border-white/30">
+                                <i className="fas fa-book-open text-4xl"></i>
+                            </div>
+                            <h3 className="text-2xl font-black mb-2">Từ Vựng Lớp 1</h3>
+                            <p className="text-red-100 font-bold bg-black/10 px-4 py-1 rounded-full">50 Bài Học & Game</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        );
+
+        const NumbersView = () => {
+            const speak = useSpeechSynthesis();
+            return (
+                <div className="flex-1 w-full max-w-5xl mx-auto p-6 animate-fade-in">
+                    <h2 className="text-3xl font-black text-blue-600 mb-8 text-center bg-white py-4 rounded-3xl shadow-sm border-2 border-blue-100">
+                        🔢 Cùng học đếm từ 1 đến 20 nhé!
+                    </h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                        {NUMBERS_DATA.map((item) => (
+                        <button key={item.id} onClick={() => speak(item.en)} className="bg-white rounded-3xl p-4 shadow-md border-b-4 border-blue-200 hover:border-blue-400 hover:-translate-y-1 active:translate-y-1 active:border-b-0 transition-all flex flex-col items-center justify-center group">
+                            <span className="text-5xl font-black text-blue-500 group-hover:scale-110 transition-transform mb-2">{item.num}</span>
+                            <span className="text-xl font-bold text-gray-700">{item.en}</span>
+                            <span className="text-sm text-gray-400 font-medium">{item.vi}</span>
+                        </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const DatesView = () => {
+            const speak = useSpeechSynthesis();
+            const [tab, setTab] = useState('days');
+
+            return (
+                <div className="flex-1 w-full max-w-5xl mx-auto p-6 animate-fade-in">
+                    <div className="flex justify-center gap-4 mb-8">
+                        <button onClick={() => setTab('days')} className={`px-8 py-4 rounded-full font-black text-xl transition-all shadow-md ${tab === 'days' ? 'bg-green-500 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>
+                        📅 Các ngày trong tuần
+                        </button>
+                        <button onClick={() => setTab('months')} className={`px-8 py-4 rounded-full font-black text-xl transition-all shadow-md ${tab === 'months' ? 'bg-purple-500 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>
+                        🗓️ Các tháng trong năm
+                        </button>
+                    </div>
+
+                    {tab === 'days' && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {DAYS_DATA.map((item) => (
+                            <button key={item.id} onClick={() => speak(item.en)} className="bg-white rounded-3xl p-6 shadow-md border-b-4 border-green-200 hover:border-green-400 hover:-translate-y-1 active:translate-y-1 active:border-b-0 transition-all flex flex-col items-center text-center">
+                                <span className="text-4xl mb-3">{item.icon}</span>
+                                <span className="text-2xl font-black text-green-600 mb-1">{item.en}</span>
+                                <span className="text-gray-500 font-bold">{item.vi}</span>
+                            </button>
+                        ))}
+                        </div>
+                    )}
+
+                    {tab === 'months' && (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {MONTHS_DATA.map((item) => (
+                            <button key={item.id} onClick={() => speak(item.en)} className="bg-white rounded-3xl p-4 shadow-md border-b-4 border-purple-200 hover:border-purple-400 hover:-translate-y-1 active:translate-y-1 active:border-b-0 transition-all flex flex-col items-center text-center">
+                                <span className="text-2xl mb-2">{item.icon}</span>
+                                <span className="text-xl font-black text-purple-600 mb-1">{item.en}</span>
+                                <span className="text-gray-500 font-bold text-sm">{item.vi}</span>
+                            </button>
+                        ))}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const LessonsView = ({ onSelectLesson }) => (
+            <div className="flex-1 w-full max-w-5xl mx-auto p-6 animate-fade-in flex flex-col">
+                <div className="bg-red-50 p-6 rounded-[32px] mb-8 border-2 border-red-100 flex items-center justify-between">
+                    <div>
+                        <h2 className="text-3xl font-black text-red-600 mb-2">📚 50 Bài Học Từ Vựng</h2>
+                        <p className="text-red-800/60 font-bold">Tất cả bài học đã được mở khóa! Chọn bài để học nhé.</p>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 overflow-y-auto pb-10">
+                    {LESSONS.map((lesson) => (
+                        <button key={lesson.id} onClick={() => onSelectLesson(lesson)} className="bg-white rounded-2xl p-4 shadow-sm border-2 border-gray-100 hover:border-red-400 hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center group">
+                            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-500 font-black mb-3 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                {lesson.id}
+                            </div>
+                            <span className="font-black text-gray-800">{lesson.title}</span>
+                            <span className="text-xs text-gray-400 font-bold mt-1 line-clamp-1">{lesson.desc}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const LessonModeSelect = ({ lesson, setView, onBack }) => (
+            <div className="flex-1 w-full max-w-3xl mx-auto p-6 flex flex-col items-center justify-center animate-fade-in">
+                <button onClick={onBack} className="mb-8 text-gray-500 font-bold hover:text-red-500 flex items-center gap-2 self-start">
+                    <i className="fas fa-arrow-left"></i> Quay lại danh sách
+                </button>
+                <div className="bg-white w-full rounded-[40px] shadow-xl p-10 text-center border-4 border-red-50">
+                    <h2 className="text-4xl font-black text-red-600 mb-4">{lesson.title}</h2>
+                    <p className="text-xl text-gray-500 font-bold mb-10">{lesson.desc}</p>
+                    <div className="flex flex-col sm:flex-row gap-6">
+                        <button onClick={() => setView('learnVocab')} className="flex-1 bg-gradient-to-b from-blue-400 to-blue-600 text-white p-8 rounded-[32px] shadow-[0_8px_0_0_#1e3a8a] active:translate-y-2 active:shadow-none transition-all flex flex-col items-center hover:scale-105">
+                            <i className="fas fa-book-open text-6xl mb-4"></i>
+                            <span className="text-3xl font-black">Học Từ Mới</span>
+                            <span className="mt-2 text-blue-100 font-bold">Nghe & Phát âm</span>
+                        </button>
+                        <button onClick={() => setView('quiz')} className="flex-1 bg-gradient-to-b from-yellow-400 to-yellow-500 text-yellow-900 p-8 rounded-[32px] shadow-[0_8px_0_0_#b45309] active:translate-y-2 active:shadow-none transition-all flex flex-col items-center hover:scale-105">
+                            <i className="fas fa-brain text-6xl mb-4"></i>
+                            <span className="text-3xl font-black">Bài Tập</span>
+                            <span className="mt-2 text-yellow-800/70 font-bold">Đố vui có thưởng</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const LearnVocabView = ({ lesson, setView }) => {
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [feedback, setFeedback] = useState(null);
+            const speak = useSpeechSynthesis();
+            const word = lesson.words[currentIndex];
+
+            const handleSpeechResult = (transcript) => {
+                const spoken = transcript.toLowerCase().trim();
+                const target = word.en.toLowerCase().trim();
+                if (spoken.includes(target) || target.includes(spoken)) {
+                    setFeedback('good'); speak("Excellent!");
+                } else {
+                    setFeedback('bad'); speak("Try again!");
+                }
+                setTimeout(() => setFeedback(null), 2500);
+            };
+
+            const { isListening, startListening, errorMsg } = useSpeechRecognition(handleSpeechResult);
+
+            const nextWord = () => {
+                if (currentIndex < lesson.words.length - 1) {
+                    setCurrentIndex(currentIndex + 1); setFeedback(null);
+                } else {
+                    setView('quiz'); 
+                }
+            };
+
+            useEffect(() => { speak(word.en); }, [currentIndex]);
+
+            return (
+                <div className="flex-1 w-full max-w-2xl mx-auto p-6 flex flex-col items-center justify-center animate-fade-in">
+                    <div className="w-full flex justify-between items-center mb-6 text-gray-500 font-bold bg-white px-6 py-3 rounded-full shadow-sm">
+                        <span className="text-red-500">{lesson.title}</span>
+                        <span>Từ {currentIndex + 1} / {lesson.words.length}</span>
+                    </div>
+
+                    {errorMsg && <div className="mb-4 text-red-500 bg-red-50 px-4 py-2 rounded-lg font-bold">{errorMsg}</div>}
+
+                    <div className="bg-white w-full rounded-[40px] shadow-2xl p-10 flex flex-col items-center relative border-8 border-red-50 text-center transition-all mb-8">
+                        {feedback === 'good' && (
+                        <div className="absolute inset-0 bg-green-500/95 rounded-[32px] flex flex-col items-center justify-center text-white z-20 animate-bounce">
+                            <i className="fas fa-check-circle text-[100px] mb-4"></i>
+                            <h2 className="text-5xl font-black">Giỏi Quá!</h2>
+                        </div>
+                        )}
+                        {feedback === 'bad' && (
+                        <div className="absolute inset-0 bg-red-500/95 rounded-[32px] flex flex-col items-center justify-center text-white z-20">
+                            <i className="fas fa-times-circle text-[100px] mb-4"></i>
+                            <h2 className="text-5xl font-black">Đọc lại nhé!</h2>
+                        </div>
+                        )}
+
+                        <div className="text-[120px] leading-none mb-6 drop-shadow-md bg-blue-50 rounded-full p-8 w-64 h-64 flex items-center justify-center border-4 border-blue-100">
+                            {word.icon}
+                        </div>
+                        <h2 className="text-6xl font-black text-red-600 mb-2 tracking-tight">{word.en}</h2>
+                        <p className="text-3xl text-gray-400 font-bold mb-10">{word.vi}</p>
+
+                        <div className="flex gap-4 w-full">
+                            <button onClick={() => speak(word.en)} className="flex-1 bg-yellow-400 hover:bg-yellow-500 active:bg-yellow-600 text-yellow-900 py-5 rounded-3xl font-black text-xl flex items-center justify-center gap-3 shadow-[0_8px_0_0_#b45309] active:translate-y-2 active:shadow-none transition-all">
+                                <i className="fas fa-volume-up text-2xl"></i> Nghe
+                            </button>
+                            <button onClick={startListening} className={`flex-1 py-5 rounded-3xl font-black text-xl flex items-center justify-center gap-3 transition-all ${isListening ? 'bg-red-500 text-white shadow-[0_4px_0_0_#991b1b] translate-y-1' : 'bg-blue-400 hover:bg-blue-500 text-white shadow-[0_8px_0_0_#1e3a8a] active:translate-y-2 active:shadow-none'}`}>
+                                <i className={`fas fa-microphone text-2xl ${isListening ? "animate-pulse" : ""}`}></i> 
+                                {isListening ? 'Đang nghe...' : 'Đọc theo'}
+                            </button>
+                        </div>
+                    </div>
+
+                    <button onClick={nextWord} className="w-full bg-red-600 text-white font-bold text-2xl py-5 px-12 rounded-full flex items-center justify-center gap-4 shadow-[0_8px_0_0_#991b1b] active:translate-y-2 active:shadow-none transition-all">
+                        {currentIndex < lesson.words.length - 1 ? 'Từ tiếp theo' : 'Làm bài tập ngay'} <i className="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            );
+        };
+
+        const QuizView = ({ lesson, setView }) => {
+            const [currentQ, setCurrentQ] = useState(0);
+            const [score, setScore] = useState(0);
+            const [showResult, setShowResult] = useState(false);
+            const speak = useSpeechSynthesis();
+            const [questions, setQuestions] = useState([]);
+
+            useEffect(() => {
+                const qs = lesson.words.map(word => {
+                    const types = ['image', 'missing', 'scramble'];
+                    const qType = types[Math.floor(Math.random() * types.length)];
+                    let options = [word];
+                    
+                    if (qType === 'image') {
+                        const pool = lesson.words.filter(w => w.id !== word.id);
+                        const shuffledPool = [...pool].sort(() => 0.5 - Math.random());
+                        options = [word, ...shuffledPool.slice(0, 3)].sort(() => 0.5 - Math.random());
+                    }
+
+                    let missingIndex = 0;
+                    let missingOptions = [];
+                    if (qType === 'missing') {
+                        const enArr = word.en.split('');
+                        missingIndex = Math.floor(Math.random() * enArr.length);
+                        const correctChar = enArr[missingIndex].toUpperCase();
+                        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                        missingOptions = [correctChar];
+                        while(missingOptions.length < 3) {
+                            const char = alphabet[Math.floor(Math.random() * alphabet.length)];
+                            if(!missingOptions.includes(char)) missingOptions.push(char);
+                        }
+                        missingOptions.sort(() => 0.5 - Math.random());
+                    }
+
+                    let scrambleChars = [];
+                    if (qType === 'scramble') {
+                        scrambleChars = word.en.toUpperCase().split('').sort(() => 0.5 - Math.random());
+                    }
+
+                    return { word, qType, options, missingIndex, missingOptions, scrambleChars };
+                });
+                setQuestions(qs);
+            }, [lesson]);
+
+            const handleCorrect = () => { speak("Correct!"); setScore(s => s + 1); nextQuestion(); };
+            const handleWrong = () => { speak("Oops! Try again."); nextQuestion(); };
+
+            const nextQuestion = () => {
+                setTimeout(() => {
+                    if (currentQ < questions.length - 1) { setCurrentQ(currentQ + 1); } 
+                    else { speak("Congratulations!"); setShowResult(true); }
+                }, 1000);
+            };
+
+            if (questions.length === 0) return <div>Loading...</div>;
+
+            if (showResult) {
+                return (
+                    <div className="flex-1 w-full flex flex-col items-center justify-center p-6 animate-fade-in">
+                        <div className="bg-white rounded-[40px] shadow-2xl p-12 text-center max-w-md w-full border-8 border-yellow-300">
+                            <i className="fas fa-medal text-[100px] text-yellow-500 mx-auto mb-6"></i>
+                            <h2 className="text-4xl font-black text-red-600 mb-4">Hoàn Thành!</h2>
+                            <p className="text-2xl text-gray-700 font-bold mb-8">
+                                Bé đạt được <br/>
+                                <span className="text-6xl text-green-500 font-black">{score}/{questions.length}</span> sao
+                            </p>
+                            <div className="flex flex-col gap-4">
+                                <button onClick={() => {setCurrentQ(0); setScore(0); setShowResult(false);}} className="w-full bg-blue-500 text-white font-bold text-xl py-4 rounded-full shadow-[0_6px_0_0_#1e3a8a] active:translate-y-2 active:shadow-none transition-all flex items-center justify-center gap-2">
+                                    <i className="fas fa-redo"></i> Làm lại bài này
+                                </button>
+                                <button onClick={() => setView('lessons')} className="w-full bg-red-100 text-red-600 font-bold text-xl py-4 rounded-full shadow-sm hover:bg-red-200 transition-all">
+                                    Chọn bài khác
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            const qData = questions[currentQ];
+
+            return (
+                <div className="flex-1 w-full max-w-4xl mx-auto p-6 flex flex-col items-center animate-fade-in">
+                    <div className="w-full flex justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm border-2 border-gray-100">
+                        <span className="font-bold text-gray-500 text-lg">Câu {currentQ + 1} / {questions.length}</span>
+                        <div className="flex items-center gap-2 text-yellow-500 font-black text-2xl bg-yellow-50 px-4 py-1 rounded-full">
+                            <i className="fas fa-star"></i> {score}
+                        </div>
+                    </div>
+                    <div className="bg-white rounded-[40px] shadow-xl p-8 w-full flex flex-col items-center mb-8 border-4 border-red-100">
+                        {qData.qType === 'image' && <QuizTypeImage qData={qData} onCorrect={handleCorrect} onWrong={handleWrong} speak={speak} />}
+                        {qData.qType === 'missing' && <QuizTypeMissing qData={qData} onCorrect={handleCorrect} onWrong={handleWrong} speak={speak} />}
+                        {qData.qType === 'scramble' && <QuizTypeScramble qData={qData} onCorrect={handleCorrect} onWrong={handleWrong} speak={speak} />}
+                    </div>
+                </div>
+            );
+        };
+
+        const QuizTypeImage = ({ qData, onCorrect, onWrong, speak }) => {
+            useEffect(() => { speak(qData.word.en); }, [qData]);
+            return (
+                <div className="w-full flex flex-col items-center">
+                    <div className="flex items-center gap-2 text-blue-500 font-bold mb-6 text-xl bg-blue-50 px-4 py-2 rounded-full">
+                        <i className="fas fa-image"></i> Chọn hình đúng với chữ này:
+                    </div>
+                    <div className="flex items-center gap-4 mb-10">
+                        <button onClick={() => speak(qData.word.en)} className="p-4 bg-yellow-100 text-yellow-600 rounded-full hover:bg-yellow-200">
+                            <i className="fas fa-volume-up text-3xl"></i>
+                        </button>
+                        <h2 className="text-6xl md:text-7xl font-black text-red-600">{qData.word.en}</h2>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 w-full max-w-2xl">
+                        {qData.options.map((opt, i) => (
+                        <button key={i} onClick={() => opt.id === qData.word.id ? onCorrect() : onWrong()} className="bg-gray-50 hover:bg-red-50 border-4 border-gray-100 hover:border-red-300 rounded-[30px] p-8 text-[80px] leading-none flex items-center justify-center shadow-sm transition-all hover:scale-105 active:scale-95">
+                            {opt.icon}
+                        </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const QuizTypeMissing = ({ qData, onCorrect, onWrong, speak }) => {
+            const wordArr = qData.word.en.toUpperCase().split('');
+            const [selected, setSelected] = useState(null);
+
+            const handleSelect = (char) => {
+                setSelected(char);
+                if (char === wordArr[qData.missingIndex]) {
+                    setTimeout(onCorrect, 500);
+                } else {
+                    setTimeout(() => { setSelected(null); onWrong(); }, 800);
+                }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center">
+                    <div className="flex items-center gap-2 text-green-500 font-bold mb-6 text-xl bg-green-50 px-4 py-2 rounded-full">
+                        <i className="fas fa-font"></i> Điền chữ còn thiếu:
+                    </div>
+                    <div className="text-[100px] leading-none mb-8 drop-shadow-md">{qData.word.icon}</div>
+                    <div className="flex gap-2 mb-12">
+                        {wordArr.map((char, i) => (
+                        <div key={i} className={`w-16 h-20 md:w-20 md:h-24 flex items-center justify-center text-4xl md:text-5xl font-black rounded-2xl border-b-4 ${i === qData.missingIndex ? (selected === char ? 'bg-green-100 text-green-600 border-green-300' : 'bg-gray-100 text-gray-800 border-gray-300 border-dashed') : 'bg-white text-gray-800 border-gray-200 shadow-sm'}`}>
+                            {i === qData.missingIndex ? (selected || '?') : char}
+                        </div>
+                        ))}
+                    </div>
+                    <div className="flex gap-6">
+                        {qData.missingOptions.map((char, i) => (
+                        <button key={i} onClick={() => handleSelect(char)} className="w-20 h-20 bg-blue-500 text-white text-4xl font-black rounded-full shadow-[0_6px_0_0_#1e3a8a] active:translate-y-2 active:shadow-none hover:bg-blue-400 transition-all">
+                            {char}
+                        </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const QuizTypeScramble = ({ qData, onCorrect, onWrong, speak }) => {
+            const targetWord = qData.word.en.toUpperCase();
+            const [currentWord, setCurrentWord] = useState('');
+            const [availableChars, setAvailableChars] = useState(qData.scrambleChars.map((char, idx) => ({ char, idx, used: false })));
+
+            const handleCharClick = (item) => {
+                if (item.used) return;
+                const newWord = currentWord + item.char;
+                setCurrentWord(newWord);
+                setAvailableChars(prev => prev.map(c => c.idx === item.idx ? {...c, used: true} : c));
+
+                if (newWord.length === targetWord.length) {
+                    if (newWord === targetWord) {
+                        setTimeout(onCorrect, 500);
+                    } else {
+                        setTimeout(() => {
+                            onWrong();
+                            setCurrentWord('');
+                            setAvailableChars(prev => prev.map(c => ({...c, used: false})));
+                        }, 800);
+                    }
+                }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center">
+                    <div className="flex items-center gap-2 text-purple-500 font-bold mb-6 text-xl bg-purple-50 px-4 py-2 rounded-full">
+                        <i className="fas fa-th-large"></i> Ghép thành chữ đúng:
+                    </div>
+                    <div className="text-[100px] leading-none mb-8 drop-shadow-md">{qData.word.icon}</div>
+                    
+                    <div className="flex gap-2 mb-12 h-24 items-center justify-center min-w-[200px] border-b-4 border-gray-200 pb-4 px-8">
+                        {currentWord.split('').map((char, i) => (
+                        <div key={i} className="text-5xl font-black text-red-600">{char}</div>
+                        ))}
+                        {currentWord.length === 0 && <span className="text-3xl text-gray-300 font-bold">Bấm các chữ cái bên dưới</span>}
+                    </div>
+
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {availableChars.map((item) => (
+                        <button key={item.idx} onClick={() => handleCharClick(item)} disabled={item.used} className={`w-16 h-16 md:w-20 md:h-20 text-3xl font-black rounded-2xl shadow-[0_6px_0_0_#b45309] transition-all ${item.used ? 'bg-gray-100 text-gray-300 shadow-none translate-y-1' : 'bg-yellow-400 text-yellow-900 hover:bg-yellow-300 active:translate-y-2 active:shadow-none'}`}>
+                            {item.char}
+                        </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [view, setView] = useState('home'); 
+            const [selectedLesson, setSelectedLesson] = useState(null);
+
+            const handleSelectLesson = (lesson) => {
+                setSelectedLesson(lesson);
+                setView('lessonModeSelect');
+            };
+
+            return (
+                <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-red-200">
+                    <Header setView={setView} view={view} />
+                    <main className="flex-1 flex flex-col w-full relative">
+                        {view === 'home' && <HomeView setView={setView} />}
+                        {view === 'numbers' && <NumbersView />}
+                        {view === 'dates' && <DatesView />}
+                        {view === 'lessons' && <LessonsView onSelectLesson={handleSelectLesson} />}
+                        {view === 'lessonModeSelect' && selectedLesson && <LessonModeSelect lesson={selectedLesson} setView={setView} onBack={() => setView('lessons')} />}
+                        {view === 'learnVocab' && selectedLesson && <LearnVocabView lesson={selectedLesson} setView={setView} />}
+                        {view === 'quiz' && selectedLesson && <QuizView lesson={selectedLesson} setView={setView} />}
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
