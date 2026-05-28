@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Toán Cùng Khang & Khánh</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vio': '#00A859', // Màu xanh lá chủ đạo
+                        'vio-light': '#E6F6ED',
+                        'vio-dark': '#007A3E',
+                        'kid-orange': '#FF8C00',
+                        'kid-blue': '#00BFFF',
+                        'kid-pink': '#FF69B4',
+                        'kid-yellow': '#FFD700',
+                    },
+                    boxShadow: {
+                        'btn': '0 4px 0 rgba(0,0,0,0.1)',
+                        'card': '0 8px 16px -4px rgba(0,0,0,0.1)',
+                    },
+                    fontFamily: {
+                        'sans': ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body { font-family: 'Nunito', sans-serif; background-color: #f0fdf4; margin: 0; padding: 0; }
+        .font-qs { font-family: 'Quicksand', sans-serif; }
+        .btn-push:active { transform: translateY(4px); box-shadow: 0 0px 0 rgba(0,0,0,0.1); }
+        .star-anim { animation: spinAndScale 0.5s ease-out; }
+        @keyframes spinAndScale {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+    </style>
+
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Babel (để biên dịch JSX ngay trên trình duyệt) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // Tạo câu hỏi dựa trên Level (1-30)
+        const generateQuestionForLevel = (level) => {
+            let num1, num2, answer, operator;
+            let isDivision = false;
+
+            if (level <= 15) {
+                operator = '×';
+                if (level <= 3) { num1 = randomInt(1, 3); num2 = randomInt(0, 10); } 
+                else if (level <= 6) { num1 = randomInt(4, 5); num2 = randomInt(0, 10); }
+                else if (level <= 10) { num1 = randomInt(6, 7); num2 = randomInt(0, 10); }
+                else if (level <= 13) { num1 = randomInt(8, 9); num2 = randomInt(0, 10); }
+                else { num1 = randomInt(1, 9); num2 = randomInt(0, 10); } 
+                answer = num1 * num2;
+            } else if (level <= 25) {
+                isDivision = true;
+                operator = ':';
+                let divisor;
+                if (level <= 18) { divisor = randomInt(1, 3); }
+                else if (level <= 21) { divisor = randomInt(4, 5); }
+                else if (level <= 23) { divisor = randomInt(6, 7); }
+                else { divisor = randomInt(8, 9); }
+                
+                let quotient = randomInt(1, 10);
+                num1 = divisor * quotient; 
+                num2 = divisor;
+                answer = quotient;
+            } else {
+                isDivision = Math.random() > 0.5;
+                if (isDivision) {
+                    operator = ':';
+                    let divisor = randomInt(1, 9);
+                    let quotient = randomInt(1, 10);
+                    num1 = divisor * quotient;
+                    num2 = divisor;
+                    answer = quotient;
+                } else {
+                    operator = '×';
+                    num1 = randomInt(1, 9);
+                    num2 = randomInt(0, 10);
+                    answer = num1 * num2;
+                }
+            }
+
+            let options = new Set([answer]);
+            while(options.size < 4) {
+                let wrongAns;
+                if (isDivision) {
+                    wrongAns = answer + randomInt(-3, 3);
+                    if (wrongAns < 1) wrongAns = randomInt(2, 9);
+                } else {
+                    const errorType = randomInt(1, 3);
+                    if (errorType === 1) wrongAns = answer + num1;
+                    else if (errorType === 2) wrongAns = answer - num1;
+                    else wrongAns = answer + randomInt(-5, 5);
+                }
+                
+                if (wrongAns >= 0 && wrongAns !== answer) {
+                    options.add(wrongAns);
+                }
+            }
+
+            return {
+                num1, num2, operator, answer,
+                options: Array.from(options).sort(() => Math.random() - 0.5)
+            };
+        };
+
+        // Đọc văn bản
+        const speakText = (text) => {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance();
+                msg.text = text;
+                msg.lang = 'vi-VN';
+                msg.rate = 0.9;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const viVoice = voices.find(voice => voice.lang.includes('vi'));
+                if (viVoice) msg.voice = viVoice;
+
+                window.speechSynthesis.speak(msg);
+            }
+        };
+
+        const SelfStudy = () => {
+            const [mode, setMode] = useState('nhan'); 
+            const [number, setNumber] = useState(2); 
+            const [speakingId, setSpeakingId] = useState(null);
+
+            const tableData = [];
+            const startIdx = mode === 'nhan' ? 0 : 1; 
+            
+            for (let i = startIdx; i <= 10; i++) {
+                if (mode === 'nhan') {
+                    tableData.push({
+                        id: i,
+                        equation: `${number} × ${i} = ${number * i}`,
+                        readText: `${number} nhân ${i} bằng ${number * i}`
+                    });
+                } else {
+                    const dividend = number * i;
+                    tableData.push({
+                        id: i,
+                        equation: `${dividend} : ${number} = ${i}`,
+                        readText: `${dividend} chia ${number} bằng ${i}`
+                    });
+                }
+            }
+
+            const handleRead = (item) => {
+                setSpeakingId(item.id);
+                speakText(item.readText);
+                setTimeout(() => setSpeakingId(null), 2000);
+            };
+
+            return (
+                <div className="max-w-3xl mx-auto bg-white rounded-3xl p-6 md:p-10 shadow-card border-4 border-vio-light">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl md:text-4xl font-black text-vio-dark mb-4">Bảng Cửu Chương</h2>
+                        <p className="text-gray-600 font-medium">Khang và Khánh hãy chọn bảng muốn học nhé!</p>
+                    </div>
+
+                    <div className="flex justify-center gap-4 mb-6">
+                        <button 
+                            onClick={() => setMode('nhan')}
+                            className={`px-6 py-3 rounded-2xl font-bold text-lg btn-push shadow-btn transition-colors ${mode === 'nhan' ? 'bg-kid-orange text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                        >
+                            Phép Nhân (×)
+                        </button>
+                        <button 
+                            onClick={() => setMode('chia')}
+                            className={`px-6 py-3 rounded-2xl font-bold text-lg btn-push shadow-btn transition-colors ${mode === 'chia' ? 'bg-kid-blue text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                        >
+                            Phép Chia (:)
+                        </button>
+                    </div>
+
+                    <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
+                        {[1,2,3,4,5,6,7,8,9].map(num => (
+                            <button
+                                key={num}
+                                onClick={() => setNumber(num)}
+                                className={`w-12 h-12 md:w-16 md:h-16 rounded-full font-black text-xl md:text-2xl btn-push shadow-btn flex items-center justify-center transition-all duration-300
+                                    ${number === num ? 'bg-vio text-white scale-110' : 'bg-vio-light text-vio-dark hover:bg-green-200'}`}
+                            >
+                                {num}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {tableData.map((item) => (
+                            <div 
+                                key={item.id} 
+                                className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all duration-300
+                                    ${speakingId === item.id ? 'border-vio bg-vio-light scale-105 shadow-md' : 'border-gray-100 bg-gray-50 hover:border-gray-200'}`}
+                            >
+                                <span className="text-2xl md:text-3xl font-bold text-gray-700 tracking-wider font-qs">
+                                    {item.equation}
+                                </span>
+                                <button 
+                                    onClick={() => handleRead(item)}
+                                    className="bg-kid-yellow hover:bg-yellow-400 text-yellow-900 w-12 h-12 rounded-full flex items-center justify-center text-xl btn-push shadow-sm transition-colors"
+                                    aria-label="Đọc phép tính"
+                                >
+                                    🔊
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const PlayMission = ({ level, onBack, onComplete }) => {
+            const [questions, setQuestions] = useState([]);
+            const [currentQ, setCurrentQ] = useState(0);
+            const [score, setScore] = useState(0);
+            const [selectedAns, setSelectedAns] = useState(null);
+            const [ansStatus, setAnsStatus] = useState(null); 
+            const [isFinished, setIsFinished] = useState(false);
+
+            useEffect(() => {
+                const qs = [];
+                for (let i = 0; i < 5; i++) qs.push(generateQuestionForLevel(level));
+                setQuestions(qs);
+            }, [level]);
+
+            const playSound = (type) => {
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioContext) return;
+                    const ctx = new AudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(800, ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+                        gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                        osc.start(); osc.stop(ctx.currentTime + 0.3);
+                    } else {
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(300, ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.2);
+                        gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                        osc.start(); osc.stop(ctx.currentTime + 0.3);
+                    }
+                } catch (e) { console.log(e); }
+            };
+
+            const handleAnswer = (ans) => {
+                if (ansStatus === 'correct') return; 
+
+                setSelectedAns(ans);
+                const isCorrect = ans === questions[currentQ].answer;
+                
+                if (isCorrect) {
+                    setAnsStatus('correct');
+                    playSound('correct');
+                    setTimeout(() => {
+                        const newScore = score + 1;
+                        setScore(newScore);
+                        if (currentQ < 4) {
+                            setCurrentQ(c => c + 1);
+                        } else {
+                            setIsFinished(true);
+                        }
+                        setAnsStatus(null);
+                        setSelectedAns(null);
+                    }, 1000);
+                } else {
+                    setAnsStatus('wrong');
+                    playSound('wrong');
+                    setTimeout(() => {
+                        setAnsStatus(null);
+                        setSelectedAns(null);
+                    }, 800);
+                }
+            };
+
+            if (questions.length === 0) return null;
+
+            if (isFinished) {
+                return (
+                    <div className="flex flex-col items-center justify-center py-12">
+                        <div className="bg-white rounded-3xl p-10 shadow-card text-center border-4 border-green-400 max-w-md w-full animate-[bounce_0.5s_ease-in-out]">
+                            <div className="text-6xl mb-4 star-anim">⭐</div>
+                            <h2 className="text-4xl font-black text-green-500 mb-4">Hoàn Thành! 🎉</h2>
+                            <p className="text-xl font-bold text-gray-700 mb-8">Nhiệm Vụ {level} quá dễ với hai bé!</p>
+                            <button 
+                                onClick={() => onComplete(level, score)}
+                                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-xl btn-push shadow-btn w-full transition-colors"
+                            >
+                                Trở Về Bản Đồ
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            const q = questions[currentQ];
+
+            return (
+                <div className="flex flex-col items-center max-w-2xl mx-auto w-full">
+                    <div className="w-full flex justify-between items-center mb-6">
+                        <button onClick={onBack} className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 md:px-5 py-2 rounded-xl font-bold btn-push shadow-btn transition-colors text-sm md:text-base">
+                            ⬅ Quay Lại
+                        </button>
+                        <h2 className="text-xl md:text-2xl font-black text-vio-dark">Nhiệm Vụ {level}</h2>
+                        <div className="text-base md:text-lg font-bold bg-kid-orange text-white px-4 py-1 rounded-full shadow-sm">
+                            Câu {currentQ + 1}/5
+                        </div>
+                    </div>
+
+                    <div className="bg-white w-full rounded-3xl p-8 md:p-12 shadow-card mb-8 text-center border-4 border-vio-light relative overflow-hidden">
+                        <div className="text-6xl md:text-8xl font-black text-vio-dark tracking-wider font-qs">
+                            {q.num1} {q.operator} {q.num2} = ?
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 md:gap-6 w-full">
+                        {q.options.map((opt, idx) => {
+                            let btnClass = "bg-white text-vio-dark border-4 border-gray-100 hover:border-vio hover:bg-vio-light";
+                            
+                            if (selectedAns === opt) {
+                                if (ansStatus === 'correct') {
+                                    btnClass = "bg-green-500 text-white border-green-600 shadow-[0_4px_0_#16a34a] scale-105";
+                                } else if (ansStatus === 'wrong') {
+                                    btnClass = "bg-red-500 text-white border-red-600 shadow-[0_4px_0_#dc2626] animate-pulse";
+                                }
+                            }
+
+                            return (
+                                <button 
+                                    key={idx}
+                                    onClick={() => handleAnswer(opt)}
+                                    className={`text-4xl md:text-5xl font-black py-6 md:py-8 rounded-3xl transition-all btn-push shadow-btn font-qs ${btnClass}`}
+                                    disabled={ansStatus === 'correct'} 
+                                >
+                                    {opt}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        };
+
+        const ChallengeMap = () => {
+            const [playingLevel, setPlayingLevel] = useState(null);
+            const [progress, setProgress] = useState(() => {
+                try {
+                    const saved = localStorage.getItem('khang_khanh_math_progress_unlocked');
+                    return saved ? JSON.parse(saved) : { completed: [] };
+                } catch(e) { return { completed: [] }; }
+            });
+
+            const handleComplete = (level, finalScore) => {
+                const newProg = { ...progress };
+                if (!newProg.completed.includes(level)) {
+                    newProg.completed.push(level);
+                }
+                setProgress(newProg);
+                localStorage.setItem('khang_khanh_math_progress_unlocked', JSON.stringify(newProg));
+                setPlayingLevel(null);
+            };
+
+            if (playingLevel) {
+                return <PlayMission level={playingLevel} onBack={() => setPlayingLevel(null)} onComplete={handleComplete} />;
+            }
+
+            return (
+                <div className="max-w-5xl mx-auto pb-10">
+                    <div className="text-center mb-8 bg-white rounded-3xl p-6 shadow-sm border border-green-100">
+                        <h2 className="text-3xl md:text-4xl font-black text-kid-orange mb-2">Bản Đồ Thử Thách</h2>
+                        <p className="text-gray-600 font-medium text-base md:text-lg">Hai anh em hãy chọn bất kỳ nhiệm vụ nào để chơi nhé! Hãy thu thập thật nhiều sao! ⭐</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-5">
+                        {Array.from({length: 30}, (_, i) => i + 1).map(level => {
+                            const isCompleted = progress.completed.includes(level);
+                            
+                            return (
+                                <button 
+                                    key={level}
+                                    onClick={() => setPlayingLevel(level)}
+                                    className={`relative w-full aspect-square rounded-2xl flex flex-col items-center justify-center font-black text-3xl md:text-4xl btn-push shadow-btn transition-all duration-300 font-qs
+                                        ${isCompleted ? 'bg-green-400 text-white border-b-4 border-green-600 hover:bg-green-500' : 'bg-white text-vio-dark border-4 border-vio-light hover:border-vio hover:bg-vio-light hover:-translate-y-1'}`}
+                                >
+                                    {level}
+                                    {isCompleted && (
+                                        <div className="absolute -top-3 -right-3 text-2xl md:text-3xl filter drop-shadow-md star-anim">⭐</div>
+                                    )}
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('study'); 
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <header className="bg-white py-4 md:py-6 shadow-sm px-4 mb-6 sticky top-0 z-20">
+                        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                            <h1 className="text-2xl md:text-3xl font-black text-vio-dark flex items-center gap-2">
+                                <span className="text-3xl">🐸</span> Toán Học Khang & Khánh
+                            </h1>
+                            <div className="flex bg-gray-100 p-1.5 rounded-2xl w-full md:w-auto">
+                                <button 
+                                    onClick={() => setActiveTab('study')}
+                                    className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold transition-all text-sm md:text-base ${activeTab === 'study' ? 'bg-white text-kid-orange shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                                >
+                                    Bé Tự Học
+                                </button>
+                                <button 
+                                    onClick={() => setActiveTab('challenge')}
+                                    className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold transition-all text-sm md:text-base ${activeTab === 'challenge' ? 'bg-white text-kid-blue shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                                >
+                                    Thử Thách
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="flex-grow px-4 pb-24">
+                        {activeTab === 'study' ? <SelfStudy /> : <ChallengeMap />}
+                    </main>
+
+                    <footer className="fixed bottom-0 left-0 w-full bg-white py-3 md:py-4 text-center text-gray-400 font-medium text-xs md:text-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-10">
+                        © 2019 - 2026 Copyright by Siêu Nhân Designer
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
