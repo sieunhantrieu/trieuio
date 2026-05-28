@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧩 Rubik Guide - Nguyên Khang & Hoàng Khánh</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Nunito (Friendly and playful font for kids) -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at center, #1e1b4b 0%, #03001e 100%);
+    }
+    /* Custom scrollbar for steps */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.3);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c084fc;
+      border-radius: 999px;
+    }
+    /* Neon shadow effects */
+    .neon-shadow-purple {
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    }
+    .neon-shadow-yellow {
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+    }
+    .neon-text-glow {
+      text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+    }
+    /* Cute floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .floating-element {
+      animation: float 4s ease-in-out infinite;
+    }
+    /* Confetti canvas overlay */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- Confetti Layer -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="border-b border-indigo-900/50 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="bg-gradient-to-tr from-yellow-400 to-pink-500 p-2.5 rounded-xl shadow-lg shadow-purple-900/30">
+          <i data-lucide="puzzle" class="w-6 h-6 text-slate-950 animate-pulse"></i>
+        </div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-black bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-400 bg-clip-text text-transparent neon-text-glow">
+            Rubik Guide 3D
+          </h1>
+          <p class="text-[11px] md:text-xs text-purple-300 font-bold tracking-wider uppercase">
+            🚀 Vũ Trụ Rubik Cho Nguyên Khang & Hoàng Khánh
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Progress Bar -->
+      <div class="flex items-center gap-3 bg-indigo-950/60 px-4 py-2 rounded-2xl border border-indigo-800/40 w-full md:w-auto">
+        <div class="text-xs font-black text-yellow-300 whitespace-nowrap">Nhiệm vụ:</div>
+        <div class="w-full md:w-48 bg-slate-900 h-3 rounded-full overflow-hidden border border-indigo-900">
+          <div id="overall-progress" class="bg-gradient-to-r from-pink-500 to-yellow-400 h-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+        <span id="progress-text" class="text-xs font-bold text-pink-300">0/9</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
+    <!-- LEFT COLUMN: 3D Rubik Canvas & Virtual Speedcube Controller -->
+    <div class="lg:col-span-5 flex flex-col gap-4">
+      <div class="bg-slate-900/80 border-2 border-indigo-500/30 rounded-3xl overflow-hidden neon-shadow-purple flex flex-col relative min-h-[420px] lg:min-h-0 lg:h-full">
+        
+        <!-- Header Controls of the Cube -->
+        <div class="p-3 bg-slate-950/60 border-b border-indigo-950 flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-widest">Phòng Thử Nghiệm 3D</span>
+          </div>
+          <div class="flex gap-1">
+            <button onclick="scrambleCube()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs px-3 py-1.5 rounded-xl transition duration-200 active:scale-95 flex items-center gap-1">
+              <i data-lucide="shuffle" class="w-3.5 h-3.5"></i> Xáo Trộn
+            </button>
+            <button onclick="resetCube()" class="bg-slate-800 hover:bg-slate-700 text-purple-300 font-black text-xs px-3 py-1.5 rounded-xl border border-purple-900/50 transition duration-200 active:scale-95 flex items-center gap-1">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Đặt Lại
+            </button>
+          </div>
+        </div>
+
+        <!-- The 3D Render Canvas Container -->
+        <div id="canvas-container" class="flex-1 w-full bg-slate-950/90 relative cursor-grab active:cursor-grabbing min-h-[280px]">
+          <!-- Drag instruction helper overlay -->
+          <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-indigo-800/50 flex items-center gap-2 pointer-events-none shadow-lg">
+            <i data-lucide="move" class="w-3.5 h-3.5 text-yellow-400"></i>
+            <span class="text-[11px] text-slate-300 font-semibold">Kéo chuột/Vuốt để xoay Rubik 3D</span>
+          </div>
+        </div>
+
+        <!-- Speed and Playback bar -->
+        <div class="px-4 py-3 bg-slate-950/80 border-t border-indigo-950/60 flex flex-col gap-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-purple-300 font-bold flex items-center gap-1">
+              <i data-lucide="gauge" class="w-3.5 h-3.5"></i> Tốc độ xoay:
+            </span>
+            <span id="speed-val" class="font-extrabold text-yellow-300">Bình thường</span>
+          </div>
+          <input type="range" id="speed-range" min="80" max="600" value="300" class="w-full accent-pink-500 bg-slate-800 h-2 rounded-lg cursor-pointer">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Adaptive Interactive Steps & Guide System -->
+    <div class="lg:col-span-7 flex flex-col gap-4">
+      
+      <!-- Horizontal Navigation Tabs (Steps) -->
+      <div class="bg-slate-950/60 p-1.5 rounded-2xl border border-indigo-900/50 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-thin">
+        <button onclick="switchTab('notation')" id="tab-notation" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-black transition-all flex items-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md">
+          <i data-lucide="book-open" class="w-4 h-4"></i> Ký Hiệu
+        </button>
+        <!-- Generation of Steps 1 to 8 tabs -->
+        <div id="steps-tabs-container" class="flex gap-1.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Main Step Container Card -->
+      <div class="flex-1 bg-slate-900/60 border-2 border-indigo-500/20 rounded-3xl p-4 md:p-6 flex flex-col justify-between backdrop-blur-sm relative overflow-hidden neon-shadow-purple">
+        
+        <!-- Glowing Ambient Circles in background -->
+        <div class="absolute -top-12 -right-12 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Dynamic Content Section -->
+        <div id="step-content-box" class="flex-1 flex flex-col gap-4">
+          <!-- Dynamic Step Content Injector -->
+        </div>
+
+        <!-- Navigation bottom controls inside the step card -->
+        <div class="mt-6 pt-4 border-t border-indigo-950/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="step-complete-checkbox" class="w-5 h-5 accent-emerald-500 bg-slate-800 rounded-lg cursor-pointer border-2 border-slate-700" onchange="toggleStepComplete()">
+            <label for="step-complete-checkbox" class="text-sm font-bold text-slate-300 cursor-pointer select-none">
+              Anh em mình đã hoàn thành bước này! 🎉
+            </label>
+          </div>
+          <div class="flex gap-2 w-full sm:w-auto justify-end">
+            <button id="prev-btn" onclick="navigateStep(-1)" class="flex-1 sm:flex-none px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm rounded-xl transition duration-150 active:scale-95 flex items-center justify-center gap-1">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i> Trước đó
+            </button>
+            <button id="next-btn" onclick="navigateStep(1)" class="flex-1 sm:flex-none px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-sm rounded-xl transition duration-150 active:scale-95 flex items-center justify-center gap-1 shadow-lg shadow-emerald-950/30">
+              Tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Help Modal (Audio Setup / Warm Welcoming) -->
+  <div id="welcome-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center z-[100] p-4 transition-all duration-300">
+    <div class="bg-gradient-to-br from-indigo-950 to-slate-900 border-2 border-yellow-400/40 p-6 md:p-8 rounded-3xl max-w-lg w-full text-center relative shadow-2xl neon-shadow-yellow overflow-hidden">
+      <!-- Playful floating design circles -->
+      <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl"></div>
+      <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl"></div>
+
+      <!-- Rubik Graphic / Icon -->
+      <div class="w-20 h-20 bg-gradient-to-tr from-yellow-400 via-orange-400 to-pink-500 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-orange-500/20 mb-6 floating-element">
+        <i data-lucide="sparkles" class="w-10 h-10 text-slate-950"></i>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-400 mb-2 leading-tight">
+        Chào Nguyên Khang & Hoàng Khánh!
+      </h2>
+      <p class="text-sm md:text-base text-purple-200 font-bold mb-6">
+        Chào mừng hai anh em siêu trí tuệ bước vào Vũ Trụ 3D giải mã khối Rubik 3x3 huyền thoại! 🚀
+      </p>
+
+      <div class="bg-indigo-900/30 border border-indigo-800/40 p-4 rounded-2xl text-left mb-6">
+        <h4 class="text-xs font-black text-yellow-300 uppercase tracking-widest mb-1.5 flex items-center gap-1">
+          <i data-lucide="info" class="w-3.5 h-3.5"></i> Vũ khí tối tân của hai anh em:
+        </h4>
+        <ul class="text-xs text-slate-300 space-y-1.5">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> Khối Rubik 3D xoay mượt mà bằng kéo chuột/ngón tay.
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> Học các ký hiệu xoay siêu dễ qua các nút bấm thông minh.
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> Nút "Chạy Công Thức" tự động làm mẫu cho các em xem!
+          </li>
+        </ul>
+      </div>
+
+      <button onclick="startApp()" class="w-full py-4 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 font-black text-base rounded-2xl transition duration-200 active:scale-95 shadow-xl shadow-amber-500/20">
+        Khám Phá Ngay Thôi! 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom Alert Notification Box (replaces standard alerts) -->
+  <div id="custom-toast" class="fixed top-20 right-4 bg-slate-900/95 border border-emerald-500 text-emerald-300 px-4 py-3 rounded-2xl shadow-xl z-50 flex items-center gap-2 transform translate-x-72 transition-all duration-300 pointer-events-none opacity-0">
+    <i data-lucide="party-popper" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toast-msg" class="text-sm font-bold">Hoàn thành bước mới!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-4 text-center border-t border-indigo-950/40 bg-slate-950/30">
+    <p class="text-[11px] text-slate-500 font-bold">
+      Thiết kế đặc biệt dành cho hai anh em Nguyên Khang & Hoàng Khánh • Bản quyền © 2026 Rubik Guide 3D
+    </p>
+  </footer>
+
+  <script>
+    /* =========================================================================
+       AUDIO SYNTHESIZER (WEB AUDIO API)
+       ========================================================================= */
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    // Dynamic mechanical rubik clicking sound
+    function playTurnSound() {
+      if (!audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.05);
+
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch (e) {
+        // Prevent audio block issues
+      }
+    }
+
+    // Happy reward sound chime
+    function playSuccessSound() {
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+          gain.gain.setValueAtTime(0.15, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.25);
+
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.3);
+        });
+      } catch (e) {}
+    }
+
+
+    /* =========================================================================
+       THREE.JS 3D RUBIK'S CUBE ENGINE
+       ========================================================================= */
+    let scene, camera, renderer, rubikContainer;
+    let cubies = [];
+    let isTurning = false;
+    let turnQueue = [];
+    let rotationDuration = 300; // default turn animation duration in ms
+
+    // Sticker Colors Hex mapping (Standard Western Color Scheme)
+    const COLORS = {
+      U: 0xFFEB3B, // Yellow
+      D: 0xFFFFFF, // White
+      F: 0x4CAF50, // Green
+      B: 0x2196F3, // Blue
+      R: 0xF44336, // Red
+      L: 0xFF9800, // Orange
+      CORE: 0x111115 // Dark sleek core charcoal
+    };
+
+    function init3D() {
+      const container = document.getElementById('canvas-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // 1. Setup Scene
+      scene = new THREE.Scene();
+
+      // 2. Setup Camera
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.set(4.5, 4.5, 6.5);
+      camera.lookAt(0, 0, 0);
+
+      // 3. Setup Renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // 4. Lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+      scene.add(ambientLight);
+
+      const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.7);
+      dirLight1.position.set(10, 15, 8);
+      scene.add(dirLight1);
+
+      const dirLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
+      dirLight2.position.set(-10, -5, -8);
+      scene.add(dirLight2);
+
+      // 5. Container for entire Rubik Cube
+      rubikContainer = new THREE.Group();
+      scene.add(rubikContainer);
+
+      buildRubik();
+
+      // 6. Interaction / Orbit rotation triggers
+      let isDragging = false;
+      let prevMousePos = { x: 0, y: 0 };
+
+      // Gentle auto-rotation to start with a dynamic angle
+      rubikContainer.rotation.x = 0.35;
+      rubikContainer.rotation.y = -0.65;
+
+      const onStart = (clientX, clientY) => {
+        isDragging = true;
+        prevMousePos = { x: clientX, y: clientY };
+      };
+
+      const onMove = (clientX, clientY) => {
+        if (!isDragging) return;
+        const deltaX = clientX - prevMousePos.x;
+        const deltaY = clientY - prevMousePos.y;
+
+        // Apply rotation to master container
+        rubikContainer.rotation.y += deltaX * 0.007;
+        rubikContainer.rotation.x += deltaY * 0.007;
+
+        prevMousePos = { x: clientX, y: clientY };
+      };
+
+      const onEnd = () => { isDragging = false; };
+
+      // Desktop listeners
+      container.addEventListener('mousedown', (e) => onStart(e.clientX, e.clientY));
+      window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+      window.addEventListener('mouseup', onEnd);
+
+      // Touch screen support
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) onStart(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1) onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      window.addEventListener('touchend', onEnd);
+
+      // 7. Render Loop
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Responsive canvas adjustment
+      window.addEventListener('resize', () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+    }
+
+    // Build the 27 cubies with visual stickers
+    function buildRubik() {
+      // Clear any existing cubies
+      while (rubikContainer.children.length > 0) {
+        rubikContainer.remove(rubikContainer.children[0]);
+      }
+      cubies = [];
+
+      const size = 0.93; // Cubie dimensions (leaves gap for high realism)
+      const stickerScale = 0.82; // Relative scale of colorful stickers
+
+      // Create each of the 27 smaller cubes at coordinates -1, 0, 1
+      for (let x = -1; x <= 1; x++) {
+        for (let y = -1; y <= 1; y++) {
+          for (let z = -1; z <= 1; z++) {
+            
+            // Single Cubie Parent Group
+            const cubieGroup = new THREE.Group();
+            cubieGroup.position.set(x, y, z);
+            cubieGroup.userData = { initialPos: { x, y, z } };
+
+            // Core base block (Dark sleek gray)
+            const baseGeo = new THREE.BoxGeometry(size, size, size);
+            const baseMat = new THREE.MeshLambertMaterial({ color: COLORS.CORE });
+            const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+            cubieGroup.add(baseMesh);
+
+            // Add Stickers (Planes facing outwards)
+            const offset = size / 2 + 0.015; // slightly pushed out to avoid z-fighting
+
+            // Top Sticker (Yellow)
+            if (y === 1) {
+              const sticker = createSticker(COLORS.U, size * stickerScale);
+              sticker.position.y = offset;
+              sticker.rotation.x = -Math.PI / 2;
+              cubieGroup.add(sticker);
+            }
+            // Bottom Sticker (White)
+            if (y === -1) {
+              const sticker = createSticker(COLORS.D, size * stickerScale);
+              sticker.position.y = -offset;
+              sticker.rotation.x = Math.PI / 2;
+              cubieGroup.add(sticker);
+            }
+            // Right Sticker (Red)
+            if (x === 1) {
+              const sticker = createSticker(COLORS.R, size * stickerScale);
+              sticker.position.x = offset;
+              sticker.rotation.y = Math.PI / 2;
+              cubieGroup.add(sticker);
+            }
+            // Left Sticker (Orange)
+            if (x === -1) {
+              const sticker = createSticker(COLORS.L, size * stickerScale);
+              sticker.position.x = -offset;
+              sticker.rotation.y = -Math.PI / 2;
+              cubieGroup.add(sticker);
+            }
+            // Front Sticker (Green)
+            if (z === 1) {
+              const sticker = createSticker(COLORS.F, size * stickerScale);
+              sticker.position.z = offset;
+              cubieGroup.add(sticker);
+            }
+            // Back Sticker (Blue)
+            if (z === -1) {
+              const sticker = createSticker(COLORS.B, size * stickerScale);
+              sticker.position.z = -offset;
+              sticker.rotation.y = Math.PI;
+              cubieGroup.add(sticker);
+            }
+
+            rubikContainer.add(cubieGroup);
+            cubies.push(cubieGroup);
+          }
+        }
+      }
+    }
+
+    // Helper to generate a colorful sticker mesh with glossy feel
+    function createSticker(colorHex, size) {
+      const geo = new THREE.PlaneGeometry(size, size);
+      const mat = new THREE.MeshPhongMaterial({
+        color: colorHex,
+        shininess: 90,
+        specular: 0x222222,
+        side: THREE.DoubleSide
+      });
+      return new THREE.Mesh(geo, mat);
+    }
+
+
+    /* =========================================================================
+       RUBIK ROTATION LOGIC (BULLETPROOF MATRIX SNAPPING)
+       ========================================================================= */
+    const MOVE_MAP = {
+      "R":  { axis: 'x', condition: pos => pos.x > 0.5,  angle: -Math.PI / 2 },
+      "R'": { axis: 'x', condition: pos => pos.x > 0.5,  angle: Math.PI / 2 },
+      "L":  { axis: 'x', condition: pos => pos.x < -0.5, angle: Math.PI / 2 },
+      "L'": { axis: 'x', condition: pos => pos.x < -0.5, angle: -Math.PI / 2 },
+      "U":  { axis: 'y', condition: pos => pos.y > 0.5,  angle: -Math.PI / 2 },
+      "U'": { axis: 'y', condition: pos => pos.y > 0.5,  angle: Math.PI / 2 },
+      "D":  { axis: 'y', condition: pos => pos.y < -0.5, angle: Math.PI / 2 },
+      "D'": { axis: 'y', condition: pos => pos.y < -0.5, angle: -Math.PI / 2 },
+      "F":  { axis: 'z', condition: pos => pos.z > 0.5,  angle: -Math.PI / 2 },
+      "F'": { axis: 'z', condition: pos => pos.z > 0.5,  angle: Math.PI / 2 },
+      "B":  { axis: 'z', condition: pos => pos.z < -0.5, angle: Math.PI / 2 },
+      "B'": { axis: 'z', condition: pos => pos.z < -0.5, angle: -Math.PI / 2 },
+      "M":  { axis: 'x', condition: pos => pos.x > -0.5 && pos.x < 0.5, angle: Math.PI / 2 }
+    };
+
+    function executeMove(moveStr, bypassSound = false) {
+      if (isTurning) {
+        turnQueue.push({ moveStr, bypassSound });
+        return;
+      }
+
+      const move = MOVE_MAP[moveStr];
+      if (!move) return;
+
+      isTurning = true;
+      if (!bypassSound) playTurnSound();
+
+      // Find all cubies in rotation plane based on current position coordinates
+      const targetCubies = [];
+      const worldPos = new THREE.Vector3();
+
+      cubies.forEach(cubie => {
+        cubie.getWorldPosition(worldPos);
+        // Map relative to rubik container orientation
+        const localPos = rubikContainer.worldToLocal(worldPos.clone());
+        
+        if (move.condition(localPos)) {
+          targetCubies.push(cubie);
+        }
+      });
+
+      // Temporary group to hold only rotating layer
+      const tempGroup = new THREE.Group();
+      rubikContainer.add(tempGroup);
+
+      // Attach cubies to temporary rotation group (attaching maintains absolute positions)
+      targetCubies.forEach(cubie => {
+        tempGroup.attach(cubie);
+      });
+
+      const startTime = performance.now();
+      const currentDuration = rotationDuration;
+
+      function animateTurn(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / currentDuration, 1);
+
+        // Ease Out Sine for smooth physics turning look
+        const easeProgress = Math.sin(progress * Math.PI / 2);
+        const currentAngle = move.angle * easeProgress;
+
+        if (move.axis === 'x') tempGroup.rotation.x = currentAngle;
+        if (move.axis === 'y') tempGroup.rotation.y = currentAngle;
+        if (move.axis === 'z') tempGroup.rotation.z = currentAngle;
+
+        if (progress < 1) {
+          requestAnimationFrame(animateTurn);
+        } else {
+          // Final Snap and cleanup
+          tempGroup.updateMatrixWorld();
+          
+          targetCubies.forEach(cubie => {
+            rubikContainer.attach(cubie);
+            
+            // 1. Snapping positions to strict coordinate grid
+            cubie.position.x = Math.round(cubie.position.x);
+            cubie.position.y = Math.round(cubie.position.y);
+            cubie.position.z = Math.round(cubie.position.z);
+
+            // 2. Snapping rotation matrices to eliminate mathematical float inaccuracies
+            const rotMatrix = new THREE.Matrix4().makeRotationFromQuaternion(cubie.quaternion);
+            const te = rotMatrix.elements;
+
+            let xAxis = new THREE.Vector3(te[0], te[1], te[2]);
+            let yAxis = new THREE.Vector3(te[4], te[5], te[6]);
+            let zAxis = new THREE.Vector3(te[8], te[9], te[10]);
+
+            function snapVectorToAxis(v) {
+              let maxVal = 0, axis = 'x', sign = 1;
+              if (Math.abs(v.x) > maxVal) { maxVal = Math.abs(v.x); axis = 'x'; sign = Math.sign(v.x); }
+              if (Math.abs(v.y) > maxVal) { maxVal = Math.abs(v.y); axis = 'y'; sign = Math.sign(v.y); }
+              if (Math.abs(v.z) > maxVal) { maxVal = Math.abs(v.z); axis = 'z'; sign = Math.sign(v.z); }
+              v.set(0, 0, 0);
+              v[axis] = sign;
+            }
+
+            snapVectorToAxis(xAxis);
+            snapVectorToAxis(yAxis);
+            zAxis.crossVectors(xAxis, yAxis); // maintain right handedness
+
+            te[0] = xAxis.x; te[1] = xAxis.y; te[2] = xAxis.z;
+            te[4] = yAxis.x; te[5] = yAxis.y; te[6] = yAxis.z;
+            te[8] = zAxis.x; te[9] = zAxis.y; te[10] = zAxis.z;
+
+            cubie.quaternion.setFromRotationMatrix(rotMatrix);
+          });
+
+          rubikContainer.remove(tempGroup);
+          isTurning = false;
+
+          // Process next in line in turn queue
+          if (turnQueue.length > 0) {
+            const next = turnQueue.shift();
+            executeMove(next.moveStr, next.bypassSound);
+          }
+        }
+      }
+
+      requestAnimationFrame(animateTurn);
+    }
+
+    // Scramble logic
+    function scrambleCube() {
+      const keys = Object.keys(MOVE_MAP);
+      const originalDuration = rotationDuration;
+      // Make it speed scrambles instantly!
+      rotationDuration = 55;
+
+      for (let i = 0; i < 18; i++) {
+        const randomMove = keys[Math.floor(Math.random() * keys.length)];
+        executeMove(randomMove, true);
+      }
+
+      // Revert back rotation speed
+      setTimeout(() => {
+        rotationDuration = originalDuration;
+      }, 18 * 60);
+    }
+
+    // Reset back to solved state
+    function resetCube() {
+      turnQueue = [];
+      isTurning = false;
+      buildRubik();
+      playTurnSound();
+    }
+
+
+    /* =========================================================================
+       APP & LESSON STEP DATA (VIETNAMESE, KIDS FRIENDLY, PERSONALIZED)
+       ========================================================================= */
+    const STEPS_DATA = {
+      notation: {
+        title: "📖 Bí Kíp Đọc Ký Hiệu Xoay",
+        subtitle: "Hai anh em cần thuộc các chữ cái này để thi triển công thức siêu tốc!",
+        instructions: `
+          <p class="text-sm text-slate-300">Rubik gồm có <b>6 mặt chính</b>, mỗi mặt được ký hiệu bằng một chữ cái tiếng Anh. Khi thấy chữ cái đơn lẻ, các em xoay mặt đó <b>90 độ xuôi chiều kim đồng hồ</b>. Nếu có thêm dấu phẩy <b>(')</b>, hãy xoay <b>ngược chiều kim đồng hồ</b> nhé!</p>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
+            <button onclick="executeMove('R')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-red-400 group-hover:scale-110 transition">R</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Phải Xuôi</div>
+            </button>
+            <button onclick="executeMove('R\'')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-red-300 group-hover:scale-110 transition">R'</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Phải Ngược</div>
+            </button>
+            <button onclick="executeMove('L')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-orange-400 group-hover:scale-110 transition">L</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trái Xuôi</div>
+            </button>
+            <button onclick="executeMove('L\'')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-orange-300 group-hover:scale-110 transition">L'</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trái Ngược</div>
+            </button>
+            <button onclick="executeMove('U')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-yellow-300 group-hover:scale-110 transition">U</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trên Xuôi</div>
+            </button>
+            <button onclick="executeMove('U\'')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-yellow-200 group-hover:scale-110 transition">U'</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trên Ngược</div>
+            </button>
+            <button onclick="executeMove('F')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-emerald-400 group-hover:scale-110 transition">F</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trước Xuôi</div>
+            </button>
+            <button onclick="executeMove('F\'')" class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/30 p-3 rounded-2xl text-center transition-all duration-150 active:scale-95 group">
+              <div class="text-2xl font-black text-emerald-300 group-hover:scale-110 transition">F'</div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase mt-1">Mặt Trước Ngược</div>
+            </button>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/30 p-3 rounded-2xl mt-3 text-xs text-amber-200">
+            💡 <b>Mách nhỏ Nguyên Khang & Hoàng Khánh:</b> Thử ấn vào các nút chữ cái ở trên để xem khối Rubik 3D bên trái xoay chuyển thực tế thế nào nhé! Luyện tập bấm nhiều lần sẽ giúp mắt quen hướng xoay cực nhanh!
+          </div>
+        `
+      },
+      step1: {
+        title: "🌼 Bước 1: Tạo Bông Hoa Cúc",
+        subtitle: "Nhị hoa màu vàng rực rỡ và 4 cánh hoa màu trắng xung quanh!",
+        instructions: `
+          <div class="flex flex-col md:flex-row gap-4 items-center">
+            <div class="flex-1 space-y-2.5">
+              <p class="text-sm text-slate-300 leading-relaxed">Nhiệm vụ đầu tiên siêu đơn giản: Hai anh em hãy đi tìm viên <b>Tâm màu VÀNG</b> ở mặt trên cùng (U). Sau đó, tìm 4 viên cạnh có chứa mặt màu <b>TRẮNG</b> và đưa chúng về quây quanh nhị vàng đó.</p>
+              
+              <div class="bg-indigo-950/60 p-3.5 rounded-2xl border border-indigo-800/40 text-xs text-slate-300 space-y-1">
+                <div class="font-black text-pink-400 mb-1 flex items-center gap-1">
+                  <i data-lucide="compass" class="w-3.5 h-3.5"></i> Bí kíp của bước này:
+                </div>
+                <div>• Bước này dựa 100% vào <b>Trực Giác</b>, không cần công thức gì cả!</div>
+                <div>• Đừng lo lắng về màu mặt bên cạnh của viên trắng, chỉ cần 4 cánh trắng vây quanh nhị vàng là đạt mục tiêu!</div>
+              </div>
+            </div>
+            
+            <!-- SVG Target Graphic -->
+            <div class="w-24 h-24 bg-slate-950 rounded-2xl border border-purple-900/40 p-2 flex flex-col justify-center items-center shrink-0 shadow-lg">
+              <span class="text-[10px] font-bold text-slate-400 mb-1">Mặt Trên</span>
+              <div class="grid grid-cols-3 gap-1 w-16 h-16">
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded border border-slate-300 shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded border border-slate-300 shadow"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-white rounded border border-slate-300 shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded border border-slate-300 shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-2xl mt-2 text-xs text-emerald-300">
+            💎 <b>Mẹo cho hai anh em:</b> Nếu một viên cạnh trắng đang nằm ở dưới cùng, chỉ cần xoay mặt chứa nó 2 lần là nó sẽ nhảy tót lên tầng trên cùng ngay!
+          </div>
+        `
+      },
+      step2: {
+        title: "➕ Bước 2: Tạo Dấu Cộng Trắng",
+        subtitle: "Đưa các cánh hoa trắng xuống đáy để xây dựng dấu cộng vững chãi!",
+        instructions: `
+          <div class="flex flex-col md:flex-row gap-4 items-center">
+            <div class="flex-1 space-y-2.5">
+              <p class="text-sm text-slate-300 leading-relaxed">Bây giờ, hãy chuyển 4 viên cạnh trắng từ Nhị hoa vàng xuống mặt dưới cùng (Mặt TRẮNG) sao cho trùng màu mặt bên với tâm bên cạnh.</p>
+              
+              <div class="text-xs text-slate-300 space-y-2">
+                <div class="flex gap-2">
+                  <span class="bg-indigo-900/80 text-purple-300 w-5 h-5 rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+                  <span>Nhìn vào mặt trên (hoa cúc), chọn 1 viên cạnh trắng và nhìn màu bên cạnh của nó (Ví dụ: màu <b>Xanh Lá</b>).</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="bg-indigo-900/80 text-purple-300 w-5 h-5 rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+                  <span>Xoay tầng trên <b>U</b> cho tới khi viên màu xanh lá đó khớp với viên <b>Tâm màu Xanh Lá</b>.</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="bg-indigo-900/80 text-purple-300 w-5 h-5 rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+                  <span>Xoay mặt trước của viên đó 2 lần (ví dụ xoay <b>F2</b>) để đưa nó xuống dưới đáy trắng. Làm tiếp với các cánh khác nhé!</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Target Graphic -->
+            <div class="w-24 h-24 bg-slate-950 rounded-2xl border border-purple-900/40 p-2 flex flex-col justify-center items-center shrink-0 shadow-lg">
+              <span class="text-[10px] font-bold text-slate-400 mb-1">Mặt Dưới</span>
+              <div class="grid grid-cols-3 gap-1 w-16 h-16">
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded shadow"></div>
+                <div class="bg-white rounded shadow"></div>
+                <div class="bg-white rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-white rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      step3: {
+        title: "🧱 Bước 3: Hoàn Thành Tầng 1",
+        subtitle: "Giải quyết các góc trắng bằng công thức 'Sexy Move' huyền thoại!",
+        instructions: `
+          <div class="space-y-3">
+            <p class="text-sm text-slate-300 leading-relaxed">Lật ngược Rubik sao cho <b>mặt Trắng nằm ở đáy (D)</b> và mặt Vàng ở trên cùng (U). Hãy tìm các viên góc có màu trắng ở tầng trên cùng.</p>
+            
+            <div class="flex flex-col md:flex-row gap-3 items-center">
+              <div class="flex-1 space-y-2">
+                <div class="text-xs text-slate-300">
+                  <b>Cách làm:</b> Đưa viên góc đó về vị trí nằm ngay phía trên góc đáy của nó (bằng cách xoay U). Sau đó thực hiện công thức huyền thoại liên tục từ 1 đến 5 lần cho đến khi góc vào đúng vị trí:
+                </div>
+                
+                <!-- Formula Box -->
+                <div class="bg-slate-950 border border-yellow-500/30 p-3.5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-inner">
+                  <div class="text-center sm:text-left">
+                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-400 block mb-0.5">Công Thức Sexy Move:</span>
+                    <span class="text-xl font-extrabold text-white tracking-widest">R U R' U'</span>
+                  </div>
+                  <button onclick="playFormula('R U R\' U\'')" class="bg-pink-500 hover:bg-pink-400 text-slate-950 font-black text-xs px-4 py-2 rounded-xl transition-all duration-150 active:scale-95 flex items-center gap-1">
+                    <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử
+                  </button>
+                </div>
+              </div>
+
+              <!-- Graphic Target -->
+              <div class="w-24 h-24 bg-slate-950 rounded-2xl border border-purple-900/40 p-2 flex flex-col justify-center items-center shrink-0 shadow-lg">
+                <span class="text-[10px] font-bold text-slate-400 mb-1">Tầng 1 Khớp</span>
+                <div class="grid grid-cols-3 gap-1 w-16 h-16">
+                  <div class="bg-slate-800 rounded"></div>
+                  <div class="bg-slate-800 rounded"></div>
+                  <div class="bg-slate-800 rounded"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                  <div class="bg-red-500 rounded-b shadow"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      step4: {
+        title: "🔧 Bước 4: Giải Tầng 2 - Chọn Chữ T",
+        subtitle: "Đưa 4 viên cạnh tầng giữa về đúng vị trí bằng tuyệt kỹ chữ T!",
+        instructions: `
+          <div class="space-y-3">
+            <p class="text-sm text-slate-300">Giữ mặt màu Vàng ở trên cùng. Tìm một viên cạnh ở tầng trên <b>không có màu vàng</b>. Xoay tầng trên <b>U</b> sao cho màu mặt trước trùng khớp với tâm tạo thành <b>hình chữ T đứng</b>.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <!-- Case Left -->
+              <div class="bg-slate-950/80 border border-purple-500/20 p-3 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                    <span class="text-xs font-black text-slate-300">NẾU VIÊN GÓC CẦN SANG TRÁI</span>
+                  </div>
+                  <div class="text-sm font-extrabold text-yellow-300 tracking-wider my-2 p-1.5 bg-slate-900 rounded text-center">
+                    U' L' U L U F U' F'
+                  </div>
+                </div>
+                <button onclick="playFormula('U\' L\' U L U F U\' F\'')" class="w-full bg-slate-800 hover:bg-slate-700 text-purple-300 font-bold text-xs py-2 rounded-xl transition duration-150 flex items-center justify-center gap-1">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử 3D
+                </button>
+              </div>
+
+              <!-- Case Right -->
+              <div class="bg-slate-950/80 border border-purple-500/20 p-3 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                    <span class="text-xs font-black text-slate-300">NẾU VIÊN GÓC CẦN SANG PHẢI</span>
+                  </div>
+                  <div class="text-sm font-extrabold text-yellow-300 tracking-wider my-2 p-1.5 bg-slate-900 rounded text-center">
+                    U R U' R' U' F' U F
+                  </div>
+                </div>
+                <button onclick="playFormula('U R U\' R\' U\' F\' U F')" class="w-full bg-slate-800 hover:bg-slate-700 text-purple-300 font-bold text-xs py-2 rounded-xl transition duration-150 flex items-center justify-center gap-1">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử 3D
+                </button>
+              </div>
+            </div>
+
+            <div class="bg-purple-500/10 border border-purple-500/30 p-2.5 rounded-2xl text-xs text-purple-300">
+              💡 <b>Mẹo cho Nguyên Khang & Hoàng Khánh:</b> Chữ T hoàn hảo là khi 3 ô thẳng đứng đồng màu ở mặt trước (như hình minh họa ở bước 4). Nếu viên cạnh bị kẹt sai chỗ ở tầng giữa, hai em hãy dùng 1 trong 2 công thức trên để đẩy viên đó lên tầng trên rồi giải lại nhé!
+            </div>
+          </div>
+        `
+      },
+      step5: {
+        title: "🌟 Bước 5: Tạo Dấu Cộng Vàng",
+        subtitle: "Tạo dấu cộng màu vàng lung linh trên đỉnh Rubik bằng một công thức duy nhất!",
+        instructions: `
+          <div class="flex flex-col md:flex-row gap-4 items-center">
+            <div class="flex-1 space-y-2.5">
+              <p class="text-sm text-slate-300">Hãy lật mặt trên xem mặt vàng đang rơi vào trường hợp nào (chỉ tính các viên cạnh, bỏ qua viên góc):</p>
+              
+              <ul class="text-xs text-slate-300 space-y-1 bg-slate-950/50 p-3 rounded-2xl border border-indigo-950">
+                <li>• <b>Chấm vàng:</b> Chỉ có một tâm màu vàng duy nhất.</li>
+                <li>• <b>Chữ L vàng ngược:</b> Xoay Rubik sao cho chữ L nằm ở góc trên bên trái.</li>
+                <li>• <b>Đường thẳng vàng:</b> Xoay Rubik sao cho đường thẳng nằm ngang.</li>
+              </ul>
+
+              <div class="bg-slate-950 border border-yellow-500/30 p-3 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="text-center sm:text-left">
+                  <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-400 block mb-0.5">Xoay liên tục cho tới khi ra dấu cộng:</span>
+                  <span class="text-lg font-extrabold text-white tracking-widest">F R U R' U' F'</span>
+                </div>
+                <button onclick="playFormula('F R U R\' U\' F\'')" class="bg-pink-500 hover:bg-pink-400 text-slate-950 font-black text-xs px-4 py-2 rounded-xl transition duration-150 flex items-center gap-1 shrink-0">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử
+                </button>
+              </div>
+            </div>
+
+            <!-- Graphic target -->
+            <div class="w-24 h-24 bg-slate-950 rounded-2xl border border-purple-900/40 p-2 flex flex-col justify-center items-center shrink-0 shadow-lg">
+              <span class="text-[10px] font-bold text-slate-400 mb-1">Đỉnh Vàng</span>
+              <div class="grid grid-cols-3 gap-1 w-16 h-16">
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+                <div class="bg-yellow-400 rounded shadow"></div>
+                <div class="bg-slate-800 rounded"></div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      step6: {
+        title: "☀️ Bước 6: Phủ Kín Mặt Vàng",
+        subtitle: "Làm cả mặt đỉnh chuyển thành màu vàng rực rỡ bằng chiêu thức Cá Vàng (Sune Method)!",
+        instructions: `
+          <div class="space-y-3">
+            <p class="text-sm text-slate-300">Nhìn vào số lượng góc màu vàng hiện tại ở mặt trên để căn chỉnh hướng Rubik trước khi xoay:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] text-slate-300">
+              <div class="bg-indigo-950/40 border border-indigo-900/30 p-2.5 rounded-xl">
+                <span class="font-bold text-yellow-300 block mb-1">CÓ 1 GÓC VÀNG (CÁ VÀNG)</span>
+                Xoay đầu con cá hướng xuống góc dưới bên trái.
+              </div>
+              <div class="bg-indigo-950/40 border border-indigo-900/30 p-2.5 rounded-xl">
+                <span class="font-bold text-yellow-300 block mb-1">KHÔNG CÓ GÓC VÀNG</span>
+                Tìm mặt bên có màu vàng hướng sang bên trái ở hàng trên cùng mặt trước.
+              </div>
+              <div class="bg-indigo-950/40 border border-indigo-900/30 p-2.5 rounded-xl">
+                <span class="font-bold text-yellow-300 block mb-1">CÓ 2 GÓC VÀNG</span>
+                Tìm góc có mặt màu vàng hướng về phía trước của bạn.
+              </div>
+            </div>
+
+            <div class="bg-slate-950 border border-yellow-500/30 p-3 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-center sm:text-left">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-400 block mb-0.5">Công thức Sune siêu nổi tiếng:</span>
+                <span class="text-lg font-extrabold text-white tracking-widest">R U R' U R U2 R'</span>
+              </div>
+              <button onclick="playFormula('R U R\' U R U U R\'')" class="bg-pink-500 hover:bg-pink-400 text-slate-950 font-black text-xs px-4 py-2 rounded-xl transition duration-150 flex items-center gap-1 shrink-0">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử (Chú ý U2)
+              </button>
+            </div>
+          </div>
+        `
+      },
+      step7: {
+        title: "📐 Bước 7: Sắp Xếp Góc Mặt Vàng",
+        subtitle: "Đưa các viên góc ở tầng trên cùng về đúng vị trí bằng công thức chữ T huyền bí!",
+        instructions: `
+          <div class="space-y-3">
+            <p class="text-sm text-slate-300">Hãy tìm ở tầng 3 xem có mặt bên nào chứa <b>hai viên góc trùng màu nhau</b> hay không (gọi là "Đôi Mắt" hoặc Đèn Pha).</p>
+            
+            <div class="text-xs text-slate-300 space-y-2 bg-indigo-950/50 p-3.5 rounded-2xl border border-indigo-950">
+              <div class="flex items-start gap-2">
+                <span class="text-pink-400 font-bold">•</span>
+                <span><b>Nếu tìm thấy:</b> Xoay tầng trên <b>U</b> sao cho "Đôi Mắt" đó hướng sang bên tay TRÁI của bạn. Sau đó thực hiện công thức.</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-pink-400 font-bold">•</span>
+                <span><b>Nếu không có:</b> Đừng lo lắng! Thực hiện công thức bên dưới một lần ở bất kỳ góc độ nào, sau đó bạn sẽ có ngay một đôi mắt. Làm lại bước trên nhé!</span>
+              </div>
+            </div>
+
+            <div class="bg-slate-950 border border-yellow-500/30 p-3 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-center sm:text-left">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-400 block mb-0.5">Công thức hoán vị góc chữ T:</span>
+                <span class="text-sm font-extrabold text-white tracking-wider block mt-1">R U R' U' R' F R2 U' R' U' R U R' F'</span>
+              </div>
+              <button onclick="playFormula('R U R\' U\' R\' F R R U\' R\' U\' R U R\' F\'')" class="bg-pink-500 hover:bg-pink-400 text-slate-950 font-black text-xs px-4 py-2 rounded-xl transition duration-150 flex items-center gap-1 shrink-0">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử
+              </button>
+            </div>
+          </div>
+        `
+      },
+      step8: {
+        title: "🎉 Bước 8: Hoàn Thành Khối Rubik!",
+        subtitle: "Cú sút cuối cùng đưa các viên cạnh vàng về đúng vị trí để mở khóa vinh quang!",
+        instructions: `
+          <div class="space-y-3">
+            <p class="text-sm text-slate-300">Tầng 3 của các em bây giờ chỉ còn sai lệch các viên cạnh giữa. Hãy tìm xem có mặt bên nào <b>đã hoàn thành hoàn hảo</b> hay chưa.</p>
+            
+            <div class="text-xs text-slate-300 space-y-1.5 bg-indigo-950/60 p-3 rounded-2xl border border-indigo-900/30">
+              <div>• <b>Có 1 mặt hoàn thành:</b> Hãy quay mặt đó ra <b>phía SAU</b> (đối diện bạn) rồi áp dụng công thức.</div>
+              <div>• <b>Không có mặt nào hoàn thành:</b> Làm công thức 1 lần để tạo mặt hoàn chỉnh, rồi quay mặt đó ra sau và lặp lại!</div>
+            </div>
+
+            <div class="bg-slate-950 border border-yellow-500/30 p-3 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-center sm:text-left">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-yellow-400 block mb-0.5">Công thức dứt điểm trận đấu:</span>
+                <span class="text-lg font-extrabold text-white tracking-widest">F2 U L R' F2 L' R U F2</span>
+              </div>
+              <button onclick="playFormula('F F U L R\' F F L\' R U F F')" class="bg-pink-500 hover:bg-pink-400 text-slate-950 font-black text-xs px-4 py-2 rounded-xl transition duration-150 flex items-center gap-1 shrink-0">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i> Chạy Thử
+              </button>
+            </div>
+
+            <div class="bg-emerald-500/10 border border-emerald-500/30 p-3 rounded-2xl mt-1 text-xs text-emerald-300">
+              🌈 Nếu các viên cạnh cần xoay ngược chiều kim đồng hồ, hai em chỉ cần thay thế chữ <b>U</b> bằng <b>U'</b> nhé! <i>(Ví dụ: F2 U' L R' F2 L' R U' F2)</i>.
+            </div>
+          </div>
+        `
+      }
+    };
+
+
+    /* =========================================================================
+       USER INTERFACE NAVIGATION & LOGIC
+       ========================================================================= */
+    let currentStepKey = "notation";
+    let completedSteps = {};
+
+    // Generate step navigation buttons
+    function setupStepTabs() {
+      const container = document.getElementById('steps-tabs-container');
+      container.innerHTML = "";
+
+      for (let i = 1; i <= 8; i++) {
+        const key = "step" + i;
+        const btn = document.createElement('button');
+        btn.id = "tab-" + key;
+        btn.className = "tab-btn px-4 py-2.5 rounded-xl text-sm font-black transition-all flex items-center gap-1 text-slate-400 hover:text-slate-200 hover:bg-indigo-950/30";
+        btn.onclick = () => switchTab(key);
+        btn.innerHTML = `<i data-lucide="award" class="w-4 h-4 text-slate-500"></i> Bước ${i}`;
+        container.appendChild(btn);
+      }
+      lucide.createIcons();
+    }
+
+    // Dynamic step switching
+    function switchTab(stepKey) {
+      currentStepKey = stepKey;
+
+      // Update UI selection classes
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = "tab-btn px-4 py-2.5 rounded-xl text-sm font-black transition-all flex items-center gap-1 text-slate-400 hover:text-slate-200 hover:bg-indigo-950/30";
+      });
+
+      const activeBtn = document.getElementById("tab-" + stepKey);
+      if (activeBtn) {
+        activeBtn.className = "tab-btn px-4 py-2.5 rounded-xl text-sm font-black transition-all flex items-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md";
+      }
+
+      // Inject HTML Content
+      const data = STEPS_DATA[stepKey];
+      const contentBox = document.getElementById('step-content-box');
+      contentBox.innerHTML = `
+        <div class="flex items-center gap-3">
+          <h3 class="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-400 neon-text-glow">${data.title}</h3>
+        </div>
+        <p class="text-xs font-bold text-slate-400 -mt-2">${data.subtitle}</p>
+        <div class="flex-1 overflow-y-auto pr-1 max-h-[350px] space-y-3">
+          ${data.instructions}
+        </div>
+      `;
+
+      // Update Completion Checkbox
+      const checkbox = document.getElementById('step-complete-checkbox');
+      checkbox.checked = !!completedSteps[stepKey];
+
+      // Re-initialize dynamic icons
+      lucide.createIcons();
+    }
+
+    // Checkbox toggle logic
+    function toggleStepComplete() {
+      const checkbox = document.getElementById('step-complete-checkbox');
+      completedSteps[currentStepKey] = checkbox.checked;
+
+      if (checkbox.checked) {
+        playSuccessSound();
+        triggerConfetti();
+        showToast(`Tuyệt cú mèo! Hai anh em đã hoàn thành bước này! 🚀`);
+      }
+
+      updateProgress();
+    }
+
+    // Refresh overall progress bar
+    function updateProgress() {
+      const totalSteps = 9; // notation + 8 steps
+      let completedCount = 0;
+
+      if (completedSteps["notation"]) completedCount++;
+      for (let i = 1; i <= 8; i++) {
+        if (completedSteps["step" + i]) completedCount++;
+      }
+
+      const percent = (completedCount / totalSteps) * 100;
+      document.getElementById('overall-progress').style.width = percent + "%";
+      document.getElementById('progress-text').innerText = `${completedCount}/${totalSteps}`;
+
+      // Mark tab visuals
+      updateTabCheckmarks();
+    }
+
+    // Update checkmarks in tab headers
+    function updateTabCheckmarks() {
+      // Notation tab
+      const isNotationDone = !!completedSteps["notation"];
+      const notationBtn = document.getElementById('tab-notation');
+      if (notationBtn) {
+        notationBtn.querySelector('i').setAttribute('data-lucide', isNotationDone ? 'check-circle-2' : 'book-open');
+        if (isNotationDone) notationBtn.querySelector('i').classList.add('text-emerald-300');
+      }
+
+      // Steps 1 to 8 tabs
+      for (let i = 1; i <= 8; i++) {
+        const isDone = !!completedSteps["step" + i];
+        const btn = document.getElementById('tab-step' + i);
+        if (btn) {
+          const icon = btn.querySelector('i');
+          icon.setAttribute('data-lucide', isDone ? 'check-circle-2' : 'award');
+          if (isDone) {
+            icon.className = "w-4 h-4 text-emerald-400 animate-bounce";
+            btn.classList.add('border', 'border-emerald-500/20');
+          } else {
+            icon.className = "w-4 h-4 text-slate-500";
+            btn.classList.remove('border', 'border-emerald-500/20');
+          }
+        }
+      }
+      lucide.createIcons();
+    }
+
+    // Navigate backwards/forwards in step content
+    function navigateStep(direction) {
+      const keys = ["notation", "step1", "step2", "step3", "step4", "step5", "step6", "step7", "step8"];
+      let index = keys.indexOf(currentStepKey);
+      index += direction;
+
+      if (index >= 0 && index < keys.length) {
+        switchTab(keys[index]);
+        // Auto scroll step navigation on mobile
+        const activeTab = document.getElementById("tab-" + keys[index]);
+        if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    // Play full algorithms string
+    function playFormula(movesString) {
+      // Convert moves to array ignoring extra spaces
+      const moves = movesString.split(/\s+/).filter(m => m.trim().length > 0);
+      const delayBetweenMoves = rotationDuration + 50;
+
+      // Disable buttons temporarily while executing
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(btn => btn.disabled = true);
+
+      moves.forEach((move, index) => {
+        setTimeout(() => {
+          executeMove(move);
+          if (index === moves.length - 1) {
+            // Re-enable controls
+            buttons.forEach(btn => btn.disabled = false);
+          }
+        }, index * delayBetweenMoves);
+      });
+    }
+
+    // Hide Welcoming modal
+    function startApp() {
+      initAudio();
+      document.getElementById('welcome-modal').classList.add('opacity-0', 'pointer-events-none');
+      playSuccessSound();
+      triggerConfetti();
+    }
+
+
+    /* =========================================================================
+       TOAST ALERTS SYSTEM
+       ========================================================================= */
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('custom-toast');
+      document.getElementById('toast-msg').innerText = message;
+      
+      toast.classList.remove('opacity-0', 'translate-x-72');
+      toast.classList.add('opacity-100', 'translate-x-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-x-0');
+        toast.classList.add('opacity-0', 'translate-x-72');
+      }, 3000);
+    }
+
+
+    /* =========================================================================
+       CONFETTI FIREWORKS CANVAS FX
+       ========================================================================= */
+    const confettiCanvas = document.getElementById("confetti-canvas");
+    const ctx = confettiCanvas.getContext("2d");
+    let confetti = [];
+
+    function resizeConfettiCanvas() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeConfettiCanvas);
+    resizeConfettiCanvas();
+
+    function triggerConfetti() {
+      const colors = ["#f59e0b", "#10b981", "#3b82f6", "#ec4899", "#8b5cf6"];
+      for (let i = 0; i < 90; i++) {
+        confetti.push({
+          x: Math.random() * confettiCanvas.width,
+          y: Math.random() * -100,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedX: Math.random() * 4 - 2,
+          speedY: Math.random() * 5 + 3,
+          rot: Math.random() * 360,
+          rotSpeed: Math.random() * 4 - 2
+        });
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confetti.forEach((p, idx) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.rot += p.rotSpeed;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+
+        // Remove out of bound particles
+        if (p.y > confettiCanvas.height) {
+          confetti.splice(idx, 1);
+        }
+      });
+      requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+
+
+    /* =========================================================================
+       ON INITIALIZATION
+       ========================================================================= */
+    window.onload = function() {
+      init3D();
+      setupStepTabs();
+      switchTab('notation');
+
+      // Sync slider with Speed text
+      const slider = document.getElementById('speed-range');
+      const valText = document.getElementById('speed-val');
+
+      slider.oninput = function() {
+        // Map slider (lower is faster delay)
+        rotationDuration = 680 - parseInt(this.value);
+
+        if (this.value < 200) {
+          valText.innerText = "Chậm rãi";
+          valText.className = "font-extrabold text-blue-400";
+        } else if (this.value < 450) {
+          valText.innerText = "Bình thường";
+          valText.className = "font-extrabold text-yellow-300";
+        } else {
+          valText.innerText = "Siêu nhanh ⚡";
+          valText.className = "font-extrabold text-emerald-400";
+        }
+      };
+    };
+  </script>
+</body>
+</html>
